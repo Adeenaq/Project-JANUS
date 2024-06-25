@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Enemy")
+        if (collision.gameObject.transform.parent.name == "Enemies")
         {
             collision.gameObject.TryGetComponent<Health>(out Health enemyHealth);
             Debug.Log("Hit enemy");

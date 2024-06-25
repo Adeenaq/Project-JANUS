@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
         foreach (Transform groundCheck in groundChecks)
         {
-            if (Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer))
+            if (Physics2D.OverlapCircle(groundCheck.position, 0.5f, groundLayer))
             {
                 isGrounded = true;
                 break;
