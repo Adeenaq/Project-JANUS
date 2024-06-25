@@ -362,18 +362,20 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 7277906331845140530, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
   m_PrefabInstance: {fileID: 956513936583933824}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &363591277
+--- !u!114 &363591283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351535820}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1df24ebadba45a74ab49d7d2f379a1fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f5b6223f55d3f4408232dce02a8f2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRigidBody: {fileID: 363591274}
+  testForce: 1000
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1693,7 +1695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 986, y: 364}
+  m_AnchoredPosition: {x: 127, y: 252}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1364055096
@@ -2103,7 +2105,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 604, y: -194}
+  m_AnchoredPosition: {x: -326, y: -108}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2024510573
@@ -2394,6 +2396,14 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 103471657}
+    - target: {fileID: 6418219032492296674, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: Healed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6418219032492296674, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: Healed.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6575526294506808549, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -2419,6 +2429,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1800350599}
     - target: {fileID: 8178451686266653314, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: recoilForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8178451686266653314, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: playerRigidBody
+      value: 
+      objectReference: {fileID: 363591274}
+    - target: {fileID: 8178451686266653314, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       propertyPath: firepoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -2439,7 +2457,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3407085537057753910, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 363591277}
+      addedObject: {fileID: 363591283}
     - targetCorrespondingSourceObject: {fileID: 1059035097521188805, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 897657950}

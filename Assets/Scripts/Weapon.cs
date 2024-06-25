@@ -22,6 +22,7 @@ public class Weapon : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // Reset velocity
             bullet.GetComponent<Rigidbody2D>().AddForce(firepoint.right * fireforce, ForceMode2D.Impulse);
             Debug.Log("Bullet fired from " + firepoint.name + " with force: " + fireforce);
+
         }
     }
 
