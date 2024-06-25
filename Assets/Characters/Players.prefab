@@ -416,10 +416,6 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 088b9a51-08e8-4748-918c-6fa999538c65
-    m_ActionName: Player/Look[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 6ff92e52-ce72-4a35-b8af-d2da47b756a4
     m_ActionName: Player/Attack[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -462,6 +458,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7400463b-f6a8-4622-9152-b19a047c5bbd
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4c8687ff-3645-4d33-bbc8-f3b7433da299
+    m_ActionName: Player/Jump[/Keyboard/w,/Keyboard/upArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -967,5 +967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f912f5202d06841bd658ee3b8779a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7257231376318761095, guid: 7b2b378fd5bd567498ae5bc7dda8a6f0, type: 3}
   firepoints: []
   fireforce: 20

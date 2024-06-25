@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public GameObject bulletPrefab; // Prefab of the bullet
     public Transform[] firepoints; // Array to hold multiple firepoints
     public float fireforce = 20f;
 
@@ -17,9 +18,7 @@ public class Weapon : MonoBehaviour
 
         foreach (var firepoint in firepoints)
         {
-            GameObject bullet = ObjectPool.Instance.Get();
-            bullet.transform.position = firepoint.position;
-            bullet.transform.rotation = firepoint.rotation;
+            GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
             bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // Reset velocity
             bullet.GetComponent<Rigidbody2D>().AddForce(firepoint.right * fireforce, ForceMode2D.Impulse);
             Debug.Log("Bullet fired from " + firepoint.name + " with force: " + fireforce);
