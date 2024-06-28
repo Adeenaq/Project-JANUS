@@ -6,7 +6,7 @@ public class ObjectPool : MonoBehaviour
     public static ObjectPool Instance;
 
     public GameObject prefab;
-    public int poolSize = 20;
+     [SerializeField] private int poolSize = 20;
 
     private Queue<GameObject> pool;
 
@@ -30,6 +30,7 @@ public class ObjectPool : MonoBehaviour
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
+
     }
 
     public GameObject Get()

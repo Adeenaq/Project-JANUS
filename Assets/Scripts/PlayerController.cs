@@ -5,9 +5,9 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float walkSpeed = 7f;
-    public float jumpForce = 10f; // Add a jump force variable
-    public Transform[] groundChecks; // Array to hold ground check transforms for both players
+     [SerializeField] private float walkSpeed = 7f;
+    [SerializeField] private float jumpForce = 10f; // Add a jump force variable
+    [SerializeField] private Transform[] groundChecks; // Array to hold ground check transforms for both players
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
     private Vector2 moveInput;
     public Rigidbody2D[] rbs; // Array to hold Rigidbody2D components for both players
@@ -26,11 +26,19 @@ public class PlayerController : MonoBehaviour
         private set
         {
             if (_isFacingRight != value)
-            {
-                foreach (var rb in rbs)
-                {
-                    rb.transform.localScale = new Vector2(-rb.transform.localScale.x, rb.transform.localScale.y);
-                }
+            {   
+                if (rbs != null && rbs.Length > 0)
+                    {
+                        foreach (var rb in rbs)
+                        {
+                            rb.transform.localScale = new Vector2(-rb.transform.localScale.x, rb.transform.localScale.y);
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogError("No Rigidbody2D components found in children.");
+                    }
+                
             }
             _isFacingRight = value;
             UpdateWeaponDirection();
@@ -42,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rbs = GetComponentsInChildren<Rigidbody2D>();
+    
         inputActions = new PlayerInputActions();
 
         inputActions.Player.Move.performed += OnMove;
@@ -84,7 +93,7 @@ public class PlayerController : MonoBehaviour
     {
         if (weapon != null)
         {
-            weapon.SetFirepointDirection(IsFacingRight);
+            // weapon.SetFirepointDirection(IsFacingRight);
         }
         else
         {
@@ -93,12 +102,20 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
-        foreach (var rb in rbs)
+    {   
+        if (rbs != null && rbs.Length > 0)
         {
-            rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+               foreach (var rb in rbs)
+                {
+                    rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+                }
+                CheckGrounded(); // Check if either player is on the ground
         }
-        CheckGrounded(); // Check if either player is on the ground
+        else
+        {
+            Debug.LogError("No Rigidbody2D components found in children.");
+        }
+     
     }
 
     private void CheckGrounded()
@@ -118,11 +135,19 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         if (isGrounded && canJump)
-        {
-            foreach (var rb in rbs)
+        {   
+            if (rbs != null && rbs.Length > 0)
             {
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                   foreach (var rb in rbs)
+                    {
+                        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                    }
             }
+            else
+            {
+                Debug.LogError("No Rigidbody2D components found in children.");
+            }
+         
             Debug.Log("Jump performed");
             StartCoroutine(JumpCooldown());
         }
