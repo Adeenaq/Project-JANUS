@@ -5,19 +5,34 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-     [SerializeField] private float walkSpeed = 7f;
+    [SerializeField] private float walkSpeed = 7f;
     [SerializeField] private float jumpForce = 10f; // Add a jump force variable
     [SerializeField] private Transform[] groundChecks; // Array to hold ground check transforms for both players
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
     private Vector2 moveInput;
     public Rigidbody2D[] rbs; // Array to hold Rigidbody2D components for both players
     public Weapon weapon;
+    Animator[] animator;
 
     private bool isGrounded; // Variable to track if either player is on the ground
     private bool canJump = true; // Cooldown to prevent multiple jumps in quick succession
     public float jumpCooldown = 0.1f; // Cooldown duration
 
-    public bool IsMoving { get; private set; }
+    [SerializeField] private bool _isMoving = false;
+    public bool IsMoving 
+    {   get 
+        {
+            return _isMoving;
+        } 
+        private set 
+        {
+            _isMoving = value;
+            foreach (Animator a in animator)
+            {
+                a.SetBool("IsMoving", value);
+            }
+        } 
+    }
 
     private bool _isFacingRight = true;
     public bool IsFacingRight
@@ -50,6 +65,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rbs = GetComponentsInChildren<Rigidbody2D>();
+        animator = GetComponentsInChildren<Animator>();
     
         inputActions = new PlayerInputActions();
 
@@ -93,7 +109,7 @@ public class PlayerController : MonoBehaviour
     {
         if (weapon != null)
         {
-            // weapon.SetFirepointDirection(IsFacingRight);
+            weapon.SetFirepointDirection(IsFacingRight);
         }
         else
         {
