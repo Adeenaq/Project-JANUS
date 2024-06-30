@@ -230,7 +230,6 @@ MonoBehaviour:
   rbs:
   - {fileID: 7277906331845140530}
   weapon: {fileID: 8178451686266653314}
-  jumpCooldown: 0.25
   _isMoving: 0
 --- !u!50 &7277906331845140530
 Rigidbody2D:
@@ -438,6 +437,7 @@ MonoBehaviour:
   _maxhp: 1000
   _hp: 0
   takingDamage: 0
+  dead: 0
   Healed:
     m_PersistentCalls:
       m_Calls:

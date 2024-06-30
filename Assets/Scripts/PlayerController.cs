@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded; // Variable to track if either player is on the ground
     private bool canJump = true; // Cooldown to prevent multiple jumps in quick succession
-    public float jumpCooldown = 0.1f; // Cooldown duration
+    private float jumpCooldown = 0.1f; // Cooldown duration
 
     [SerializeField] private bool _isMoving = false;
     public bool IsMoving 
@@ -71,8 +72,26 @@ public class PlayerController : MonoBehaviour
 
         inputActions.Player.Move.performed += OnMove;
         inputActions.Player.Move.canceled += OnMove;
-        inputActions.Player.Attack.performed += ctx => { Debug.Log("Attack performed"); weapon.Fire(); };
+        inputActions.Player.Attack.performed += ctx => 
+        {
+            foreach (Animator a in animators)
+            {
+                PlayAnimationIfExists(a, "player_past_fire");
+                PlayAnimationIfExists(a, "player_future_fire");
+            }
+            Debug.Log("Attack performed");
+            weapon.Fire();
+
+        };
         inputActions.Player.Jump.performed += ctx => Jump(); // Add jump action handling
+    }
+
+    void PlayAnimationIfExists(Animator animator, string animationName)
+    {
+        if (animator.HasState(0, Animator.StringToHash(animationName)))
+        {
+            animator.Play(animationName, 0, 0f);
+        }
     }
 
     private void OnEnable()
@@ -131,7 +150,6 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("No Rigidbody2D components found in children.");
         }
-     
     }
 
     private void CheckGrounded()

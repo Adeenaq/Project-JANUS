@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public GameObject bulletPrefab; // Prefab of the bullet
     public Transform[] firepoints; // Array to hold multiple firepoints
-    public float fireforce = 20f;
+    [SerializeField] private float fireforce = 20f;
 
     public void Fire()
     {

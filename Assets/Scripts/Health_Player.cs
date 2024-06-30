@@ -90,7 +90,7 @@ public class Health_Player : MonoBehaviour
                 a.SetBool("Dead", true);
             }
             Destroy(GetComponent<PlayerController>());
-            //Destroy(gameObject);
+            // some gameover UI function to be added here
         }
     }
 

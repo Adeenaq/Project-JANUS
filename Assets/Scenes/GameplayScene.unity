@@ -1059,6 +1059,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2422953566159969552, guid: 1a5a19c77336e4f46b647e7ad6af9e08, type: 3}
   m_PrefabInstance: {fileID: 1063721446}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1120422024 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1941545468532052546, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+  m_PrefabInstance: {fileID: 956513936583933824}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b02a8aa3f87b9e43813925118144077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1158955043
 GameObject:
   m_ObjectHideFlags: 0
@@ -9210,6 +9221,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.139
       objectReference: {fileID: 0}
+    - target: {fileID: 2764511348941737895, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2764511348941737895, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1120422024}
+    - target: {fileID: 2764511348941737895, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3407085537057753910, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       propertyPath: m_Name
       value: Players
@@ -9325,10 +9348,6 @@ PrefabInstance:
     - target: {fileID: 8089502306127608453, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       propertyPath: m_Layer
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8178451686266653314, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: fireforce
-      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8178451686266653314, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       propertyPath: firepoints.Array.size
