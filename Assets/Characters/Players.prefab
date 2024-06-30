@@ -437,6 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxhp: 1000
   _hp: 0
+  takingDamage: 0
   Healed:
     m_PersistentCalls:
       m_Calls:

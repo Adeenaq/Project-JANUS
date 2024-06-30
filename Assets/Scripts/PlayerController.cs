@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     public Rigidbody2D[] rbs; // Array to hold Rigidbody2D components for both players
     public Weapon weapon;
-    Animator[] animator;
+    Animator[] animators;
 
     private bool isGrounded; // Variable to track if either player is on the ground
     private bool canJump = true; // Cooldown to prevent multiple jumps in quick succession
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         private set 
         {
             _isMoving = value;
-            foreach (Animator a in animator)
+            foreach (Animator a in animators)
             {
                 a.SetBool("IsMoving", value);
             }
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rbs = GetComponentsInChildren<Rigidbody2D>();
-        animator = GetComponentsInChildren<Animator>();
+        animators = GetComponentsInChildren<Animator>();
     
         inputActions = new PlayerInputActions();
 

@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI;
 
-public class Health : MonoBehaviour
+public class Health_Player : MonoBehaviour
 {
     [SerializeField]
     private int _maxhp = 1000;
-     [SerializeField] private int _hp;
+    [SerializeField] private int _hp;
+    Animator[] animators;
+    [SerializeField] private bool takingDamage = false;
+    [SerializeField] private bool dead = false;
 
     public int Hp
     {
@@ -46,6 +50,16 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        if (takingDamage == true && dead == false)
+        {
+            foreach (Animator a in animators)
+            {
+                a.SetBool("DamageTaken", false);
+            }
+            takingDamage = false;
+        }
+        
+        
         if (Input.GetKeyDown(KeyCode.P))
         {
             Damage(50);
@@ -56,15 +70,27 @@ public class Health : MonoBehaviour
     {
         Hp = _maxhp;
         UpdateHealthUI();
+        animators = GetComponentsInChildren<Animator>();
     }
 
     public void Damage(int amount)
     {
+        foreach (Animator a in animators)
+        {
+            a.SetBool("DamageTaken", true);
+        }
+        takingDamage = true;
         Hp -= amount;
 
         if (Hp <= 0)
         {
-            Destroy(gameObject);
+            dead = true;
+            foreach (Animator a in animators)
+            {
+                a.SetBool("Dead", true);
+            }
+            Destroy(GetComponent<PlayerController>());
+            //Destroy(gameObject);
         }
     }
 

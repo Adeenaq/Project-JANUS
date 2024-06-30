@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
 {
     if (collision.gameObject.transform.parent != null && collision.gameObject.transform.parent.name == "Enemies")
     {
-        if (collision.gameObject.TryGetComponent<Health>(out Health enemyHealth))
+        if (collision.gameObject.TryGetComponent<Health_Enemy1>(out Health_Enemy1 enemyHealth))
         {
             Debug.Log("Hit enemy");
             enemyHealth.Damage(_damageAmount);
