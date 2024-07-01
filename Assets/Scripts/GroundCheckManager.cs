@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class GroundCheckManager : MonoBehaviour
 {
-    public Transform[] groundChecks; // Array to hold ground check transforms
-    public LayerMask groundLayer; // Layer mask to specify what is considered ground
+    [SerializeField] private Transform[] groundChecks; // Array to hold ground check transforms
+    [SerializeField] private LayerMask groundLayer; // Layer mask to specify what is considered ground
 
     private bool isAnyGrounded; // Variable to track if any player is on the ground
 

@@ -5,8 +5,8 @@ public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool Instance;
 
-    public GameObject prefab;
-     [SerializeField] private int poolSize = 20;
+    [SerializeField] private GameObject prefab;
+    [SerializeField] private int poolSize = 20;
 
     private Queue<GameObject> pool;
 

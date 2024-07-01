@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerSync : MonoBehaviour
 {
-    public Transform playerTop;
-    public Transform playerBottom;
+    [SerializeField] private Transform playerTop;
+    [SerializeField] private Transform playerBottom;
 
     private Vector3 offset;
 

@@ -3,7 +3,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI healthText; // Assign this in the Inspector
+    [SerializeField] private TextMeshProUGUI healthText; // Assign this in the Inspector
 
     public void UpdateHealth(int currentHealth)
     {

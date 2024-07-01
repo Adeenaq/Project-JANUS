@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public GameObject bulletPrefab; // Prefab of the bullet
-    public Transform[] firepoints; // Array to hold multiple firepoints
+    [SerializeField] private GameObject bulletPrefab; // Prefab of the bullet
+    [SerializeField] private Transform[] firepoints; // Array to hold multiple firepoints
     [SerializeField] private float fireforce = 20f;
 
     public void Fire()
