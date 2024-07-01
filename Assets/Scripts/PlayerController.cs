@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
+using System.Linq;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -10,16 +13,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float walkSpeed = 7f;
     [SerializeField] private float jumpForce = 10f; // Add a jump force variable
     [SerializeField] private Transform[] groundChecks; // Array to hold ground check transforms for both players
-    public LayerMask groundLayer; // Layer mask to specify what is considered ground
+    [SerializeField] private float cameraOffset;
+    [SerializeField] private LayerMask groundLayer; // Layer mask to specify what is considered ground
     private Vector2 moveInput;
     private Rigidbody2D myrb;
-    public Rigidbody2D[] rbs; // Array to hold Rigidbody2D components for both players
-    public Weapon weapon;
+    [SerializeField] private Rigidbody2D[] rbs; // Array to hold Rigidbody2D components for both players
+    [SerializeField] private Weapon weapon;
     Animator[] animators;
 
     private bool isGrounded; // Variable to track if either player is on the ground
     private bool canJump = true; // Cooldown to prevent multiple jumps in quick succession
     private float jumpCooldown = 0.1f; // Cooldown duration
+
+    private CinemachineVirtualCamera virtCamTop;
+    private CinemachineVirtualCamera virtCamBot;
+    private CinemachineFramingTransposer framTranTop;
+    private CinemachineFramingTransposer framTranBot;
 
     [SerializeField] private bool _isMoving = false;
     public bool IsMoving 
@@ -88,6 +97,8 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Jump.performed += ctx => Jump(); // Add jump action handling
 
         myrb = GetComponent<Rigidbody2D>();
+        framTranTop = GameObject.Find("VirtualCameraTop").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
+        framTranBot = GameObject.Find("VirtualCameraBottom").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
     }
 
     void PlayAnimationIfExists(Animator animator, string animationName)
@@ -121,10 +132,14 @@ public class PlayerController : MonoBehaviour
         if (moveInput.x > 0 && !IsFacingRight)
         {
             IsFacingRight = true;
+            framTranTop.m_ScreenX = 0.5f - cameraOffset;
+            framTranBot.m_ScreenX = 0.5f - cameraOffset;
         }
         else if (moveInput.x < 0 && IsFacingRight)
         {
             IsFacingRight = false;
+            framTranTop.m_ScreenX = 0.5f + cameraOffset;
+            framTranBot.m_ScreenX = 0.5f + cameraOffset;
         }
     }
 
