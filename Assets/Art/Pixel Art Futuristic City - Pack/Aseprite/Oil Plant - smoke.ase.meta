@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 512
       height: 256
-    spriteID: b1f56013e3007ed42a5088282afc3310
+    spriteID: dbdfa2e36ec720c48bd505eb07254360
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 268
       width: 512
       height: 256
-    spriteID: bbaf1f8be92e30b4698cb071596fc9c5
+    spriteID: b689323d5c32665409e30c644213f6e8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 532
       width: 512
       height: 256
-    spriteID: ce8d4180097fe3a4d9efc5a172333033
+    spriteID: 39eb6a406d3113d478b252f84cb4c3ad
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 796
       width: 512
       height: 256
-    spriteID: d6f135f3143522f4cb84d25d42f39046
+    spriteID: afd2e26866358ce47ae04b4cc2d78255
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 1060
       width: 512
       height: 256
-    spriteID: f90b4edb125341d4eb5474b515e26018
+    spriteID: 95c184431f2da1045bbca298c9d8b9ac
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -232,7 +232,7 @@ ScriptedImporter:
       y: 1324
       width: 512
       height: 256
-    spriteID: 9289bfd612e6c364d8546a0df8ed42dc
+    spriteID: 9a5c21dcb8472b445a45fb823748bdc9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 1588
       width: 512
       height: 256
-    spriteID: da0bcc69fb0336b4084e3fefecc8b880
+    spriteID: f5141bfad092f63438657f68ea87732f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -272,7 +272,7 @@ ScriptedImporter:
       y: 1852
       width: 512
       height: 256
-    spriteID: e08f14f4783251c44ab28de4a2a57f81
+    spriteID: 5245e7f864feb244a8b2985842e27d05
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -292,7 +292,7 @@ ScriptedImporter:
       y: 2116
       width: 512
       height: 256
-    spriteID: eab94256e2e75ce44b5e45dad876aa54
+    spriteID: a6de7e46c51ed3c4b80120db5b5ca10a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -312,7 +312,7 @@ ScriptedImporter:
       y: 2380
       width: 512
       height: 256
-    spriteID: 3c03e58c1128ed247b7361cf8a1861f8
+    spriteID: dc45eb2901dcd0c43b87ff67157a59da
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -332,7 +332,7 @@ ScriptedImporter:
       y: 2644
       width: 512
       height: 256
-    spriteID: 168f1a3986cf69647896e01002a53fa5
+    spriteID: 5b8d32f559c0f8c439541e4331b0d537
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -352,7 +352,7 @@ ScriptedImporter:
       y: 2908
       width: 512
       height: 256
-    spriteID: 6174f5aedcf045347a42bee4bdc05fdd
+    spriteID: d441a3de4dedf1a44948f01806faa498
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -372,7 +372,7 @@ ScriptedImporter:
       y: 3172
       width: 512
       height: 256
-    spriteID: 3dee8b2b2269a544a827c480fa343b3b
+    spriteID: 442e256fc6aeae84f8b00b380fd4fdc8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -392,7 +392,7 @@ ScriptedImporter:
       y: 3436
       width: 512
       height: 256
-    spriteID: fd5c10f4dc1bd8c4ba1d8539f76065de
+    spriteID: 158ea7d8c5f8a23429729bc1e2702666
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -412,7 +412,7 @@ ScriptedImporter:
       y: 3700
       width: 512
       height: 256
-    spriteID: 467daa590f839cc4383d7f97290c3b3d
+    spriteID: 7a13710b1549b9841bfa2e32d1604ee2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -432,7 +432,7 @@ ScriptedImporter:
       y: 4
       width: 512
       height: 256
-    spriteID: 7f1864c16c092424aae76380d098448e
+    spriteID: 6c85ac77b2ffa934a84382beac4756fd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -452,7 +452,7 @@ ScriptedImporter:
       y: 268
       width: 512
       height: 256
-    spriteID: 1d9b23d70f5877b4a95064e207d1c09a
+    spriteID: 6f6f0fc2add534145ad4ee1f415d4289
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -472,7 +472,7 @@ ScriptedImporter:
       y: 532
       width: 512
       height: 256
-    spriteID: 04b1b71b22b2dc34c95299155b814eb0
+    spriteID: 5eeaed7f4baeb0a45a10dc55dbafa1a7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -492,7 +492,7 @@ ScriptedImporter:
       y: 796
       width: 512
       height: 256
-    spriteID: 49d9be178caf7d946bae143d6f9b1d7d
+    spriteID: 2fc162a2510265948af7d7a3f58a646f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -512,7 +512,7 @@ ScriptedImporter:
       y: 1060
       width: 512
       height: 256
-    spriteID: 79e5c8cd5a17e334e9fb10c52cf7b1a6
+    spriteID: e564d5b3a0da9da4487e7b4a4f057ba4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -532,7 +532,7 @@ ScriptedImporter:
       y: 1324
       width: 512
       height: 256
-    spriteID: 3f6da51c33563274fa74493f18b7429f
+    spriteID: 395c855bde5e8154f943d7fae397f183
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -552,7 +552,7 @@ ScriptedImporter:
       y: 1588
       width: 512
       height: 256
-    spriteID: a8b6644d717f6d14e9d51d56ff8cfed3
+    spriteID: 5077d42cabd231c42b8f2b952fb58f4b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -572,7 +572,7 @@ ScriptedImporter:
       y: 1852
       width: 512
       height: 256
-    spriteID: 07a7844e4cb86b84baba25afa6363d55
+    spriteID: 5fe7d1b81b6ba20488a5f4e030683dfe
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -592,7 +592,7 @@ ScriptedImporter:
       y: 2116
       width: 512
       height: 256
-    spriteID: 3ad2e139e34dec94fa312bdebd009059
+    spriteID: def8f7dc8f90f57449b658c894584e58
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -612,7 +612,7 @@ ScriptedImporter:
       y: 2380
       width: 512
       height: 256
-    spriteID: 01fb6d1908b1d2f4a909d0dc05bce816
+    spriteID: e6c76e557bb26264686f383f336004c6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -632,7 +632,7 @@ ScriptedImporter:
       y: 2644
       width: 512
       height: 256
-    spriteID: 0f6b9dd4bab0b8e499d67e7d54e4c3fc
+    spriteID: 8bda6bd9814e4d74186d8249662a4ba2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -652,7 +652,7 @@ ScriptedImporter:
       y: 2908
       width: 512
       height: 256
-    spriteID: 23311587e1ed1244a89f1359d54718d2
+    spriteID: f4f6277bfc45a024cb6afc1f2a4f07ce
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -672,7 +672,7 @@ ScriptedImporter:
       y: 3172
       width: 512
       height: 256
-    spriteID: a0a4b730a56a9644b92a770fd42d81c1
+    spriteID: 31da08fc56ac8824c8394ce4b28d1122
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -692,7 +692,7 @@ ScriptedImporter:
       y: 3436
       width: 512
       height: 256
-    spriteID: fb2bb8d8bfe3d2440a9116fa158cbf25
+    spriteID: 00a91d9325a54c442b49828257b744de
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -712,7 +712,7 @@ ScriptedImporter:
       y: 3700
       width: 512
       height: 256
-    spriteID: d77e6e000c3f4454c85203b68e7db33f
+    spriteID: 85a5f57f20248b744961d7f8381c51bb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -738,7 +738,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: b1f56013e3007ed42a5088282afc3310
+      spriteId: dbdfa2e36ec720c48bd505eb07254360
     - name: Oil Plant - smoke_Frame_29
       frameIndex: 29
       additiveSortOrder: 0
@@ -747,7 +747,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: bbaf1f8be92e30b4698cb071596fc9c5
+      spriteId: b689323d5c32665409e30c644213f6e8
     - name: Oil Plant - smoke_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
@@ -756,7 +756,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: ce8d4180097fe3a4d9efc5a172333033
+      spriteId: 39eb6a406d3113d478b252f84cb4c3ad
     - name: Oil Plant - smoke_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
@@ -765,7 +765,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: d6f135f3143522f4cb84d25d42f39046
+      spriteId: afd2e26866358ce47ae04b4cc2d78255
     - name: Oil Plant - smoke_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
@@ -774,7 +774,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: f90b4edb125341d4eb5474b515e26018
+      spriteId: 95c184431f2da1045bbca298c9d8b9ac
     - name: Oil Plant - smoke_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
@@ -783,7 +783,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 9289bfd612e6c364d8546a0df8ed42dc
+      spriteId: 9a5c21dcb8472b445a45fb823748bdc9
     - name: Oil Plant - smoke_Frame_5
       frameIndex: 5
       additiveSortOrder: 0
@@ -792,7 +792,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: da0bcc69fb0336b4084e3fefecc8b880
+      spriteId: f5141bfad092f63438657f68ea87732f
     - name: Oil Plant - smoke_Frame_6
       frameIndex: 6
       additiveSortOrder: 0
@@ -801,7 +801,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: e08f14f4783251c44ab28de4a2a57f81
+      spriteId: 5245e7f864feb244a8b2985842e27d05
     - name: Oil Plant - smoke_Frame_7
       frameIndex: 7
       additiveSortOrder: 0
@@ -810,7 +810,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: eab94256e2e75ce44b5e45dad876aa54
+      spriteId: a6de7e46c51ed3c4b80120db5b5ca10a
     - name: Oil Plant - smoke_Frame_8
       frameIndex: 8
       additiveSortOrder: 0
@@ -819,7 +819,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 3c03e58c1128ed247b7361cf8a1861f8
+      spriteId: dc45eb2901dcd0c43b87ff67157a59da
     - name: Oil Plant - smoke_Frame_9
       frameIndex: 9
       additiveSortOrder: 0
@@ -828,7 +828,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 168f1a3986cf69647896e01002a53fa5
+      spriteId: 5b8d32f559c0f8c439541e4331b0d537
     - name: Oil Plant - smoke_Frame_10
       frameIndex: 10
       additiveSortOrder: 0
@@ -837,7 +837,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 6174f5aedcf045347a42bee4bdc05fdd
+      spriteId: d441a3de4dedf1a44948f01806faa498
     - name: Oil Plant - smoke_Frame_11
       frameIndex: 11
       additiveSortOrder: 0
@@ -846,7 +846,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 3dee8b2b2269a544a827c480fa343b3b
+      spriteId: 442e256fc6aeae84f8b00b380fd4fdc8
     - name: Oil Plant - smoke_Frame_12
       frameIndex: 12
       additiveSortOrder: 0
@@ -855,7 +855,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: fd5c10f4dc1bd8c4ba1d8539f76065de
+      spriteId: 158ea7d8c5f8a23429729bc1e2702666
     - name: Oil Plant - smoke_Frame_13
       frameIndex: 13
       additiveSortOrder: 0
@@ -864,7 +864,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 467daa590f839cc4383d7f97290c3b3d
+      spriteId: 7a13710b1549b9841bfa2e32d1604ee2
     - name: Oil Plant - smoke_Frame_14
       frameIndex: 14
       additiveSortOrder: 0
@@ -873,7 +873,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 7f1864c16c092424aae76380d098448e
+      spriteId: 6c85ac77b2ffa934a84382beac4756fd
     - name: Oil Plant - smoke_Frame_15
       frameIndex: 15
       additiveSortOrder: 0
@@ -882,7 +882,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 1d9b23d70f5877b4a95064e207d1c09a
+      spriteId: 6f6f0fc2add534145ad4ee1f415d4289
     - name: Oil Plant - smoke_Frame_16
       frameIndex: 16
       additiveSortOrder: 0
@@ -891,7 +891,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 04b1b71b22b2dc34c95299155b814eb0
+      spriteId: 5eeaed7f4baeb0a45a10dc55dbafa1a7
     - name: Oil Plant - smoke_Frame_17
       frameIndex: 17
       additiveSortOrder: 0
@@ -900,7 +900,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 49d9be178caf7d946bae143d6f9b1d7d
+      spriteId: 2fc162a2510265948af7d7a3f58a646f
     - name: Oil Plant - smoke_Frame_18
       frameIndex: 18
       additiveSortOrder: 0
@@ -909,7 +909,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 79e5c8cd5a17e334e9fb10c52cf7b1a6
+      spriteId: e564d5b3a0da9da4487e7b4a4f057ba4
     - name: Oil Plant - smoke_Frame_19
       frameIndex: 19
       additiveSortOrder: 0
@@ -918,7 +918,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 3f6da51c33563274fa74493f18b7429f
+      spriteId: 395c855bde5e8154f943d7fae397f183
     - name: Oil Plant - smoke_Frame_20
       frameIndex: 20
       additiveSortOrder: 0
@@ -927,7 +927,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: a8b6644d717f6d14e9d51d56ff8cfed3
+      spriteId: 5077d42cabd231c42b8f2b952fb58f4b
     - name: Oil Plant - smoke_Frame_21
       frameIndex: 21
       additiveSortOrder: 0
@@ -936,7 +936,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 07a7844e4cb86b84baba25afa6363d55
+      spriteId: 5fe7d1b81b6ba20488a5f4e030683dfe
     - name: Oil Plant - smoke_Frame_22
       frameIndex: 22
       additiveSortOrder: 0
@@ -945,7 +945,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 3ad2e139e34dec94fa312bdebd009059
+      spriteId: def8f7dc8f90f57449b658c894584e58
     - name: Oil Plant - smoke_Frame_23
       frameIndex: 23
       additiveSortOrder: 0
@@ -954,7 +954,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 01fb6d1908b1d2f4a909d0dc05bce816
+      spriteId: e6c76e557bb26264686f383f336004c6
     - name: Oil Plant - smoke_Frame_24
       frameIndex: 24
       additiveSortOrder: 0
@@ -963,7 +963,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 0f6b9dd4bab0b8e499d67e7d54e4c3fc
+      spriteId: 8bda6bd9814e4d74186d8249662a4ba2
     - name: Oil Plant - smoke_Frame_25
       frameIndex: 25
       additiveSortOrder: 0
@@ -972,7 +972,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 23311587e1ed1244a89f1359d54718d2
+      spriteId: f4f6277bfc45a024cb6afc1f2a4f07ce
     - name: Oil Plant - smoke_Frame_26
       frameIndex: 26
       additiveSortOrder: 0
@@ -981,7 +981,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: a0a4b730a56a9644b92a770fd42d81c1
+      spriteId: 31da08fc56ac8824c8394ce4b28d1122
     - name: Oil Plant - smoke_Frame_27
       frameIndex: 27
       additiveSortOrder: 0
@@ -990,7 +990,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: fb2bb8d8bfe3d2440a9116fa158cbf25
+      spriteId: 00a91d9325a54c442b49828257b744de
     - name: Oil Plant - smoke_Frame_28
       frameIndex: 28
       additiveSortOrder: 0
@@ -999,7 +999,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: d77e6e000c3f4454c85203b68e7db33f
+      spriteId: 85a5f57f20248b744961d7f8381c51bb
     linkedCells: []
     parentIndex: -1
   platformSettings: []

@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 512
       height: 256
-    spriteID: 39484e8379372c942b85b669baf78e41
+    spriteID: ab829b4fadcd71b4192b65e47d6bde72
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 4
       width: 512
       height: 256
-    spriteID: e972efb0f3fd4e443820a16e0bf85c26
+    spriteID: e054c7a054be22e4596fa81526453a91
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 4
       width: 512
       height: 256
-    spriteID: fa1a2a467c2b23f40af167a71eed9b5c
+    spriteID: 766932657b6806148a4cf96160c745af
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 268
       width: 512
       height: 256
-    spriteID: 4d4f2c10e01e24c4c84baabea6bc8020
+    spriteID: 912cc2510a9ac2245903c436c296b007
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 268
       width: 512
       height: 256
-    spriteID: 4e6a524f4fb2b424a8ef94e03a9f4dcd
+    spriteID: d0de2dca9aa5bc84588a87b98926c0dd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -232,7 +232,7 @@ ScriptedImporter:
       y: 268
       width: 512
       height: 256
-    spriteID: 3929430c5ec19bc40b71776f3e9a446a
+    spriteID: 6e29c35b6e5305245b8612e4af6c2732
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 532
       width: 512
       height: 256
-    spriteID: d6efbd500144e2f4a8ac65ab1a5272bf
+    spriteID: c40dfa57650a49649b34398389e0065e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -272,7 +272,7 @@ ScriptedImporter:
       y: 532
       width: 512
       height: 256
-    spriteID: dabfbba1b7aa7ca4b865ba0a19584be2
+    spriteID: e2aaf69b902119340ba1520edc80a3da
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -292,7 +292,7 @@ ScriptedImporter:
       y: 532
       width: 512
       height: 256
-    spriteID: f3c039b84a981de4f84f5642bd78fa51
+    spriteID: 8881bdd8ba778034f8b162a780ba5c8c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -312,7 +312,7 @@ ScriptedImporter:
       y: 796
       width: 512
       height: 256
-    spriteID: 85d53dbf85b0b5c42b708063f7f88119
+    spriteID: 8d71ee42eb6c67441918b5ee858d6d6a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -332,7 +332,7 @@ ScriptedImporter:
       y: 796
       width: 512
       height: 256
-    spriteID: 183e2fd50456b9b4bbe93a9157339768
+    spriteID: 8f297fc4f5ad78546aafcd5b8d1e6087
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -352,7 +352,7 @@ ScriptedImporter:
       y: 796
       width: 512
       height: 256
-    spriteID: 33c0f01f0b4af5645870472bf81c775a
+    spriteID: a20de7cdf4eec8849876538152a899cb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -372,7 +372,7 @@ ScriptedImporter:
       y: 1060
       width: 512
       height: 256
-    spriteID: 14c553b54acb2234980c13ffb03e60b1
+    spriteID: 3346b86fc10f8fd45ae1ca48caa9003c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -392,7 +392,7 @@ ScriptedImporter:
       y: 1060
       width: 512
       height: 256
-    spriteID: 52f86d0077a065846ad52b73f8ca927f
+    spriteID: 6e3cd825d2ce6df4dbdc8be467c18310
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -412,7 +412,7 @@ ScriptedImporter:
       y: 1060
       width: 512
       height: 256
-    spriteID: a59aa8ef1562fc24d83a2dcd05f14ad9
+    spriteID: 01a85ff0744389040bab2bf3d5d05b66
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -438,7 +438,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 39484e8379372c942b85b669baf78e41
+      spriteId: ab829b4fadcd71b4192b65e47d6bde72
     - name: Dense - 11-foreground-building-billboard_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
@@ -447,7 +447,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: e972efb0f3fd4e443820a16e0bf85c26
+      spriteId: e054c7a054be22e4596fa81526453a91
     - name: Dense - 11-foreground-building-billboard_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
@@ -456,7 +456,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: fa1a2a467c2b23f40af167a71eed9b5c
+      spriteId: 766932657b6806148a4cf96160c745af
     - name: Dense - 11-foreground-building-billboard_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
@@ -465,7 +465,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 4d4f2c10e01e24c4c84baabea6bc8020
+      spriteId: 912cc2510a9ac2245903c436c296b007
     - name: Dense - 11-foreground-building-billboard_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
@@ -474,7 +474,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 4e6a524f4fb2b424a8ef94e03a9f4dcd
+      spriteId: d0de2dca9aa5bc84588a87b98926c0dd
     - name: Dense - 11-foreground-building-billboard_Frame_5
       frameIndex: 5
       additiveSortOrder: 0
@@ -483,7 +483,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 3929430c5ec19bc40b71776f3e9a446a
+      spriteId: 6e29c35b6e5305245b8612e4af6c2732
     - name: Dense - 11-foreground-building-billboard_Frame_6
       frameIndex: 6
       additiveSortOrder: 0
@@ -492,7 +492,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: d6efbd500144e2f4a8ac65ab1a5272bf
+      spriteId: c40dfa57650a49649b34398389e0065e
     - name: Dense - 11-foreground-building-billboard_Frame_7
       frameIndex: 7
       additiveSortOrder: 0
@@ -501,7 +501,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: dabfbba1b7aa7ca4b865ba0a19584be2
+      spriteId: e2aaf69b902119340ba1520edc80a3da
     - name: Dense - 11-foreground-building-billboard_Frame_8
       frameIndex: 8
       additiveSortOrder: 0
@@ -510,7 +510,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: f3c039b84a981de4f84f5642bd78fa51
+      spriteId: 8881bdd8ba778034f8b162a780ba5c8c
     - name: Dense - 11-foreground-building-billboard_Frame_9
       frameIndex: 9
       additiveSortOrder: 0
@@ -519,7 +519,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 85d53dbf85b0b5c42b708063f7f88119
+      spriteId: 8d71ee42eb6c67441918b5ee858d6d6a
     - name: Dense - 11-foreground-building-billboard_Frame_10
       frameIndex: 10
       additiveSortOrder: 0
@@ -528,7 +528,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 183e2fd50456b9b4bbe93a9157339768
+      spriteId: 8f297fc4f5ad78546aafcd5b8d1e6087
     - name: Dense - 11-foreground-building-billboard_Frame_11
       frameIndex: 11
       additiveSortOrder: 0
@@ -537,7 +537,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 33c0f01f0b4af5645870472bf81c775a
+      spriteId: a20de7cdf4eec8849876538152a899cb
     - name: Dense - 11-foreground-building-billboard_Frame_12
       frameIndex: 12
       additiveSortOrder: 0
@@ -546,7 +546,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 14c553b54acb2234980c13ffb03e60b1
+      spriteId: 3346b86fc10f8fd45ae1ca48caa9003c
     - name: Dense - 11-foreground-building-billboard_Frame_13
       frameIndex: 13
       additiveSortOrder: 0
@@ -555,7 +555,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: 52f86d0077a065846ad52b73f8ca927f
+      spriteId: 6e3cd825d2ce6df4dbdc8be467c18310
     - name: Dense - 11-foreground-building-billboard_Frame_14
       frameIndex: 14
       additiveSortOrder: 0
@@ -564,7 +564,7 @@ ScriptedImporter:
         y: 0
         width: 512
         height: 256
-      spriteId: a59aa8ef1562fc24d83a2dcd05f14ad9
+      spriteId: 01a85ff0744389040bab2bf3d5d05b66
     linkedCells: []
     parentIndex: -1
   platformSettings: []

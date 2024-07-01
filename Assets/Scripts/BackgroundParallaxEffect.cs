@@ -39,7 +39,6 @@ public class BackgroundsParallaxEffect : MonoBehaviour
             GameObject layer = new GameObject("Layer_" + i);
             layer.transform.parent = transform;
             SpriteRenderer sr = layer.AddComponent<SpriteRenderer>();
-            Debug.Log(bgPaths[i]);
             Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(bgPaths[i]);
             if (sprite == null)
             {
