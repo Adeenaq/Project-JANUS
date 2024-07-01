@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEditor.Experimental.AssetImporters;
 
 public class BackgroundsParallaxEffect : MonoBehaviour
 {
