@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform[] groundChecks; // Array to hold ground check transforms for both players
     public LayerMask groundLayer; // Layer mask to specify what is considered ground
     private Vector2 moveInput;
+    private Rigidbody2D myrb;
     public Rigidbody2D[] rbs; // Array to hold Rigidbody2D components for both players
     public Weapon weapon;
     Animator[] animators;
@@ -84,6 +86,8 @@ public class PlayerController : MonoBehaviour
 
         };
         inputActions.Player.Jump.performed += ctx => Jump(); // Add jump action handling
+
+        myrb = GetComponent<Rigidbody2D>();
     }
 
     void PlayAnimationIfExists(Animator animator, string animationName)
@@ -149,6 +153,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             Debug.LogError("No Rigidbody2D components found in children.");
+        }
+
+        if (myrb.position.y < -50)
+        {
+            SceneManager.LoadScene("GameplayScene");
         }
     }
 
