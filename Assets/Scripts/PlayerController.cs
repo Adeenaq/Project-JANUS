@@ -170,9 +170,23 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("No Rigidbody2D components found in children.");
         }
 
-        if (myrb.position.y < -50)
+        //if (myrb.velocity.y == 0)
+        //{    
+        //}
+        if (myrb.velocity.y > 0.1)
         {
-            SceneManager.LoadScene("GameplayScene");
+            foreach (Animator a in animators)
+            {
+                a.SetBool("Jumping", true);
+            }
+        }
+        else if (myrb.velocity.y < -0.1)
+        {
+            foreach (Animator a in animators)
+            {
+                //a.SetBool("Jumping", false);
+                a.SetBool("Falling", true);
+            }
         }
     }
 
@@ -185,6 +199,11 @@ public class PlayerController : MonoBehaviour
             if (Physics2D.OverlapCircle(groundCheck.position, 0.5f, groundLayer))
             {
                 isGrounded = true;
+                foreach (Animator a in animators)
+                {
+                    a.SetBool("Jumping", false);
+                    a.SetBool("Falling", false);
+                }
                 break;
             }
         }

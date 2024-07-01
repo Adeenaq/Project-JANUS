@@ -17,7 +17,7 @@ public class BulletPool : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(transform.root.gameObject);
             InitializePool();
         }
     }
