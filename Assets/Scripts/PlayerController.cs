@@ -99,6 +99,11 @@ public class PlayerController : MonoBehaviour
         myrb = GetComponent<Rigidbody2D>();
         framTranTop = GameObject.Find("VirtualCameraTop").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
         framTranBot = GameObject.Find("VirtualCameraBottom").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
+
+        if ((framTranTop == null) || (framTranBot == null))
+        {
+            Debug.Log("One or more virtual cameras not found");
+        }
     }
 
     void PlayAnimationIfExists(Animator animator, string animationName)
