@@ -228,7 +228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7222102554814487852, guid: 7b2b378fd5bd567498ae5bc7dda8a6f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.78
+      value: 3.63
       objectReference: {fileID: 0}
     - target: {fileID: 7222102554814487852, guid: 7b2b378fd5bd567498ae5bc7dda8a6f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8816,10 +8816,6 @@ PrefabInstance:
       value: -1.29
       objectReference: {fileID: 0}
     - target: {fileID: 1941545468532052546, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: walkSpeed
-      value: 6.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1941545468532052546, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       propertyPath: cameraOffset
       value: 0.2
       objectReference: {fileID: 0}
@@ -8867,11 +8863,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3875637900270104199, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6418219032492296674, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 103471657}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5512411794463464851, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+    - {fileID: 7463143366714794879, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9051,10 +9053,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1698556845682496078, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.625105
+      objectReference: {fileID: 0}
     - target: {fileID: 2813946585612437821, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 648867624}
+    - target: {fileID: 3868884423203752329, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.625105
+      objectReference: {fileID: 0}
     - target: {fileID: 5302680238572356366, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_Follow
       value: 
