@@ -88,7 +88,8 @@ public class Health_Player : MonoBehaviour
             dead = true;
             foreach (Animator a in animators)
             {
-                a.SetBool("Dead", true);
+                PlayAnimationIfExists(a, "player_past_dead");
+                PlayAnimationIfExists(a, "player_future_dead");
             }
             Destroy(GetComponent<PlayerController>());
             // some gameover UI function to be added here
