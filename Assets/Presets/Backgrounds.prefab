@@ -1,0 +1,181 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &374031732752421423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5646722068093082383}
+  - component: {fileID: 2711303266871704197}
+  m_Layer: 0
+  m_Name: BackgroundTop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5646722068093082383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374031732752421423}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.5094812, y: -1.4422468, z: 2.864789}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6616506880325768018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2711303266871704197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374031732752421423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbbc4783e25a3794e8db66fb7fb3a488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgVerticalHeight: 4
+  bgPaths:
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/1-sky_layer.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/2-backround.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/3-backround.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/4b-backround--traffic-lights.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/5-backround.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/6-backround-train.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/7-backround.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/8-backround.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/9-middleground-tower.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/10-middleground-lights-tower.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/11-middleground.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/12-middleground.png
+  parallaxFactors:
+  - 1
+  - 1
+  - 1
+  - 0.8
+  - 0.8
+  - 0.8
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
+  tilingScales:
+  - {x: 5, y: 5}
+--- !u!1 &6702337581389898238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4651172741296236535}
+  - component: {fileID: 6868155563891096605}
+  m_Layer: 0
+  m_Name: BackgroundBottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4651172741296236535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6702337581389898238}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.5094812, y: -1.4422468, z: 2.864789}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6616506880325768018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6868155563891096605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6702337581389898238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbbc4783e25a3794e8db66fb7fb3a488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgVerticalHeight: -15
+  bgPaths:
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/1-sky_layer.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/2-background.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/3-background.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/4-middleground.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/5-middleground.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/6-middleground-buildings.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/7-foreground-lane.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/8-foreground-cars.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/8b-foreground-cars.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/9-foreground.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/10-foreground-buildings.png
+  - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/11-foreground.png
+  parallaxFactors:
+  - 1
+  - 1
+  - 1
+  - 0.8
+  - 0.8
+  - 0.8
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
+  tilingScales:
+  - {x: 5, y: 5}
+--- !u!1 &8692331927214270818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6616506880325768018}
+  m_Layer: 0
+  m_Name: Backgrounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6616506880325768018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692331927214270818}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.50948143, y: 1.4422469, z: 0.735211}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4651172741296236535}
+  - {fileID: 5646722068093082383}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

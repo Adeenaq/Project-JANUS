@@ -77,7 +77,8 @@ public class Health_Player : MonoBehaviour
     {
         foreach (Animator a in animators)
         {
-            a.SetBool("DamageTaken", true);
+            PlayAnimationIfExists(a, "player_past_damage");
+            PlayAnimationIfExists(a, "player_future_damage");
         }
         takingDamage = true;
         Hp -= amount;
@@ -107,6 +108,14 @@ public class Health_Player : MonoBehaviour
         if (uiManager != null)
         {
             uiManager.UpdateHealth(_hp);
+        }
+    }
+
+    void PlayAnimationIfExists(Animator animator, string animationName)
+    {
+        if (animator.HasState(0, Animator.StringToHash(animationName)))
+        {
+            animator.Play(animationName, 0, 0f);
         }
     }
 }

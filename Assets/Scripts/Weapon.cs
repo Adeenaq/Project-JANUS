@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab; // Prefab of the bullet
+    [SerializeField] private GameObject[] bulletPrefab; // Prefabs of the bullet
     [SerializeField] private Transform[] firepoints; // Array to hold multiple firepoints
     [SerializeField] private float fireforce = 20f;
 
@@ -16,9 +16,11 @@ public class Weapon : MonoBehaviour
             return;
         }
 
+        int i = 0;
+
         foreach (var firepoint in firepoints)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefab[i], firepoint.position, firepoint.rotation);
             if(bullet.GetComponent<Rigidbody2D>() == null)
             {
                 Debug.LogError("Rigidbody2D component not found in the bullet prefab.");
@@ -27,7 +29,7 @@ public class Weapon : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // Reset velocity
             bullet.GetComponent<Rigidbody2D>().AddForce(firepoint.right * fireforce, ForceMode2D.Impulse);
             Debug.Log("Bullet fired from " + firepoint.name + " with force: " + fireforce);
-
+            i++;
         }
     }
 

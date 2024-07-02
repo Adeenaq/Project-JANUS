@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
 using System.Linq;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 7f;
     [SerializeField] private float jumpForce = 10f; // Add a jump force variable
-    [SerializeField] private Transform[] groundChecks; // Array to hold ground check transforms for both players
     [SerializeField] private float cameraOffset;
     [SerializeField] private LayerMask groundLayer; // Layer mask to specify what is considered ground
     private Vector2 moveInput;
@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rbs = GetComponentsInChildren<Rigidbody2D>();
+        myrb = GetComponent<Rigidbody2D>();
         animators = GetComponentsInChildren<Animator>();
     
         inputActions = new PlayerInputActions();
@@ -92,11 +93,18 @@ public class PlayerController : MonoBehaviour
             }
             Debug.Log("Attack performed");
             weapon.Fire();
+            if (IsFacingRight)
+            {
+                myrb.AddForce(new Vector2(-500, 0));
+            }
+            else
+            {
+                myrb.AddForce(new Vector2(500, 0));
+            }
 
         };
         inputActions.Player.Jump.performed += ctx => Jump(); // Add jump action handling
 
-        myrb = GetComponent<Rigidbody2D>();
         framTranTop = GameObject.Find("VirtualCameraTop").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
         framTranBot = GameObject.Find("VirtualCameraBottom").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
 
@@ -178,18 +186,18 @@ public class PlayerController : MonoBehaviour
         //if (myrb.velocity.y == 0)
         //{    
         //}
-        if (myrb.velocity.y > 0.1)
+        if (myrb.velocity.y > 0.2)
         {
             foreach (Animator a in animators)
             {
                 a.SetBool("Jumping", true);
             }
         }
-        else if (myrb.velocity.y < -0.1)
+        else if (myrb.velocity.y < -0.2)
         {
             foreach (Animator a in animators)
             {
-                //a.SetBool("Jumping", false);
+                a.SetBool("Jumping", true);
                 a.SetBool("Falling", true);
             }
         }
@@ -197,19 +205,28 @@ public class PlayerController : MonoBehaviour
 
     private void CheckGrounded()
     {
-        isGrounded = false;
+        bool prevGrounded = isGrounded;
 
-        foreach (Transform groundCheck in groundChecks)
+        if (myrb.velocity.y < 0.1 && myrb.velocity.y > -0.1)
         {
-            if (Physics2D.OverlapCircle(groundCheck.position, 0.5f, groundLayer))
+            isGrounded = true;
+            foreach (Animator a in animators)
             {
-                isGrounded = true;
-                foreach (Animator a in animators)
-                {
-                    a.SetBool("Jumping", false);
-                    a.SetBool("Falling", false);
-                }
-                break;
+                a.SetBool("Jumping", false);
+                a.SetBool("Falling", false);
+            }
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
+        if ((prevGrounded == false) && (isGrounded == true))
+        {
+            foreach (Animator a in animators)
+            {
+                PlayAnimationIfExists(a, "player_past_land");
+                PlayAnimationIfExists(a, "player_future_land");
             }
         }
     }
