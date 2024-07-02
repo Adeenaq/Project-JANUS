@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 598636090955511016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.42, y: -1.29, z: -0.028849293}
+  m_LocalPosition: {x: 0.42, y: -1.295, z: -0.028849293}
   m_LocalScale: {x: 0.13199385, y: 0.132824, z: 0.597708}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b02a8aa3f87b9e43813925118144077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 6.5
+  walkSpeed: 7.5
   jumpForce: 13
   cameraOffset: 0.2
   groundLayer:
@@ -246,8 +246,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -16.323364, y: 0.21271056}
-  m_Size: {x: 126.0494, y: 1.498185}
+  m_Offset: {x: -16.323364, y: 0.2857656}
+  m_Size: {x: 126.0494, y: 1.6442951}
   m_Direction: 0
 --- !u!70 &5584298882388352064
 CapsuleCollider2D:
@@ -405,9 +405,9 @@ Transform:
   m_GameObject: {fileID: 6575526294506808549}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.95, y: 0.218, z: 0}
-  m_LocalScale: {x: 200, y: 2, z: 0.9}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -4.95, y: 0.284, z: 0}
+  m_LocalScale: {x: 215, y: 2.15, z: 0.96750003}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3425759356436885557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
