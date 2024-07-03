@@ -75,15 +75,19 @@ public class Health_Player : MonoBehaviour
 
     public void Damage(int amount)
     {
-        foreach (Animator a in animators)
+        if (!dead)
         {
-            PlayAnimationIfExists(a, "player_past_damage");
-            PlayAnimationIfExists(a, "player_future_damage");
+            foreach (Animator a in animators)
+            {
+                PlayAnimationIfExists(a, "player_past_damage");
+                PlayAnimationIfExists(a, "player_future_damage");
+            }
+            takingDamage = true;
+            Hp -= amount;
         }
-        takingDamage = true;
-        Hp -= amount;
+        
 
-        if (Hp <= 0)
+        if (Hp <= 0 && !dead)
         {
             dead = true;
             foreach (Animator a in animators)
@@ -92,8 +96,29 @@ public class Health_Player : MonoBehaviour
                 PlayAnimationIfExists(a, "player_future_dead");
             }
             Destroy(GetComponent<PlayerController>());
+
+            Rigidbody2D myrb = GetComponent<Rigidbody2D>();
+            Vector2 vel = myrb.velocity;
+            vel.x = 0f;
+
+            StartCoroutine(waiter(2));
+
+            myrb.gravityScale = 0f;
+            myrb.velocity = vel;
+
+            CapsuleCollider2D[] mycols = GetComponentsInChildren<CapsuleCollider2D>();
+            foreach (var col in mycols)
+            {
+                Destroy(col);
+            }
+
             // some gameover UI function to be added here
         }
+    }
+
+    IEnumerator waiter(int time)
+    {
+        yield return new WaitForSeconds(time);
     }
 
     public void Heal(int amount) => Hp += amount;

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Health_Enemy1 : MonoBehaviour
+public class Health_Knight : MonoBehaviour
 {
     [SerializeField] private int _maxhp = 1000;
     [SerializeField] private int _hp;
+    private bool takingDamage = false;
+    private bool dead = false;
+    Animator animator;
 
     public int Hp
     {
@@ -40,27 +43,50 @@ public class Health_Enemy1 : MonoBehaviour
     void Start()
     {
         Hp = _maxhp;
-        UpdateHealthUI();
     }
 
     void Update()
     {
+        if (takingDamage == true && dead == false)
+        {
+            animator.SetBool("DamageTaken", false);
+            takingDamage = false;
+        }
     }
 
     private void Awake()
     {
         Hp = _maxhp;
-        UpdateHealthUI();
+        animator = GetComponent<Animator>();
     }
 
     public void Damage(int amount)
     {
+        animator.Play("knight_damage", 0, 0f);
         Hp -= amount;
 
         if (Hp <= 0)
         {
-            Destroy(gameObject);
+            dead = true;
+            animator.Play("knight_dead", 0, 0f);
+
+            Destroy(GetComponent<KnightController>());
+
+            Rigidbody2D myrb = GetComponent<Rigidbody2D>();
+            Vector2 vel = myrb.velocity;
+            vel.x = 0f;
+
+            StartCoroutine(waiter(2));
+
+            myrb.gravityScale = 0f;
+            myrb.velocity = vel;
+            Destroy(GetComponent<CapsuleCollider2D>());
         }
+    }
+
+    IEnumerator waiter(int time)
+    {
+        yield return new WaitForSeconds(time);
     }
 
     public void Heal(int amount) => Hp += amount;
@@ -73,9 +99,5 @@ public class Health_Enemy1 : MonoBehaviour
 
     private void UpdateHealthUI()
     {
-        if (uiManager != null)
-        {
-            uiManager.UpdateHealth(_hp);
-        }
     }
 }
