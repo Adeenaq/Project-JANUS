@@ -6,7 +6,7 @@ public class WeaponKnight : MonoBehaviour
 {
     [SerializeField] private GameObject[] bulletPrefab; // Prefabs of the bullet
     [SerializeField] private Transform[] firepoints; // Array to hold multiple firepoints
-    private float fireforce = 20f;
+    private float fireforce = 10f;
 
     public void Fire()
     {
