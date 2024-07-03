@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         rbs = GetComponentsInChildren<Rigidbody2D>();
         myrb = GetComponent<Rigidbody2D>();
         animators = GetComponentsInChildren<Animator>();
+        weapon = GetComponentInChildren<Weapon>();
     
         inputActions = new PlayerInputActions();
 

@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
         Debug.Log($"Bullet collided with: {collision.gameObject.name}");
 
         // Check if the collided object has the Health_Enemy1 component
-        var enemyHealth = collision.gameObject.GetComponent<Health_Enemy1>();
+        var enemyHealth = collision.gameObject.GetComponent<Health_Knight>();
         if (enemyHealth != null)
         {
             Debug.Log("Hit enemy");
