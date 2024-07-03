@@ -41,11 +41,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3425759356436885557}
   - component: {fileID: 1941545468532052546}
+  - component: {fileID: 6418219032492296674}
+  - component: {fileID: 8097611551050735422}
   - component: {fileID: 7277906331845140530}
   - component: {fileID: 2764511348941737895}
   - component: {fileID: 2655847623089184846}
   - component: {fileID: 5584298882388352064}
-  - component: {fileID: 6418219032492296674}
   m_Layer: 3
   m_Name: Players
   m_TagString: Untagged
@@ -93,6 +94,81 @@ MonoBehaviour:
   - {fileID: 7277906331845140530}
   weapon: {fileID: 8178451686266653314}
   _isMoving: 0
+--- !u!114 &6418219032492296674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407085537057753910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd19d8b4809a6844ab343ba45ca8425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxhp: 1000
+  _hp: 0
+  takingDamage: 0
+  dead: 0
+  Healed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Damaged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1941545468532052546}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Died:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2764511348941737895}
+        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
+        m_MethodName: DeactivateInput
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  uiManager: {fileID: 0}
+--- !u!114 &8097611551050735422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407085537057753910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de347c1cfb52ada4b9e30139492db61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thrill: 0
 --- !u!50 &7277906331845140530
 Rigidbody2D:
   serializedVersion: 4
@@ -284,68 +360,6 @@ CapsuleCollider2D:
   m_Offset: {x: -4.741524, y: -18.096588}
   m_Size: {x: 107.68004, y: 1.7601013}
   m_Direction: 0
---- !u!114 &6418219032492296674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3407085537057753910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd19d8b4809a6844ab343ba45ca8425, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxhp: 1000
-  _hp: 0
-  takingDamage: 0
-  dead: 0
-  Healed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Damaged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1941545468532052546}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Died:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2764511348941737895}
-        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
-        m_MethodName: DeactivateInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  uiManager: {fileID: 0}
 --- !u!1 &3912346308506784178
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,7 +57,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: future_bullet
+  m_Name: knight_bullet
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -70,7 +70,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 44d268702f824b24197aa6185807f7e7, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7078784825e5ec44fb7ac31032acdeef, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
