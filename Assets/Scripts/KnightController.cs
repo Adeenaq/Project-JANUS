@@ -14,7 +14,6 @@ public class KnightController : MonoBehaviour
     private Transform playerToTrack2;
     private Rigidbody2D myrb;
     private Animator animator;
-    private bool isFacingRight = true;
     private bool canFire = true;
     private Vector2 moveInput;
 
