@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public class Health_Turret : MonoBehaviour
 {
-    [SerializeField] private int _maxHp = 1000;
+    [SerializeField] private int _maxhp = 1000;
     [SerializeField] private int _hp;
-    [SerializeField] private RuntimeAnimatorController animatorController; // Public field to assign Animator Controller in Inspector
+    private bool takingDamage = false;
     private bool dead = false;
-    private Animator animator;
+    Animator[] animators;
 
     public int Hp
     {
@@ -17,7 +17,7 @@ public class Health_Turret : MonoBehaviour
         private set
         {
             var isDamage = value < _hp;
-            _hp = Mathf.Clamp(value, 0, _maxHp);
+            _hp = Mathf.Clamp(value, 0, _maxhp);
             if (isDamage)
             {
                 Damaged?.Invoke(_hp);
@@ -26,10 +26,8 @@ public class Health_Turret : MonoBehaviour
             {
                 Healed?.Invoke(_hp);
             }
-            if (_hp <= 0 && !dead)
+            if (_hp <= 0)
             {
-                Debug.Log("Hp is 0 or less and dead is false");
-                dead = true;
                 Died?.Invoke();
             }
             UpdateHealthUI();
@@ -40,65 +38,81 @@ public class Health_Turret : MonoBehaviour
     public UnityEvent<int> Damaged;
     public UnityEvent Died;
 
+    public UIManager uiManager; // Reference to the UIManager
+
     void Start()
     {
-        Hp = _maxHp;
+        Hp = _maxhp;
+    }
+
+    void Update()
+    {
+        if (takingDamage == true && dead == false)
+        {
+            //animator.SetBool("DamageTaken", false);
+            takingDamage = false;
+        }
     }
 
     private void Awake()
     {
-        Hp = _maxHp;
-        animator = GetComponent<Animator>();
-
-        // Ensure the AnimatorController is assigned
-        if (animator.runtimeAnimatorController == null && animatorController != null)
-        {
-            animator.runtimeAnimatorController = animatorController;
-        }
-
-        Died.AddListener(OnDeath); // Add listener for the death event
-        Debug.Log("Awake: Animator and Died listener initialized");
+        Hp = _maxhp;
+        animators = GetComponentsInChildren<Animator>();
     }
 
     public void Damage(int amount)
     {
-        if (dead) return;
-
-        Debug.Log($"Damage received: {amount}");
         Hp -= amount;
+
+        if (Hp <= 0 && !dead)
+        {
+            dead = true;
+            //StartCoroutine(waiter(2));
+            foreach (var a in animators)
+            {
+                PlayAnimationIfExists(a, "Explosion");
+            }
+        }
     }
 
-    private void OnDeath()
+    IEnumerator waiter(int time)
     {
-        Debug.Log("OnDeath: Setting Explode trigger");
-        // Set the trigger for the explosion animation
-        animator.SetTrigger("Explode");
-        // Start coroutine to wait for the animation to finish before destroying the object
-        StartCoroutine(WaitForExplosionAnimation());
+        yield return new WaitForSeconds(time);
     }
 
-    private IEnumerator WaitForExplosionAnimation()
+    void PlayAnimationIfExists(Animator animator, string animationName)
     {
-        Debug.Log("Waiting for explosion animation to start...");
+        if (animator.HasState(0, Animator.StringToHash(animationName)))
+        {
+            animator.Play(animationName, 0, 0f);
+            StartCoroutine(WaitForExplosionAnimation(animator));
+            //Destroy(GetComponent<SpriteRenderer>());
+            //Destroy(gameObject);
+
+        }
+    }
+
+    private IEnumerator WaitForExplosionAnimation(Animator animator)
+    {
+        //Debug.Log("Waiting for explosion animation to start...");
         yield return new WaitForEndOfFrame();
 
-        Debug.Log("Current State: " + animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"));
+        //Debug.Log("Current State: " + animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"));
 
         while (animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion") &&
                animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
         {
-            Debug.Log("Explosion animation progress: " + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            //Debug.Log("Explosion animation progress: " + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
             yield return null;
         }
 
-        Debug.Log("Explosion animation finished. Destroying game object.");
         // Destroy the turret after the explosion animation has finished
         Destroy(gameObject);
     }
 
     public void Heal(int amount) => Hp += amount;
 
-    public void HealFull() => Hp = _maxHp;
+    public void HealFull() => Hp = _maxhp;
 
     public void Kill() => Hp = 0;
 
@@ -106,6 +120,5 @@ public class Health_Turret : MonoBehaviour
 
     private void UpdateHealthUI()
     {
-        // Update health UI if necessary
     }
 }
