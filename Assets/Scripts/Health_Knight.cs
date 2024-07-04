@@ -68,6 +68,7 @@ public class Health_Knight : MonoBehaviour
         if (Hp <= 0)
         {
             dead = true;
+            StartCoroutine(waiter(2));
             animator.Play("knight_dead", 0, 0f);
 
             Destroy(GetComponent<KnightController>());

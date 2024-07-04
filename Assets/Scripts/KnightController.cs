@@ -8,6 +8,9 @@ public class KnightController : MonoBehaviour
     private float detectionRange = 20f;
     private float stopRange = 5f;
     private float fireRate = 3f;
+    private int collisionDamage = 50;
+    private int meleeCooldown = 3;
+    private bool canMelee = true;
     private WeaponKnight weapon;
     private Transform player;
     private Transform playerToTrack1;
@@ -136,5 +139,31 @@ public class KnightController : MonoBehaviour
         canFire = false;
         yield return new WaitForSeconds(fireRate);
         canFire = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (canMelee)
+        {
+            Health_Player player_health = collision.gameObject.GetComponent<Health_Player>();
+            if (player_health != null)
+            {
+                animator.Play("knight_melee", 0, 0.3f);
+                player_health.Damage(collisionDamage);
+                waiterMelee(meleeCooldown);
+            }
+        }
+    }
+
+    IEnumerator waiter(int time)
+    {
+        yield return new WaitForSeconds(time);
+    }
+
+    IEnumerator waiterMelee(int time)
+    {
+        canMelee = false;
+        yield return new WaitForSeconds(time);
+        canMelee = true;
     }
 }
