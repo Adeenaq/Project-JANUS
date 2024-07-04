@@ -208,27 +208,55 @@ public class PlayerController : MonoBehaviour
     {
         bool prevGrounded = isGrounded;
 
-        if (myrb.velocity.y < 0.1 && myrb.velocity.y > -0.1)
+        if (isGrounded)
         {
-            isGrounded = true;
             foreach (Animator a in animators)
             {
                 a.SetBool("Jumping", false);
                 a.SetBool("Falling", false);
             }
         }
-        else
-        {
-            isGrounded = false;
-        }
 
-        if ((prevGrounded == false) && (isGrounded == true))
+        if (!prevGrounded && isGrounded)
         {
             foreach (Animator a in animators)
             {
                 PlayAnimationIfExists(a, "player_past_land");
                 PlayAnimationIfExists(a, "player_future_land");
             }
+        }
+
+        //bool prevGrounded = isGrounded;
+
+        //if (myrb.velocity.y < 0.1 && myrb.velocity.y > -0.1)
+        //{
+        //    isGrounded = true;
+        //    foreach (Animator a in animators)
+        //    {
+        //        a.SetBool("Jumping", false);
+        //        a.SetBool("Falling", false);
+        //    }
+        //}
+        //else
+        //{
+        //    isGrounded = false;
+        //}
+
+        //if ((prevGrounded == false) && (isGrounded == true))
+        //{
+        //    foreach (Animator a in animators)
+        //    {
+        //        PlayAnimationIfExists(a, "player_past_land");
+        //        PlayAnimationIfExists(a, "player_future_land");
+        //    }
+        //}
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Tilemap" ||  collision.gameObject.transform.parent.name == "Enemies")
+        {
+            isGrounded = true;
         }
     }
 
@@ -239,9 +267,10 @@ public class PlayerController : MonoBehaviour
             if (rbs != null && rbs.Length > 0)
             {
                    foreach (var rb in rbs)
-                    {
+                   {
                         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                    }
+                        isGrounded = false;
+                   }
             }
             else
             {
