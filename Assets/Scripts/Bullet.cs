@@ -17,6 +17,11 @@ public class Bullet : MonoBehaviour
             Debug.Log("Hit enemy");
             enemyHealth.Damage(_damageAmount);
         }
+        else if (collision.gameObject.GetComponent<Health_Turret>())
+        {
+            Debug.Log("Hit turret");
+            collision.gameObject.GetComponent<Health_Turret>().Damage(_damageAmount);
+        }
         else
         {
             // Check if the collided object has the Health_Player component

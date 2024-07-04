@@ -4,20 +4,47 @@ using UnityEngine;
 
 public class TurretScript : MonoBehaviour
 {
-    public float Range;
-    public Transform Target;
-    private bool Detected = false;
+    [SerializeField] private float Range;
+    private bool detected = false; // Changed to private
     private Vector2 Direction;
-    public Transform Barrel;
-    public float RotationSpeed = 5f; // Speed at which the barrel rotates
-    public LayerMask TargetLayer; // Layer mask for the target
+    [SerializeField] private float RotationSpeed = 5f; // Speed at which the barrel rotates
+    private Transform Target;
+    private Transform Barrel;
+    private LayerMask TargetLayer; // Layer mask for the target
 
-    // Update is called once per frame
+    public bool Detected
+    {
+        get { return detected; }
+        private set { detected = value; }
+    }
+
+    void Start()
+    {
+        // Automatically find the player by tag
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            Target = player.transform;
+            // Set the target layer to the player's layer
+            TargetLayer = 1 << player.layer;
+        }
+        else
+        {
+            Debug.LogError("Player with tag 'Player' not found in the scene.");
+        }
+
+        // Find the Barrel child object
+        Barrel = transform.Find("Barrel");
+        if (Barrel == null)
+        {
+            Debug.LogError("Barrel object not found as a child of the turret.");
+        }
+    }
+
     void Update()
     {
-        if (Target == null)
+        if (Target == null || Barrel == null)
         {
-            Debug.LogWarning("Target is not assigned.");
             return;
         }
 
@@ -77,11 +104,11 @@ public class TurretScript : MonoBehaviour
     void RotateBarrel(Vector2 direction)
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        angle += 180;
+        angle += 180; // Adjust the angle by 180 degrees to correct the direction
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
         Debug.Log($"Current barrel rotation: {Barrel.rotation.eulerAngles.z}, Target angle: {angle}");
         Barrel.rotation = Quaternion.Lerp(Barrel.rotation, targetRotation, Time.deltaTime * RotationSpeed);
-        Debug.Log($"Rotating barrel to angle: {-1 * angle}");
+        Debug.Log($"Rotating barrel to angle: {angle}");
     }
 
     private void OnDrawGizmosSelected()
