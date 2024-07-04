@@ -10,4 +10,9 @@ public class Turret_AnimationEvent : MonoBehaviour
         gameObject.transform.parent = null;
         Destroy(parent.gameObject);
     }
+
+    private void DestroyAnimationObject()
+    {
+        Destroy(gameObject);
+    }
 }
