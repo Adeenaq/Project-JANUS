@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2422953566159969552}
   - component: {fileID: 7608394947976361975}
+  - component: {fileID: 9013559780610448807}
   - component: {fileID: 919224774466740306}
   - component: {fileID: 7523378993896852986}
   - component: {fileID: 7336183257354959948}
@@ -90,6 +91,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9013559780610448807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8252902157962870574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7c3c56b535a92a429ccb59e8373a8d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 100
+  divingRange: 36
+  speed: 2
+  divingSpeed: 10
+  stopBeforeDiveTime: 3
+  impactDamageRange: 25
+  explosionDamageAmount: 100
+  meleeDamageAmount: 10
 --- !u!50 &919224774466740306
 Rigidbody2D:
   serializedVersion: 4

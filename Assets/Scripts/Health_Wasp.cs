@@ -65,7 +65,7 @@ public class Health_Wasp : MonoBehaviour
         Hp -= amount;
         takingDamage = true;
 
-        if (Hp <= 0)
+        if (Hp <= 0 && !dead)
         {
             dead = true;
             StartCoroutine(waiter(2));
