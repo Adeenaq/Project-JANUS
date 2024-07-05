@@ -11,16 +11,23 @@ public class Bullet : MonoBehaviour
         Debug.Log($"Bullet collided with: {collision.gameObject.name}");
 
         // Check if the collided object has the Health_Enemy1 component
-        var enemyHealth = collision.gameObject.GetComponent<Health_Knight>();
-        if (enemyHealth != null)
+        var expectKnight = collision.gameObject.GetComponent<Health_Knight>();
+        var expectTurret = collision.gameObject.GetComponent<Health_Turret>();
+        var expectWasp = collision.gameObject.GetComponent<Health_Wasp>();
+        if (expectKnight != null)
         {
-            Debug.Log("Hit enemy");
-            enemyHealth.Damage(_damageAmount);
+            Debug.Log("Hit knight");
+            expectKnight.Damage(_damageAmount);
         }
-        else if (collision.gameObject.GetComponent<Health_Turret>())
+        else if (expectTurret != null)
         {
             Debug.Log("Hit turret");
-            collision.gameObject.GetComponent<Health_Turret>().Damage(_damageAmount);
+            expectTurret.Damage(_damageAmount);
+        }
+        else if (expectWasp != null)
+        {
+            Debug.Log("Hit wasp");
+            expectWasp.Damage(_damageAmount);
         }
         else
         {
@@ -28,12 +35,7 @@ public class Bullet : MonoBehaviour
             var playerHealth = collision.gameObject.GetComponent<Health_Player>();
             if (playerHealth != null)
             {
-                var circleCheck = collision.gameObject.GetComponent<CircleCollider2D>();
-                if (circleCheck == null)
-                {
-                    Debug.Log("Hit player");
-                    playerHealth.Damage(_damageAmount);
-                }
+                playerHealth.Damage(_damageAmount);
             }
         }
 

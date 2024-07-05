@@ -247,7 +247,10 @@ public class PlayerController : MonoBehaviour
     {
         bool prevGrounded = isGrounded;
 
-        if (collision.gameObject.name == "Tilemap" ||  collision.gameObject.transform.parent.name == "Enemies")
+        GameObject expectTilemap = collision.gameObject;
+        Transform expectEnemies = collision.gameObject.transform.parent;
+        if ((expectTilemap != null && expectTilemap.name == "Tilemap") ||
+            (expectEnemies != null && expectEnemies.name == "Enemies"))
         {
             isGrounded = true;
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Health_Knight : MonoBehaviour
+public class Health_Wasp : MonoBehaviour
 {
     [SerializeField] private int _maxhp = 1000;
     [SerializeField] private int _hp;
@@ -47,7 +47,7 @@ public class Health_Knight : MonoBehaviour
 
     void Update()
     {
-        if (takingDamage == true && dead == false)
+        if (takingDamage == true)
         {
             animator.SetBool("DamageTaken", false);
             takingDamage = false;
@@ -62,26 +62,14 @@ public class Health_Knight : MonoBehaviour
 
     public void Damage(int amount)
     {
-        animator.Play("knight_damage", 0, 0f);
         Hp -= amount;
+        takingDamage = true;
 
         if (Hp <= 0)
         {
             dead = true;
             StartCoroutine(waiter(2));
-            animator.Play("knight_dead", 0, 0f);
-
-            Destroy(GetComponent<KnightController>());
-
-            Rigidbody2D myrb = GetComponent<Rigidbody2D>();
-            Vector2 vel = myrb.velocity;
-            vel.x = 0f;
-
-            StartCoroutine(waiter(2));
-
-            myrb.gravityScale = 0f;
-            myrb.velocity = vel;
-            Destroy(GetComponent<CapsuleCollider2D>());
+            animator.Play("wasp_death", 0, 0f);
         }
     }
 
