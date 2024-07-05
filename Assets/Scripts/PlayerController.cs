@@ -194,7 +194,7 @@ public class PlayerController : MonoBehaviour
                 a.SetBool("Jumping", true);
             }
         }
-        else if (myrb.velocity.y < -0.2)
+        else if (myrb.velocity.y < -0.5)
         {
             foreach (Animator a in animators)
             {
@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckGrounded()
     {
-        bool prevGrounded = isGrounded;
+        //bool prevGrounded = isGrounded;
 
         if (isGrounded)
         {
@@ -214,15 +214,6 @@ public class PlayerController : MonoBehaviour
             {
                 a.SetBool("Jumping", false);
                 a.SetBool("Falling", false);
-            }
-        }
-
-        if (!prevGrounded && isGrounded)
-        {
-            foreach (Animator a in animators)
-            {
-                PlayAnimationIfExists(a, "player_past_land");
-                PlayAnimationIfExists(a, "player_future_land");
             }
         }
 
@@ -254,9 +245,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        bool prevGrounded = isGrounded;
+
         if (collision.gameObject.name == "Tilemap" ||  collision.gameObject.transform.parent.name == "Enemies")
         {
             isGrounded = true;
+        }
+
+        if (!prevGrounded && isGrounded)
+        {
+            foreach (Animator a in animators)
+            {
+                PlayAnimationIfExists(a, "player_past_land");
+                PlayAnimationIfExists(a, "player_future_land");
+            }
         }
     }
 

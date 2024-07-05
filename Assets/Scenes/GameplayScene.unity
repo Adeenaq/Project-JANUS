@@ -251,10 +251,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret
       objectReference: {fileID: 0}
-    - target: {fileID: 8280466766048813638, guid: 87fe5d68af5dc574bacb0a85f668726d, type: 3}
-      propertyPath: Range
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
