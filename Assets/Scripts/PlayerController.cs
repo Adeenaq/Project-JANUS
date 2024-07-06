@@ -16,12 +16,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float cameraOffset;
     [SerializeField] private LayerMask groundLayer; // Layer mask to specify what is considered ground
     private Vector2 moveInput;
+    private bool isFlyMode = false;
     private Rigidbody2D myrb;
     [SerializeField] private Rigidbody2D[] rbs; // Array to hold Rigidbody2D components for both players
     [SerializeField] private Weapon weapon;
     Animator[] animators;
 
     private bool isGrounded; // Variable to track if either player is on the ground
+    private bool isJumping;
+    private bool isSneaking;
     private bool canJump = true; // Cooldown to prevent multiple jumps in quick succession
     private float jumpCooldown = 0.1f; // Cooldown duration
 
@@ -92,6 +95,26 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInputActions inputActions;
 
+    private void ToggleFly()
+    {
+        isFlyMode = !isFlyMode;
+        Debug.Log("FLY MODE: " + (isFlyMode ? "ON" : "OFF"));
+
+        foreach (var rb in rbs)
+        {
+            if (isFlyMode)
+            {
+                rb.gravityScale = 0; // Disable gravity
+                rb.isKinematic = true; // Enable kinematic mode to allow clipping through objects
+            }
+            else
+            {
+                rb.gravityScale = 3.5f; // Enable gravity
+                rb.isKinematic = false; // Disable kinematic mode
+            }
+        }
+    }
+
     private void Awake()
     {
         rbs = GetComponentsInChildren<Rigidbody2D>();
@@ -124,6 +147,10 @@ public class PlayerController : MonoBehaviour
 
         };
         inputActions.Player.Jump.performed += ctx => Jump(); // Add jump action handling
+        inputActions.Player.Jump.canceled += ctx => StopJump();
+        inputActions.Player.Sneak.performed += ctx => Sneak();
+        inputActions.Player.Sneak.canceled += ctx => StopSneak();
+        inputActions.Player.FlyToggle.performed += ctx => ToggleFly();
 
         framTranTop = GameObject.Find("VirtualCameraTop").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
         framTranBot = GameObject.Find("VirtualCameraBottom").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -158,6 +185,11 @@ public class PlayerController : MonoBehaviour
         IsMoving = moveInput != Vector2.zero;
         Debug.Log($"Move Input: {moveInput}");
         SetFacingDirection(moveInput);
+        
+        if (isFlyMode)
+        {
+            myrb.velocity = new Vector2(moveInput.x * walkSpeed, myrb.velocity.y);
+        }
     }
 
     private void SetFacingDirection(Vector2 moveInput)
@@ -190,6 +222,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isFlyMode)
+        {
+            myrb.velocity = new Vector2(moveInput.x * walkSpeed, isJumping ? walkSpeed : (isSneaking ? -walkSpeed : 0));
+            return;
+        }
+
         if (rbs != null && rbs.Length > 0)
         {
             foreach (var rb in rbs)
@@ -290,6 +328,12 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        isJumping = true;
+        if (isFlyMode)
+        {
+            return;
+        }
+        
         if (isGrounded && canJump)
         {
             if (rbs != null && rbs.Length > 0)
@@ -312,6 +356,21 @@ public class PlayerController : MonoBehaviour
             PlaySound(jump, jumpVol); // Play jumping sound
             StartCoroutine(JumpCooldown());
         }
+    }
+
+    private void Sneak()
+    {
+        isSneaking = true;
+    }
+
+    private void StopJump()
+    {
+        isJumping = false;
+    }
+
+    private void StopSneak()
+    {
+        isSneaking = false;
     }
 
     private IEnumerator JumpCooldown()
