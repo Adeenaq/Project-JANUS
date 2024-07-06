@@ -12,6 +12,7 @@ using Unity.VisualScripting;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 7f;
+    [SerializeField] private float runSpeed = 14f;
     [SerializeField] private float jumpForce = 10f; // Add a jump force variable
     [SerializeField] private float cameraOffset;
     [SerializeField] private LayerMask groundLayer; // Layer mask to specify what is considered ground
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private bool isSneaking;
     private bool canJump = true; // Cooldown to prevent multiple jumps in quick succession
     private float jumpCooldown = 0.1f; // Cooldown duration
+    private bool isRunning = false;
 
     private CinemachineVirtualCamera virtCamTop;
     private CinemachineVirtualCamera virtCamBot;
@@ -151,6 +153,8 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Sneak.performed += ctx => Sneak();
         inputActions.Player.Sneak.canceled += ctx => StopSneak();
         inputActions.Player.FlyToggle.performed += ctx => ToggleFly();
+        inputActions.Player.Run.performed += ctx => StartRunning();
+        inputActions.Player.Run.canceled += ctx => StopRunning();
 
         framTranTop = GameObject.Find("VirtualCameraTop").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
         framTranBot = GameObject.Find("VirtualCameraBottom").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -188,7 +192,7 @@ public class PlayerController : MonoBehaviour
         
         if (isFlyMode)
         {
-            myrb.velocity = new Vector2(moveInput.x * walkSpeed, myrb.velocity.y);
+            myrb.velocity = new Vector2(moveInput.x * (isRunning ? runSpeed : walkSpeed), myrb.velocity.y);
         }
     }
 
@@ -224,7 +228,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isFlyMode)
         {
-            myrb.velocity = new Vector2(moveInput.x * walkSpeed, isJumping ? walkSpeed : (isSneaking ? -walkSpeed : 0));
+            myrb.velocity = new Vector2(moveInput.x * (isRunning ? runSpeed : walkSpeed), isJumping ? (isRunning ? runSpeed : walkSpeed) : (isSneaking ? -(isRunning ? runSpeed : walkSpeed) : 0));
             return;
         }
 
@@ -232,7 +236,7 @@ public class PlayerController : MonoBehaviour
         {
             foreach (var rb in rbs)
             {
-                rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+                rb.velocity = new Vector2(moveInput.x * (isRunning ? runSpeed : walkSpeed), rb.velocity.y);
             }
             CheckGrounded(); // Check if either player is on the ground
         }
@@ -371,6 +375,26 @@ public class PlayerController : MonoBehaviour
     private void StopSneak()
     {
         isSneaking = false;
+    }
+
+    private void StartRunning()
+    {
+        Debug.Log("Running");
+        isRunning = true;
+        foreach (Animator a in animators)
+        {
+            a.speed = 1.5f; // Reset animation speed to normal
+        }
+    }
+
+    private void StopRunning()
+    {
+        Debug.Log("Stopped running");
+        isRunning = false;
+        foreach (Animator a in animators)
+        {
+            a.speed = 1f; // Reset animation speed to normal
+        }
     }
 
     private IEnumerator JumpCooldown()
