@@ -9,6 +9,18 @@ public class TurretWeapon : MonoBehaviour
     [SerializeField] private float fireForce = 10f;
     [SerializeField] private float fireInterval = 2f; // Time interval between shots
     private TurretScript turretScript;
+    [SerializeField] private AudioClip fireClip;
+    [SerializeField][Range(0f, 1f)] private float firevolume;
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource component is missing on TurretWeapon.");
+        }
+    }
 
     private void Start()
     {
@@ -51,5 +63,15 @@ public class TurretWeapon : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // Reset velocity
         bullet.GetComponent<Rigidbody2D>().AddForce(firepoint.right * fireForce, ForceMode2D.Impulse);
         Debug.Log("Bullet fired from " + firepoint.name + " with force: " + fireForce);
+
+        PlaySound(fireClip, firevolume); // Play the fire sound
+    }
+
+    private void PlaySound(AudioClip clip, float volume)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
+        }
     }
 }

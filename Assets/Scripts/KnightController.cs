@@ -19,6 +19,10 @@ public class KnightController : MonoBehaviour
     private Animator animator;
     private bool canFire = true;
     private Vector2 moveInput;
+    [SerializeField] AudioClip moveSound;
+    [Range(0f, 1f)]
+    [SerializeField] float moveVol; 
+    private AudioSource audioSource;
 
     private bool _isMoving = false;
     public bool IsMoving
@@ -56,6 +60,7 @@ public class KnightController : MonoBehaviour
         weapon = GetComponentInChildren<WeaponKnight>();
         playerToTrack1 = GameObject.Find("Player_top").transform;
         playerToTrack2 = GameObject.Find("Player_bottom").transform;
+        audioSource = gameObject.AddComponent<AudioSource>();
 
         if (Vector2.Distance(transform.position, playerToTrack1.position) >= Vector2.Distance(transform.position, playerToTrack2.position))
         {
@@ -101,6 +106,7 @@ public class KnightController : MonoBehaviour
     private void MoveTowardsPlayer()
     {
         myrb.velocity = new Vector2(moveInput.x * walkSpeed, myrb.velocity.y);
+        //PlaySound(moveSound, moveVol);
     }
 
     private void SetFacingDirection(Vector2 moveInput)
@@ -165,5 +171,13 @@ public class KnightController : MonoBehaviour
         canMelee = false;
         yield return new WaitForSeconds(time);
         canMelee = true;
+    }
+
+    private void PlaySound(AudioClip clip, float volume)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
+        }
     }
 }

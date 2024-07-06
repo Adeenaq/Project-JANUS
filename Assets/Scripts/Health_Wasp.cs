@@ -10,6 +10,12 @@ public class Health_Wasp : MonoBehaviour
     private bool takingDamage = false;
     private bool dead = false;
     Animator animator;
+    [SerializeField] private AudioClip death;
+    [SerializeField] private AudioClip shot;
+    [SerializeField][Range(0, 1)] private float shotVolume = 1.0f; // Volume control for shot sound
+    [SerializeField][Range(0, 1)] private float deathVolume = 1.0f; // Volume control for death sound
+
+    private AudioSource audioSource;
 
     public int Hp
     {
@@ -26,9 +32,11 @@ public class Health_Wasp : MonoBehaviour
             {
                 Healed?.Invoke(_hp);
             }
-            if (_hp <= 0)
+            if (_hp <= 0 && !dead)
             {
+                dead = true;
                 Died?.Invoke();
+                HandleDeath();
             }
             UpdateHealthUI();
         }
@@ -47,7 +55,7 @@ public class Health_Wasp : MonoBehaviour
 
     void Update()
     {
-        if (takingDamage == true)
+        if (takingDamage)
         {
             animator.SetBool("DamageTaken", false);
             takingDamage = false;
@@ -58,24 +66,39 @@ public class Health_Wasp : MonoBehaviour
     {
         Hp = _maxhp;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Damage(int amount)
     {
         Hp -= amount;
         takingDamage = true;
+        if (shot != null)
+        {
+            PlaySound(shot, shotVolume);
+        }
 
         if (Hp <= 0 && !dead)
         {
             dead = true;
-            StartCoroutine(waiter(2));
-            animator.Play("wasp_death", 0, 0f);
+            HandleDeath();
         }
     }
 
-    IEnumerator waiter(int time)
+    private void HandleDeath()
     {
-        yield return new WaitForSeconds(time);
+        if (death != null)
+        {
+            PlaySound(death, deathVolume);
+        }
+        animator.Play("wasp_death", 0, 0f);
+        StartCoroutine(DestroyAfterSound(death.length));
+    }
+
+    private IEnumerator DestroyAfterSound(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 
     public void Heal(int amount) => Hp += amount;
@@ -88,5 +111,14 @@ public class Health_Wasp : MonoBehaviour
 
     private void UpdateHealthUI()
     {
+        // Implementation for updating health UI
+    }
+
+    private void PlaySound(AudioClip clip, float volume)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
+        }
     }
 }
