@@ -262,6 +262,9 @@ public class PlayerController : MonoBehaviour
                 PlayAnimationIfExists(a, "player_past_land");
                 PlayAnimationIfExists(a, "player_future_land");
             }
+
+                framTranTop.m_DeadZoneHeight = 0.0f;
+                framTranBot.m_DeadZoneHeight = 0.0f;
         }
     }
 
@@ -276,6 +279,9 @@ public class PlayerController : MonoBehaviour
                         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                         isGrounded = false;
                    }
+
+                framTranTop.m_DeadZoneHeight = 1.0f;
+                framTranBot.m_DeadZoneHeight = 1.0f;
             }
             else
             {

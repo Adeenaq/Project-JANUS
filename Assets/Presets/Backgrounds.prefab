@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbbc4783e25a3794e8db66fb7fb3a488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgVerticalHeight: 4
+  bgVerticalHeight: 6
   bgPaths:
   - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/1-sky_layer.png
   - Assets/Art/Pixel Art Futuristic City - Pack/PNG/towers - night/2-backround.png
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbbc4783e25a3794e8db66fb7fb3a488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgVerticalHeight: -15
+  bgVerticalHeight: -35
   bgPaths:
   - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/1-sky_layer.png
   - Assets/Art/Pixel Art Futuristic City - Pack/PNG/close/2-background.png
@@ -145,7 +145,7 @@ MonoBehaviour:
   - 0.5
   - 0.5
   tilingScales:
-  - {x: 5, y: 5}
+  - {x: 6, y: 6}
 --- !u!1 &8692331927214270818
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8692331927214270818}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.50948143, y: 1.4422469, z: 0.735211}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
