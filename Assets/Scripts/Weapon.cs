@@ -7,7 +7,14 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject[] bulletPrefab; // Prefabs of the bullet
     [SerializeField] private Transform[] firepoints; // Array to hold multiple firepoints
     [SerializeField] private float fireforce = 20f;
+    [SerializeField] private AudioClip fireClip;
+    [SerializeField][Range(0f, 1f)] private float firevolume;
+    private AudioSource audioSource;
 
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     public void Fire()
     {
         if (firepoints == null || firepoints.Length == 0)
@@ -31,7 +38,15 @@ public class Weapon : MonoBehaviour
             Debug.Log("Bullet fired from " + firepoint.name + " with force: " + fireforce);
             i++;
         }
+        PlaySound(fireClip,  firevolume);
     }
+        private void PlaySound(AudioClip clip, float volume)
+        {
+            if (audioSource != null && clip != null)
+            {
+                audioSource.PlayOneShot(clip, volume);
+            }
+        }
 
     public void SetFirepointDirection(bool isFacingRight)
     {

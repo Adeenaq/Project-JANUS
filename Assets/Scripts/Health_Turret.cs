@@ -10,6 +10,12 @@ public class Health_Turret : MonoBehaviour
     private bool takingDamage = false;
     private bool dead = false;
     Animator[] animators;
+    [SerializeField] private AudioClip death;
+    [SerializeField] private AudioClip shot;
+    [SerializeField][Range(0, 1)] private float shotVolume = 1.0f; // Volume control for shot sound
+    [SerializeField][Range(0, 1)] private float deathVolume = 1.0f; // Volume control for death sound
+
+    private AudioSource audioSource;
 
     public int Hp
     {
@@ -26,9 +32,11 @@ public class Health_Turret : MonoBehaviour
             {
                 Healed?.Invoke(_hp);
             }
-            if (_hp <= 0)
+            if (_hp <= 0 && !dead)
             {
+                dead = true;
                 Died?.Invoke();
+                HandleDeath();
             }
             UpdateHealthUI();
         }
@@ -47,9 +55,8 @@ public class Health_Turret : MonoBehaviour
 
     void Update()
     {
-        if (takingDamage == true && dead == false)
+        if (takingDamage && !dead)
         {
-            //animator.SetBool("DamageTaken", false);
             takingDamage = false;
         }
     }
@@ -58,20 +65,39 @@ public class Health_Turret : MonoBehaviour
     {
         Hp = _maxhp;
         animators = GetComponentsInChildren<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource component is missing on Health_Turret.");
+        }
     }
 
     public void Damage(int amount)
     {
         Hp -= amount;
-
-        if (Hp <= 0 && !dead)
+        if (shot != null)
         {
-            dead = true;
-            //StartCoroutine(waiter(2));
-            foreach (var a in animators)
-            {
-                PlayAnimationIfExists(a, "Explosion");
-            }
+            PlaySound(shot, shotVolume);
+        }
+    }
+
+    private void HandleDeath()
+    {
+        foreach (var a in animators)
+        {
+            PlayAnimationIfExists(a, "Explosion");
+        }
+        if (death != null)
+        {
+            PlaySound(death, deathVolume);
+        }
+    }
+
+    private void PlaySound(AudioClip clip, float volume)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
         }
     }
 
@@ -80,33 +106,23 @@ public class Health_Turret : MonoBehaviour
         yield return new WaitForSeconds(time);
     }
 
-    void PlayAnimationIfExists(Animator animator, string animationName)
+    private void PlayAnimationIfExists(Animator animator, string animationName)
     {
         if (animator.HasState(0, Animator.StringToHash(animationName)))
         {
             animator.Play(animationName, 0, 0f);
             StartCoroutine(WaitForExplosionAnimation(animator));
-            //Destroy(GetComponent<SpriteRenderer>());
-            //Destroy(gameObject);
-
         }
     }
 
     private IEnumerator WaitForExplosionAnimation(Animator animator)
     {
-        //Debug.Log("Waiting for explosion animation to start...");
         yield return new WaitForEndOfFrame();
-
-        //Debug.Log("Current State: " + animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"));
-
         while (animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion") &&
                animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
         {
-            //Debug.Log("Explosion animation progress: " + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
             yield return null;
         }
-
-        // Destroy the turret after the explosion animation has finished
         Destroy(gameObject);
     }
 
@@ -120,5 +136,6 @@ public class Health_Turret : MonoBehaviour
 
     private void UpdateHealthUI()
     {
+        // Implementation for updating health UI
     }
 }

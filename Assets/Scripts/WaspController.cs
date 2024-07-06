@@ -13,6 +13,14 @@ public class WaspController : MonoBehaviour
     private int explosionDamageAmount = 100;
     private int meleeDamageAmount = 10;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip moveSound;
+    [SerializeField] private AudioClip impactSound;
+    [Range(0f, 1f)]
+    [SerializeField] private float moveVolume;
+    [Range(0f, 1f)]
+    [SerializeField] private float impactVolume;
+    private AudioSource audioSource;
 
     private Transform player;
     private Transform playerToTrack1;
@@ -38,7 +46,10 @@ public class WaspController : MonoBehaviour
         private set
         {
             _isMoving = value;
-            //animator.SetBool("IsMoving", value);
+            if (_isMoving)
+            {
+                PlaySound(moveSound, moveVolume);
+            }
         }
     }
 
@@ -53,7 +64,6 @@ public class WaspController : MonoBehaviour
                 myrb.transform.localScale = new Vector2(-myrb.transform.localScale.x, myrb.transform.localScale.y);
             }
             _isFacingRight = value;
-            //UpdateWeaponDirection();
         }
     }
 
@@ -61,6 +71,8 @@ public class WaspController : MonoBehaviour
     {
         myrb = GetComponent<Rigidbody2D>();
         animators = GetComponentsInChildren<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
         playerToTrack1 = GameObject.Find("Player_top").transform;
         playerToTrack2 = GameObject.Find("Player_bottom").transform;
 
@@ -80,7 +92,7 @@ public class WaspController : MonoBehaviour
         {
             return;
         }
-        
+
         if (player != null)
         {
             float distanceToPlayer = (transform.position - player.position).sqrMagnitude;
@@ -152,12 +164,12 @@ public class WaspController : MonoBehaviour
             if (player_health != null)
             {
                 player_health.Damage(meleeDamageAmount);
-                waiterMelee(3);
+                StartCoroutine(WaiterMelee(3));
             }
         }
 
         float sqrDistanceToPlayer = (player.position - gameObject.transform.position).sqrMagnitude;
-        
+
         if (sqrDistanceToPlayer <= impactDamageRange)
         {
             Health_Player player_health = player.parent.GetComponent<Health_Player>();
@@ -165,6 +177,7 @@ public class WaspController : MonoBehaviour
             {
                 player_health.Damage(explosionDamageAmount);
             }
+            PlaySound(impactSound, impactVolume); // Play impact sound
         }
 
         foreach (var a in animators)
@@ -172,25 +185,39 @@ public class WaspController : MonoBehaviour
             PlayAnimationIfExists(a, "wasp_death");
             PlayAnimationIfExists(a, "explosion");
         }
+
+        StartCoroutine(DestroyAfterImpactSound());
     }
 
-    IEnumerator waiter(int time)
+    private IEnumerator DestroyAfterImpactSound()
     {
-        yield return new WaitForSeconds(time);
+        if (impactSound != null)
+        {
+            yield return new WaitForSeconds(impactSound.length);
+        }
+        Destroy(gameObject);
     }
 
-    IEnumerator waiterMelee(int time)
+    private IEnumerator WaiterMelee(int time)
     {
         canMelee = false;
         yield return new WaitForSeconds(time);
         canMelee = true;
     }
 
-    void PlayAnimationIfExists(Animator animator, string animationName)
+    private void PlayAnimationIfExists(Animator animator, string animationName)
     {
         if (animator.HasState(0, Animator.StringToHash(animationName)))
         {
             animator.Play(animationName, 0, 0f);
+        }
+    }
+
+    private void PlaySound(AudioClip clip, float volume)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
         }
     }
 }

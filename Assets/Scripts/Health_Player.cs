@@ -12,6 +12,12 @@ public class Health_Player : MonoBehaviour
     Animator[] animators;
     [SerializeField] private bool takingDamage = false;
     [SerializeField] private bool dead = false;
+    [SerializeField] private AudioClip shot;
+    [SerializeField] private AudioClip death;
+    [SerializeField][Range(0, 1)] private float shotVolume = 1.0f; // Volume control for shot sound
+    [SerializeField][Range(0, 1)] private float deathVolume = 1.0f; // Volume control for death sound
+
+    private AudioSource audioSource;
 
     public int Hp
     {
@@ -36,6 +42,7 @@ public class Health_Player : MonoBehaviour
         }
     }
 
+    
     public UnityEvent<int> Healed;
     public UnityEvent<int> Damaged;
     public UnityEvent Died;
@@ -71,6 +78,7 @@ public class Health_Player : MonoBehaviour
         Hp = _maxhp;
         UpdateHealthUI();
         animators = GetComponentsInChildren<Animator>();
+        audioSource=GetComponent<AudioSource>();
     }
 
     public void Damage(int amount)
@@ -84,6 +92,11 @@ public class Health_Player : MonoBehaviour
             }
             takingDamage = true;
             Hp -= amount;
+            if (shot != null)
+            {
+                PlaySound(shot, shotVolume);
+            }
+
         }
         
 
@@ -95,6 +108,12 @@ public class Health_Player : MonoBehaviour
                 PlayAnimationIfExists(a, "player_past_dead");
                 PlayAnimationIfExists(a, "player_future_dead");
             }
+        
+        if (death != null)
+        {
+            PlaySound(death, deathVolume);
+        }
+
             Destroy(GetComponent<PlayerController>());
 
             Rigidbody2D myrb = GetComponent<Rigidbody2D>();
@@ -142,6 +161,13 @@ public class Health_Player : MonoBehaviour
         if (animator.HasState(0, Animator.StringToHash(animationName)))
         {
             animator.Play(animationName, 0, 0f);
+        }
+    }
+    private void PlaySound(AudioClip clip, float volume)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
         }
     }
 }

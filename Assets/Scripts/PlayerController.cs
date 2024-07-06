@@ -30,20 +30,38 @@ public class PlayerController : MonoBehaviour
     private CinemachineFramingTransposer framTranTop;
     private CinemachineFramingTransposer framTranBot;
 
+    [SerializeField] AudioClip move;
+    [SerializeField] AudioClip jump;
+    [SerializeField] AudioClip land;
+
+    [Range(0f, 2f)]
+    [SerializeField] float moveVol;
+    [Range(0f, 2f)]
+    [SerializeField] float jumpVol;
+    [Range(0f, 2f)]
+    [SerializeField] float landVol;
+
+    private AudioSource audioSource;
+
     [SerializeField] private bool _isMoving = false;
-    public bool IsMoving 
-    {   get 
+    public bool IsMoving
+    {
+        get
         {
             return _isMoving;
-        } 
-        private set 
+        }
+        private set
         {
             _isMoving = value;
             foreach (Animator a in animators)
             {
                 a.SetBool("IsMoving", value);
             }
-        } 
+            if (_isMoving && isGrounded)
+            {
+                PlaySound(move, moveVol); // Play moving sound
+            }
+        }
     }
 
     private bool _isFacingRight = true;
@@ -53,19 +71,19 @@ public class PlayerController : MonoBehaviour
         private set
         {
             if (_isFacingRight != value)
-            {   
+            {
                 if (rbs != null && rbs.Length > 0)
+                {
+                    foreach (var rb in rbs)
                     {
-                        foreach (var rb in rbs)
-                        {
-                            rb.transform.localScale = new Vector2(-rb.transform.localScale.x, rb.transform.localScale.y);
-                        }
+                        rb.transform.localScale = new Vector2(-rb.transform.localScale.x, rb.transform.localScale.y);
                     }
-                    else
-                    {
-                        Debug.LogError("No Rigidbody2D components found in children.");
-                    }
-                
+                }
+                else
+                {
+                    Debug.LogError("No Rigidbody2D components found in children.");
+                }
+
             }
             _isFacingRight = value;
             UpdateWeaponDirection();
@@ -80,12 +98,13 @@ public class PlayerController : MonoBehaviour
         myrb = GetComponent<Rigidbody2D>();
         animators = GetComponentsInChildren<Animator>();
         weapon = GetComponentInChildren<Weapon>();
-    
+        audioSource = GetComponent<AudioSource>();
+
         inputActions = new PlayerInputActions();
 
         inputActions.Player.Move.performed += OnMove;
         inputActions.Player.Move.canceled += OnMove;
-        inputActions.Player.Attack.performed += ctx => 
+        inputActions.Player.Attack.performed += ctx =>
         {
             foreach (Animator a in animators)
             {
@@ -170,14 +189,14 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {   
+    {
         if (rbs != null && rbs.Length > 0)
         {
-               foreach (var rb in rbs)
-                {
-                    rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
-                }
-                CheckGrounded(); // Check if either player is on the ground
+            foreach (var rb in rbs)
+            {
+                rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+            }
+            CheckGrounded(); // Check if either player is on the ground
         }
         else
         {
@@ -262,27 +281,29 @@ public class PlayerController : MonoBehaviour
                 PlayAnimationIfExists(a, "player_past_land");
                 PlayAnimationIfExists(a, "player_future_land");
             }
+            PlaySound(land, landVol); // Play landing sound
         }
     }
 
     private void Jump()
     {
         if (isGrounded && canJump)
-        {   
+        {
             if (rbs != null && rbs.Length > 0)
             {
-                   foreach (var rb in rbs)
-                   {
-                        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                        isGrounded = false;
-                   }
+                foreach (var rb in rbs)
+                {
+                    rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                    isGrounded = false;
+                }
             }
             else
             {
                 Debug.LogError("No Rigidbody2D components found in children.");
             }
-         
+
             Debug.Log("Jump performed");
+            PlaySound(jump, jumpVol); // Play jumping sound
             StartCoroutine(JumpCooldown());
         }
     }
@@ -292,5 +313,13 @@ public class PlayerController : MonoBehaviour
         canJump = false;
         yield return new WaitForSeconds(jumpCooldown);
         canJump = true;
+    }
+
+    private void PlaySound(AudioClip clip, float volume)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
+        }
     }
 }

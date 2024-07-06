@@ -11,11 +11,25 @@ public class TurretScript : MonoBehaviour
     private Transform Target;
     private Transform Barrel;
     private LayerMask TargetLayer; // Layer mask for the target
+    [SerializeField] private AudioClip rotationsound;
+    private AudioSource audioSource;
+
+    [Range(0f, 1f)]
+    [SerializeField] private float rotVolume;
 
     public bool Detected
     {
         get { return detected; }
         private set { detected = value; }
+    }
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource component is missing on TurretScript.");
+        }
     }
 
     void Start()
@@ -59,7 +73,6 @@ public class TurretScript : MonoBehaviour
 
             if (rayInfo)
             {
-                Debug.Log($"Raycast hit: {rayInfo.collider.gameObject.name}");
                 if (rayInfo.collider.gameObject == Target.gameObject)
                 {
                     if (!Detected)
@@ -106,9 +119,24 @@ public class TurretScript : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         angle += 180; // Adjust the angle by 180 degrees to correct the direction
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        Debug.Log($"Current barrel rotation: {Barrel.rotation.eulerAngles.z}, Target angle: {angle}");
         Barrel.rotation = Quaternion.Lerp(Barrel.rotation, targetRotation, Time.deltaTime * RotationSpeed);
-        Debug.Log($"Rotating barrel to angle: {angle}");
+        PlayRotationSound();
+    }
+
+    private void PlayRotationSound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            PlaySound(rotationsound, rotVolume);
+        }
+    }
+
+    private void PlaySound(AudioClip audioClip, float volume)
+    {
+        if (audioClip != null)
+        {
+            audioSource.PlayOneShot(audioClip, volume);
+        }
     }
 
     private void OnDrawGizmosSelected()

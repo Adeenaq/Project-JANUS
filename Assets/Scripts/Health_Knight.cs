@@ -10,6 +10,12 @@ public class Health_Knight : MonoBehaviour
     private bool takingDamage = false;
     private bool dead = false;
     Animator animator;
+    [SerializeField] private AudioClip death;
+    [SerializeField] private AudioClip shot;
+    [SerializeField][Range(0, 1)] private float shotVolume = 1.0f; // Volume control for shot sound
+    [SerializeField][Range(0, 1)] private float deathVolume = 1.0f; // Volume control for death sound
+
+    private AudioSource audioSource;
 
     public int Hp
     {
@@ -29,6 +35,7 @@ public class Health_Knight : MonoBehaviour
             if (_hp <= 0)
             {
                 Died?.Invoke();
+                HandleDeath();
             }
             UpdateHealthUI();
         }
@@ -58,36 +65,51 @@ public class Health_Knight : MonoBehaviour
     {
         Hp = _maxhp;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Damage(int amount)
     {
         animator.Play("knight_damage", 0, 0f);
         Hp -= amount;
+        if (shot != null)
+        {
+            PlaySound(shot, shotVolume);
+        }
 
-        if (Hp <= 0)
+        if (Hp <= 0 && !dead)
         {
             dead = true;
-            StartCoroutine(waiter(2));
-            animator.Play("knight_dead", 0, 0f);
-
-            Destroy(GetComponent<KnightController>());
-
-            Rigidbody2D myrb = GetComponent<Rigidbody2D>();
-            Vector2 vel = myrb.velocity;
-            vel.x = 0f;
-
-            StartCoroutine(waiter(2));
-
-            myrb.gravityScale = 0f;
-            myrb.velocity = vel;
-            Destroy(GetComponent<CapsuleCollider2D>());
+            HandleDeath();
         }
+    }
+
+    private void HandleDeath()
+    {
+        animator.Play("knight_dead", 0, 0f);
+
+        if (death != null)
+        {
+            PlaySound(death, deathVolume);
+        }
+
+        Destroy(GetComponent<KnightController>());
+
+        Rigidbody2D myrb = GetComponent<Rigidbody2D>();
+        Vector2 vel = myrb.velocity;
+        vel.x = 0f;
+
+        myrb.gravityScale = 0f;
+        myrb.velocity = vel;
+        Destroy(GetComponent<CapsuleCollider2D>());
+
+        StartCoroutine(waiter(2));
     }
 
     IEnumerator waiter(int time)
     {
         yield return new WaitForSeconds(time);
+        Destroy(gameObject); // Destroy the knight GameObject after waiting
     }
 
     public void Heal(int amount) => Hp += amount;
@@ -100,5 +122,14 @@ public class Health_Knight : MonoBehaviour
 
     private void UpdateHealthUI()
     {
+        // Implementation for updating health UI
+    }
+
+    private void PlaySound(AudioClip clip, float volume)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
+        }
     }
 }
