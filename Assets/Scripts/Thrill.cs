@@ -3,7 +3,6 @@ using UnityEngine;
 public class Thrill_Player : MonoBehaviour
 {
     [SerializeField] private int _thrill;
-    [SerializeField] private int maxThrill = 100; // Set the maximum thrill value
     [SerializeField] private UIManager uiManager;
 
     public int Thrill
@@ -15,10 +14,6 @@ public class Thrill_Player : MonoBehaviour
             if (_thrill < 0)
             {
                 _thrill = 0;
-            }
-            if (_thrill > maxThrill)
-            {
-                _thrill = maxThrill;
             }
             UpdateThrillUI();
         }
@@ -33,7 +28,7 @@ public class Thrill_Player : MonoBehaviour
     {
         if (uiManager != null)
         {
-            uiManager.UpdateThrill(_thrill, maxThrill);
+            uiManager.UpdateThrill(_thrill);
         }
     }
 
