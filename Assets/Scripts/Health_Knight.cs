@@ -7,6 +7,8 @@ public class Health_Knight : MonoBehaviour
 {
     [SerializeField] private int _maxhp = 1000;
     [SerializeField] private int _hp;
+    [SerializeField] private int thrillValue = 10; 
+
     private bool takingDamage = false;
     private bool dead = false;
     Animator animator;
@@ -14,6 +16,8 @@ public class Health_Knight : MonoBehaviour
     [SerializeField] private AudioClip shot;
     [SerializeField][Range(0, 1)] private float shotVolume = 1.0f; // Volume control for shot sound
     [SerializeField][Range(0, 1)] private float deathVolume = 1.0f; // Volume control for death sound
+    [SerializeField] private Thrill_Player player;
+
 
     private AudioSource audioSource;
 
@@ -38,6 +42,7 @@ public class Health_Knight : MonoBehaviour
                 HandleDeath();
             }
             UpdateHealthUI();
+          
         }
     }
 
@@ -72,6 +77,7 @@ public class Health_Knight : MonoBehaviour
     {
         animator.Play("knight_damage", 0, 0f);
         Hp -= amount;
+        player.IncreaseThrill(thrillValue);
         if (shot != null)
         {
             PlaySound(shot, shotVolume);

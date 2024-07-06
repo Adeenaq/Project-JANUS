@@ -152,7 +152,7 @@ public class Health_Player : MonoBehaviour
     {
         if (uiManager != null)
         {
-            uiManager.UpdateHealth(_hp);
+            uiManager.UpdateHealth(_hp, _maxhp);
         }
     }
 
