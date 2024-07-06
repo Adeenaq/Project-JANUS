@@ -90,5 +90,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b4646d994955644a30be55643a3b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicTypeForward: 0
+  musicTypeForward: 1
   musicTypeBackward: 0

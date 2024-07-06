@@ -142,11 +142,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 6169470952157864137}
-  _startingSectionMusic: {fileID: 0}
-  _mainGameplayMusic: {fileID: 0}
-  _bossBattleMusic: {fileID: 0}
+  _startingSectionMusic: {fileID: 8300000, guid: 7944d91b410f02f40a4e9239ff4286d1, type: 3}
+  _mainGameplayMusic: {fileID: 8300000, guid: 44ce6d87dcc76ed4bba5355965f19dc8, type: 3}
+  _bossBattleMusic: {fileID: 8300000, guid: fa619f2dfd6791d4790737ed2202ea5e, type: 3}
   fadeTime: 1
   fadeDelay: 0.1
-  startingSectionVolume: 1
+  startingSectionVolume: 0.83
   mainGameplayVolume: 1
-  bossBattleVolume: 1
+  bossBattleVolume: 0.68

@@ -49,8 +49,8 @@ MonoBehaviour:
   - {fileID: 7257231376318761095, guid: 37c48665fe9d0934cbff884ccdeaa826, type: 3}
   firepoints:
   - {fileID: 8032589339531868226}
-  fireClip: {fileID: 0}
-  firevolume: 0
+  fireClip: {fileID: 8300000, guid: 8672ddd2ec0a4274a90ef8eb234de736, type: 3}
+  firevolume: 1
 --- !u!82 &3214504368450451
 AudioSource:
   m_ObjectHideFlags: 0
@@ -60,9 +60,9 @@ AudioSource:
   m_GameObject: {fileID: 7771935429632509281}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 8eca7b468b0ff5d47a5939cb1953fd4c, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf1b5ec6914cfc4b85164414bcc8de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSound: {fileID: 0}
+  moveSound: {fileID: 8300000, guid: d84ba9aef7ce0e0459beec1cd29b4f82, type: 3}
   moveVol: 0
 --- !u!212 &7608394947976361975
 SpriteRenderer:
@@ -328,10 +328,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxhp: 200
   _hp: 0
-  death: {fileID: 0}
-  shot: {fileID: 0}
+  death: {fileID: 8300000, guid: 6795a326a3e7d18438659727918b8ea2, type: 3}
+  shot: {fileID: 8300000, guid: 1fe3b1408b87b3442aec70fb729302e6, type: 3}
   shotVolume: 1
-  deathVolume: 1
+  deathVolume: 0.738
   uiManager: {fileID: 0}
 --- !u!95 &1543637941729580543
 Animator:
@@ -363,12 +363,12 @@ AudioSource:
   m_GameObject: {fileID: 8252902157962870574}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 8eca7b468b0ff5d47a5939cb1953fd4c, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

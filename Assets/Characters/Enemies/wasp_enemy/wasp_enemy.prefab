@@ -104,10 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c3c56b535a92a429ccb59e8373a8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSound: {fileID: 0}
-  impactSound: {fileID: 0}
-  moveVolume: 0
-  impactVolume: 0
+  moveSound: {fileID: 8300000, guid: 3bec4ed8f73da3a4f859d1c0c859b867, type: 3}
+  impactSound: {fileID: 8300000, guid: 4a354ce20eceaa24aad231c4b70cc901, type: 3}
+  moveVolume: 0.478
+  impactVolume: 0.855
 --- !u!50 &919224774466740306
 Rigidbody2D:
   serializedVersion: 4
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxhp: 50
   _hp: 0
-  death: {fileID: 0}
-  shot: {fileID: 0}
+  death: {fileID: 8300000, guid: 8b093de9e28b57844be825d944416330, type: 3}
+  shot: {fileID: 8300000, guid: a95d05f11c5125048a1d4afc43fa43fd, type: 3}
   shotVolume: 1
   deathVolume: 1
   uiManager: {fileID: 0}
@@ -231,9 +231,9 @@ AudioSource:
   m_GameObject: {fileID: 8252902157962870574}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 0a919290d76b2f94ab66ff8b68d9bebb, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

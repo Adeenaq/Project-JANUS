@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 598636090955511016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.42, y: -1.295, z: -0.028849293}
+  m_LocalPosition: {x: 0.42, y: -1.29, z: -0.028849293}
   m_LocalScale: {x: 0.13199385, y: 0.132824, z: 0.597708}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 2391864086070560502}
   m_Layer: 3
   m_Name: Players
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,12 +94,12 @@ MonoBehaviour:
   rbs:
   - {fileID: 7277906331845140530}
   weapon: {fileID: 8178451686266653314}
-  move: {fileID: 0}
-  jump: {fileID: 0}
-  land: {fileID: 0}
-  moveVol: 0
-  jumpVol: 0
-  landVol: 0
+  move: {fileID: 8300000, guid: 8bbf89bc8a525884690bd988a662f32d, type: 3}
+  jump: {fileID: 8300000, guid: bd69a06a4660743418da8252b708b995, type: 3}
+  land: {fileID: 8300000, guid: 8605366f1e14a8f49848e98854af2393, type: 3}
+  moveVol: 1.26
+  jumpVol: 1.42
+  landVol: 0.79
   _isMoving: 0
 --- !u!114 &6418219032492296674
 MonoBehaviour:
@@ -117,10 +117,10 @@ MonoBehaviour:
   _hp: 0
   takingDamage: 0
   dead: 0
-  shot: {fileID: 0}
-  death: {fileID: 0}
+  shot: {fileID: 8300000, guid: 57e1f2f1d21957d4b9c43052a5ae927f, type: 3}
+  death: {fileID: 8300000, guid: 6b9be063e05b5ba4ca4906275298cd8a, type: 3}
   shotVolume: 1
-  deathVolume: 1
+  deathVolume: 0.964
   Healed:
     m_PersistentCalls:
       m_Calls:
@@ -333,8 +333,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -16.323364, y: 0.2857656}
-  m_Size: {x: 126.0494, y: 1.6442951}
+  m_Offset: {x: -16.323364, y: 0.31626117}
+  m_Size: {x: 126.0494, y: 1.5833039}
   m_Direction: 0
 --- !u!70 &5584298882388352064
 CapsuleCollider2D:
@@ -368,8 +368,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.741524, y: -18.096588}
-  m_Size: {x: 107.68004, y: 1.7601013}
+  m_Offset: {x: -4.7415257, y: -40.195328}
+  m_Size: {x: 107.68004, y: 1.750412}
   m_Direction: 0
 --- !u!82 &2391864086070560502
 AudioSource:
@@ -380,12 +380,12 @@ AudioSource:
   m_GameObject: {fileID: 3407085537057753910}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a376a64403fdad346b2317f94d4d3118, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -492,7 +492,7 @@ Transform:
   m_GameObject: {fileID: 3912346308506784178}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.263, y: -19.307, z: -0.028849293}
+  m_LocalPosition: {x: 0.263, y: -41.477997, z: -0.028849293}
   m_LocalScale: {x: 0.13199385, y: 0.132824, z: 0.597708}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -526,7 +526,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.95, y: 0.284, z: 0}
-  m_LocalScale: {x: 215, y: 2.15, z: 0.96750003}
+  m_LocalScale: {x: 215, y: 2.2, z: 0.96750003}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3425759356436885557}
@@ -631,7 +631,7 @@ Transform:
   m_GameObject: {fileID: 7207024215717232163}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: -18.056, z: 0}
+  m_LocalPosition: {x: -5, y: -40.227, z: 0}
   m_LocalScale: {x: 200, y: 2, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -765,8 +765,8 @@ MonoBehaviour:
   - {fileID: 17164746561154977}
   - {fileID: 6379415889865720285}
   fireforce: 35
-  fireClip: {fileID: 0}
-  firevolume: 0
+  fireClip: {fileID: 8300000, guid: d1eed41ed40aae0428b4dea78367e48f, type: 3}
+  firevolume: 0.658
 --- !u!114 &5923234081382077672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,9 +789,9 @@ AudioSource:
   m_GameObject: {fileID: 8089502306127608453}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a376a64403fdad346b2317f94d4d3118, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
