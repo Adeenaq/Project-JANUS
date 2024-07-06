@@ -7,6 +7,9 @@ public class Health_Turret : MonoBehaviour
 {
     [SerializeField] private int _maxhp = 1000;
     [SerializeField] private int _hp;
+    [SerializeField] private int thrillValue = 10;
+    [SerializeField] private Thrill_Player player;
+
     private bool takingDamage = false;
     private bool dead = false;
     Animator[] animators;
@@ -75,6 +78,7 @@ public class Health_Turret : MonoBehaviour
     public void Damage(int amount)
     {
         Hp -= amount;
+        player.IncreaseThrill(thrillValue);
         if (shot != null)
         {
             PlaySound(shot, shotVolume);

@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Thrill_Player : MonoBehaviour
 {
     [SerializeField] private int _thrill;
+    [SerializeField] private int maxThrill = 100; // Set the maximum thrill value
+    [SerializeField] private UIManager uiManager;
 
     public int Thrill
     {
@@ -18,7 +16,11 @@ public class Thrill_Player : MonoBehaviour
             {
                 _thrill = 0;
             }
-            //UpdateHealthUI();
+            if (_thrill > maxThrill)
+            {
+                _thrill = maxThrill;
+            }
+            UpdateThrillUI();
         }
     }
 
@@ -27,26 +29,11 @@ public class Thrill_Player : MonoBehaviour
         Thrill = 0;
     }
 
-    void FixedUpdate()
+    private void UpdateThrillUI()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (uiManager != null)
         {
-            IncreaseThrill(50);
-            Debug.Log(Thrill);
-        }
-    }
-
-    private void Awake()
-    {
-        //UpdateHealthUI();
-    }
-
-    public void DecreaseThrill(int amount)
-    {
-        Thrill -= amount;
-        if (Thrill < 0)
-        {
-            Thrill = 0;
+            uiManager.UpdateThrill(_thrill, maxThrill);
         }
     }
 
@@ -54,12 +41,4 @@ public class Thrill_Player : MonoBehaviour
     {
         Thrill += amount;
     }
-
-    //private void UpdateHealthUI()
-    //{
-    //    if (uiManager != null)
-    //    {
-    //        uiManager.UpdateHealth(_hp);
-    //    }
-    //}
 }

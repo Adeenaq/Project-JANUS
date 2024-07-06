@@ -7,6 +7,9 @@ public class Health_Wasp : MonoBehaviour
 {
     [SerializeField] private int _maxhp = 1000;
     [SerializeField] private int _hp;
+    [SerializeField] private int thrillValue = 10;
+    [SerializeField] private Thrill_Player player;
+
     private bool takingDamage = false;
     private bool dead = false;
     Animator animator;
@@ -73,6 +76,7 @@ public class Health_Wasp : MonoBehaviour
     {
         Hp -= amount;
         takingDamage = true;
+        player.IncreaseThrill(thrillValue);
         if (shot != null)
         {
             PlaySound(shot, shotVolume);
