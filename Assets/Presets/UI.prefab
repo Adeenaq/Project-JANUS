@@ -44,4 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabc1b93a0dba9c45a8915311c5682ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  thrillBar1: {fileID: 0}
+  thrillBar2: {fileID: 0}
   healthText: {fileID: 0}
+  thrillText: {fileID: 0}
+  thresholdX: 20
+  thresholdY: 80

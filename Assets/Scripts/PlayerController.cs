@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private bool canJump = true; // Cooldown to prevent multiple jumps in quick succession
     private float jumpCooldown = 0.1f; // Cooldown duration
     private bool isRunning = false;
+    private bool isZoomed = false;
 
     private CinemachineVirtualCamera virtCamTop;
     private CinemachineVirtualCamera virtCamBot;
@@ -148,6 +149,14 @@ public class PlayerController : MonoBehaviour
             }
 
         };
+
+        virtCamBot = GameObject.Find("VirtualCameraBottom").GetComponent<CinemachineVirtualCamera>();
+        virtCamTop = GameObject.Find("VirtualCameraTop").GetComponent<CinemachineVirtualCamera>();
+
+        framTranTop = virtCamTop.GetCinemachineComponent<CinemachineFramingTransposer>();
+        framTranBot = virtCamBot.GetCinemachineComponent<CinemachineFramingTransposer>();
+
+
         inputActions.Player.Jump.performed += ctx => Jump(); // Add jump action handling
         inputActions.Player.Jump.canceled += ctx => StopJump();
         inputActions.Player.Sneak.performed += ctx => Sneak();
@@ -155,9 +164,8 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.FlyToggle.performed += ctx => ToggleFly();
         inputActions.Player.Run.performed += ctx => StartRunning();
         inputActions.Player.Run.canceled += ctx => StopRunning();
-
-        framTranTop = GameObject.Find("VirtualCameraTop").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
-        framTranBot = GameObject.Find("VirtualCameraBottom").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
+        inputActions.Player.Zoom.performed += ctx => StartZoom(8.0f);
+        inputActions.Player.Zoom.canceled += ctx => StartZoom(5.0f);
 
         if ((framTranTop == null) || (framTranBot == null))
         {
@@ -410,5 +418,44 @@ public class PlayerController : MonoBehaviour
         {
             audioSource.PlayOneShot(clip, volume);
         }
+    }
+    private void StartZoom(float targetZoom)
+    {
+        StopAllCoroutines();
+        StartCoroutine(SmoothZoom(targetZoom, 0.2f)); // Adjust the duration as needed
+    }
+
+    private IEnumerator SmoothZoom(float targetZoom, float duration)
+    {
+        float startZoomTop = virtCamTop.m_Lens.OrthographicSize;
+        float startZoomBot = virtCamBot.m_Lens.OrthographicSize;
+        float timeElapsed = 0f;
+
+        framTranBot.m_YDamping = 8.0f;
+        framTranBot.m_XDamping = 8.0f;
+        framTranTop.m_YDamping = 8.0f;
+        framTranTop.m_XDamping = 8.0f;
+
+        while (timeElapsed < duration)
+        {
+            virtCamTop.m_Lens.OrthographicSize = Mathf.Lerp(startZoomTop, targetZoom, timeElapsed / duration);
+            virtCamBot.m_Lens.OrthographicSize = Mathf.Lerp(startZoomBot, targetZoom, timeElapsed / duration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        virtCamTop.m_Lens.OrthographicSize = targetZoom;
+        virtCamBot.m_Lens.OrthographicSize = targetZoom;
+
+        timeElapsed = 0f;
+        while (timeElapsed < 0.2)
+        {
+            timeElapsed += Time.deltaTime;
+        }
+
+        framTranBot.m_YDamping = 2.0f;
+        framTranBot.m_XDamping = 2.0f;
+        framTranTop.m_YDamping = 2.0f;
+        framTranTop.m_XDamping = 2.0f;
     }
 }
