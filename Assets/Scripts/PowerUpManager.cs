@@ -10,18 +10,21 @@ public class PowerUp : MonoBehaviour
 
     private Animator[] animators;
 
-    [SerializeField] private float bulletDamageMultiplier = 1f;
-    [SerializeField] private int specialAttackDamage = 100; // Example value
-    [SerializeField] private float specialAttackRange = 10f; // Example value
+    [SerializeField] private float bulletDamageMultiplier = 1.05f;
+    [SerializeField] private int specialAttackDamage = 100;
+    [SerializeField] private float specialAttackRange = 10f;
+    [SerializeField] private float healthRegenMultiplier = 0.3f;
+    [SerializeField] private float JumpMultiplier = 2f;
+    [SerializeField] private float SpeedMultiplier = 1.5f;
 
     private bool isImmune = false;
     private int speedCounter = 0;
     private int jumpCounter = 0;
     private int damageBoostCounter = 0;
 
-     private float cumulativeSpeedMultiplier = 1f;
-     private float cumulativeJumpMultiplier = 1f;
-     private float cumulativeDamageMultiplier = 1f;
+    private float cumulativeSpeedMultiplier = 1f;
+    private float cumulativeJumpMultiplier = 1f;
+    private float cumulativeDamageMultiplier = 1f;
 
     private Thrill_Player thrillPlayer;
     private PlayerController playerController;
@@ -199,11 +202,11 @@ public class PowerUp : MonoBehaviour
     private IEnumerator DamageBoost()
     {
         damageBoostCounter++;
-        cumulativeDamageMultiplier *= 1.05f;
+        cumulativeDamageMultiplier *= bulletDamageMultiplier;
         bulletDamageMultiplier = cumulativeDamageMultiplier;
         yield return new WaitForSeconds(SeekerTime);
         damageBoostCounter--;
-        cumulativeDamageMultiplier /= 1.05f;
+        cumulativeDamageMultiplier /= bulletDamageMultiplier;
         bulletDamageMultiplier = cumulativeDamageMultiplier;
     }
 
@@ -226,7 +229,7 @@ public class PowerUp : MonoBehaviour
 
     private void RegenerateHealth()
     {
-        healthPlayer.Heal(healthPlayer.MaxHp * 0.3f);
+        healthPlayer.Heal(healthPlayer.MaxHp * healthRegenMultiplier);
     }
 
     private IEnumerator BecomeImmune()
@@ -236,7 +239,6 @@ public class PowerUp : MonoBehaviour
         isImmune = false;
     }
 
-    [SerializeField] private float JumpMultiplier = 2f;
     private IEnumerator DoubleJumpHeight()
     {
         jumpCounter++;
@@ -248,7 +250,6 @@ public class PowerUp : MonoBehaviour
         playerController.JumpForce = playerController.OriginalJumpForce * cumulativeJumpMultiplier;
     }
 
-    [SerializeField] private float SpeedMultiplier = 1.5f;
     private IEnumerator IncreaseSpeed()
     {
         speedCounter++;
