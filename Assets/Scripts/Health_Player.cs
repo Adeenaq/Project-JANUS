@@ -17,6 +17,9 @@ public class Health_Player : MonoBehaviour
     [SerializeField][Range(0, 1)] private float shotVolume = 1.0f; // Volume control for shot sound
     [SerializeField][Range(0, 1)] private float deathVolume = 1.0f; // Volume control for death sound
 
+    public GameObject WinScreenPanel; // Assign in Inspector
+    public GameObject DeathScreenPanel; // Assign in Inspector
+
     private AudioSource audioSource;
 
     private PowerUp powerUp;
@@ -148,7 +151,10 @@ public class Health_Player : MonoBehaviour
             }
 
             // some gameover UI function to be added here
+             DeathScreenPanel.SetActive(true);
         }
+        //show death screen
+       
     }
 
     IEnumerator waiter(int time)
@@ -185,5 +191,11 @@ public class Health_Player : MonoBehaviour
         {
             audioSource.PlayOneShot(clip, volume);
         }
+    }
+
+    //dead getter
+    public bool GetPlayerDead()
+    {
+        return dead;
     }
 }
