@@ -199,6 +199,7 @@ public class PowerUp : MonoBehaviour
 
     private IEnumerator DamageBoost()
     {
+        Debug.Log("Seeker powerup");
         damageBoostCounter++;
         cumulativeDamageMultiplier *= bulletDamageMultiplier;
         bulletDamageMultiplier = cumulativeDamageMultiplier;
@@ -210,6 +211,7 @@ public class PowerUp : MonoBehaviour
 
     private IEnumerator SpecialAttack()
     {
+        Debug.Log("Thriller powerup");
         yield return new WaitForSeconds(ThrillerTime);
         Collider[] enemies = Physics.OverlapSphere(transform.position, specialAttackRange);
         foreach (Collider enemy in enemies)
@@ -227,11 +229,13 @@ public class PowerUp : MonoBehaviour
 
     private void RegenerateHealth()
     {
+        Debug.Log("Regen powerup");
         healthPlayer.Heal(Mathf.Min(healthPlayer.MaxHp * healthRegenMultiplier, healthPlayer.MaxHp));
     }
 
     private IEnumerator BecomeImmune()
     {
+        Debug.Log("Immunity powerup");
         isImmune = true;
         yield return new WaitForSeconds(immunityTime);
         isImmune = false;
@@ -239,6 +243,7 @@ public class PowerUp : MonoBehaviour
 
     private IEnumerator DoubleJumpHeight()
     {
+        Debug.Log("Jump powerup");
         jumpCounter++;
         cumulativeJumpMultiplier *= JumpMultiplier;
         playerController.JumpForce = playerController.OriginalJumpForce * cumulativeJumpMultiplier;
@@ -250,6 +255,7 @@ public class PowerUp : MonoBehaviour
 
     private IEnumerator IncreaseSpeed()
     {
+        Debug.Log("Speed powerup");
         speedCounter++;
         cumulativeSpeedMultiplier *= SpeedMultiplier;
         playerController.WalkSpeed = playerController.OriginalWalkSpeed * cumulativeSpeedMultiplier;
