@@ -44,6 +44,7 @@ public class Bullet : MonoBehaviour
         var expectKnight = collision.gameObject.GetComponent<Health_Knight>();
         var expectTurret = collision.gameObject.GetComponent<Health_Turret>();
         var expectWasp = collision.gameObject.GetComponent<Health_Wasp>();
+        var expectBoss = collision.gameObject.GetComponent<Health_Boss>();
         if (expectKnight != null)
         {
             Debug.Log("Hit knight");
@@ -58,6 +59,11 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("Hit wasp");
             expectWasp.Damage(_damageAmount);
+        }
+        else if (expectBoss != null)
+        {
+            Debug.Log("Hit boss");
+            expectBoss.Damage(_damageAmount);
         }
         else
         {

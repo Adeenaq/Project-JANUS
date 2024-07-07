@@ -1336,9 +1336,9 @@ TextureImporter:
       name: PAST_CHARACTER_57
       rect:
         serializedVersion: 2
-        x: 15
+        x: 16
         y: 48
-        width: 22
+        width: 21
         height: 29
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

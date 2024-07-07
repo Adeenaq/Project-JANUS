@@ -6,6 +6,7 @@ public class Star_Bullet : MonoBehaviour
 {
     private int _damageAmount = 100;
     private Animator[] animator;
+    private float impactDamageRange = 4f;
 
     private void Awake()
     {
@@ -22,6 +23,20 @@ public class Star_Bullet : MonoBehaviour
         {
             Debug.Log("Hit player");
             playerHealth.Damage(_damageAmount);
+        }
+        else
+        {
+            GameObject player = GameObject.Find("Players");
+            float distanceToPlayer = transform.position.x - player.transform.position.x;
+
+            if (distanceToPlayer <= impactDamageRange)
+            {
+                Health_Player player_health = player.GetComponent<Health_Player>();
+                if (player_health != null)
+                {
+                    player_health.Damage(_damageAmount);
+                }
+            }
         }
 
         foreach (var a in animator)

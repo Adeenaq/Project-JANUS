@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Health_Boss : MonoBehaviour
 {
-    private int _maxhp = 20000;
+    private int _maxhp = 10;
     [SerializeField] private int _hp;
     private bool takingDamage = false;
     private bool dead = false;
@@ -56,7 +56,6 @@ public class Health_Boss : MonoBehaviour
     {
         if (takingDamage == true && dead == false)
         {
-            //animator.SetBool("DamageTaken", false);
             takingDamage = false;
         }
     }
@@ -72,7 +71,7 @@ public class Health_Boss : MonoBehaviour
     {
         foreach (var a in animators)
         {
-            //PlayAnimationIfExists(a, "boss_damage");
+            PlayAnimationIfExists(a, "boss_damage");
         }
         Hp -= amount;
         if (shot != null)
@@ -91,7 +90,7 @@ public class Health_Boss : MonoBehaviour
     {
         foreach (var a in animators)
         {
-            //PlayAnimationIfExists(a, "boss_dead");
+            PlayAnimationIfExists(a, "boss_death");
         }
 
         if (death != null)
@@ -99,10 +98,10 @@ public class Health_Boss : MonoBehaviour
             PlaySound(death, deathVolume);
         }
 
-        StartCoroutine(waiter(2));
+        StartCoroutine(waiter(2.5f));
     }
 
-    IEnumerator waiter(int time)
+    IEnumerator waiter(float time)
     {
         yield return new WaitForSeconds(time);
         Destroy(gameObject); // Destroy the knight GameObject after waiting

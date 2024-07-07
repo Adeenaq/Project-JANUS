@@ -8,6 +8,8 @@ public class PowerUp : MonoBehaviour
     public enum BuildType { Damage, Fitness, Adrenaline }
     public BuildType currentBuild;
 
+    private Animator[] animators;
+
     [SerializeField] private float bulletDamageMultiplier = 1f;
     [SerializeField] private int specialAttackDamage = 100; // Example value
     [SerializeField] private float specialAttackRange = 10f; // Example value
@@ -68,6 +70,7 @@ public class PowerUp : MonoBehaviour
 
     private void Start()
     {
+        animators = GetComponentsInChildren<Animator>();
         audioSource = GetComponent<AudioSource>();
         thrillPlayer = GetComponent<Thrill_Player>();
         if (thrillPlayer == null)
@@ -107,6 +110,11 @@ public class PowerUp : MonoBehaviour
             case BuildType.Damage:
                 if (thrillPlayer.Thrill >= seekerThrill)
                 {
+                    foreach (var a in animators)
+                    {
+                        PlayAnimationIfExists(a, "player_future_powerup");
+                        PlayAnimationIfExists(a, "player_past_powerup");
+                    }
                     thrillPlayer.DecreaseThrill(seekerThrill);
                     PlaySound(seekerClip, seekerVol);
                     StartCoroutine(DamageBoost());
@@ -115,6 +123,11 @@ public class PowerUp : MonoBehaviour
             case BuildType.Fitness:
                 if (thrillPlayer.Thrill >= ImmunityThrill)
                 {
+                    foreach (var a in animators)
+                    {
+                        PlayAnimationIfExists(a, "player_future_powerup");
+                        PlayAnimationIfExists(a, "player_past_powerup");
+                    }
                     thrillPlayer.DecreaseThrill(ImmunityThrill);
                     PlaySound(immunityClip, immunityVol);
                     StartCoroutine(BecomeImmune());
@@ -123,6 +136,11 @@ public class PowerUp : MonoBehaviour
             case BuildType.Adrenaline:
                 if (thrillPlayer.Thrill >= JumpThrill)
                 {
+                    foreach (var a in animators)
+                    {
+                        PlayAnimationIfExists(a, "player_future_powerup");
+                        PlayAnimationIfExists(a, "player_past_powerup");
+                    }
                     thrillPlayer.DecreaseThrill(JumpThrill);
                     PlaySound(jumpClip, jumpVol);
                     StartCoroutine(DoubleJumpHeight());
@@ -139,6 +157,11 @@ public class PowerUp : MonoBehaviour
             case BuildType.Damage:
                 if (thrillPlayer.Thrill >= ThrillerThrill)
                 {
+                    foreach (var a in animators)
+                    {
+                        PlayAnimationIfExists(a, "player_future_powerup");
+                        PlayAnimationIfExists(a, "player_past_powerup");
+                    }
                     thrillPlayer.DecreaseThrill(ThrillerThrill);
                     PlaySound(thrillerClip, thrillerVol);
                     StartCoroutine(SpecialAttack());
@@ -147,6 +170,11 @@ public class PowerUp : MonoBehaviour
             case BuildType.Fitness:
                 if (thrillPlayer.Thrill >= RegenThrill)
                 {
+                    foreach (var a in animators)
+                    {
+                        PlayAnimationIfExists(a, "player_future_powerup");
+                        PlayAnimationIfExists(a, "player_past_powerup");
+                    }
                     thrillPlayer.DecreaseThrill(RegenThrill);
                     PlaySound(healClip, healVol);
                     RegenerateHealth();
@@ -155,6 +183,11 @@ public class PowerUp : MonoBehaviour
             case BuildType.Adrenaline:
                 if (thrillPlayer.Thrill >= FlashThrill)
                 {
+                    foreach (var a in animators)
+                    {
+                        PlayAnimationIfExists(a, "player_future_powerup");
+                        PlayAnimationIfExists(a, "player_past_powerup");
+                    }
                     thrillPlayer.DecreaseThrill(FlashThrill);
                     PlaySound(flashClip, flashVol);
                     StartCoroutine(IncreaseSpeed());
@@ -294,6 +327,14 @@ public class PowerUp : MonoBehaviour
         if (audioSource != null && clip != null)
         {
             audioSource.PlayOneShot(clip, volume);
+        }
+    }
+
+    void PlayAnimationIfExists(Animator animator, string animationName)
+    {
+        if (animator.HasState(0, Animator.StringToHash(animationName)))
+        {
+            animator.Play(animationName, 0, 0f);
         }
     }
 }
