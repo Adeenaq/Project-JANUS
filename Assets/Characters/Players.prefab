@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3af4d322d1a3647b73cb8f991cbaa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBuild: 1
+  currentBuild: 0
   bulletDamageMultiplier: 1
   specialAttackDamage: 100
   specialAttackRange: 10
@@ -469,17 +469,17 @@ MonoBehaviour:
   immunityTime: 15
   jumpTime: 20
   flashTime: 10
-  seekerClip: {fileID: 0}
+  seekerClip: {fileID: 8300000, guid: fc07013886f4b5045b5efcb1c23c52b4, type: 3}
   seekerVol: 1
-  thrillerClip: {fileID: 0}
+  thrillerClip: {fileID: 8300000, guid: 11d1a3383ee90874eb30df84ed0e916a, type: 3}
   thrillerVol: 1
-  healClip: {fileID: 0}
+  healClip: {fileID: 8300000, guid: 31d85a75a6c117f4f999cab2088ac0ab, type: 3}
   healVol: 1
-  immunityClip: {fileID: 0}
+  immunityClip: {fileID: 8300000, guid: 30d78e4942febee42a23e56ceb4718d4, type: 3}
   immunityVol: 1
-  jumpClip: {fileID: 0}
+  jumpClip: {fileID: 8300000, guid: e96e7746509906b42b9f835625ea31d3, type: 3}
   jumpVol: 1
-  flashClip: {fileID: 0}
+  flashClip: {fileID: 8300000, guid: 8ef6232c21a86304bb6a93def82f30d3, type: 3}
   flashVol: 1
   JumpMultiplier: 2
   SpeedMultiplier: 1.5
