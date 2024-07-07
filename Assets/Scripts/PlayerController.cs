@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Run.performed += ctx => StartRunning();
         inputActions.Player.Run.canceled += ctx => StopRunning();
         inputActions.Player.Zoom.performed += ctx => StartZoom(8.0f);
-        inputActions.Player.Zoom.canceled += ctx => StartZoom(5.0f);
+        inputActions.Player.Zoom.canceled += ctx => StartZoom(6.0f);
 
         if ((framTranTop == null) || (framTranBot == null))
         {
