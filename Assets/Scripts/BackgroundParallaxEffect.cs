@@ -1,53 +1,62 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEditor.Experimental.AssetImporters;
 
 public class BackgroundsParallaxEffect : MonoBehaviour
 {
-    [SerializeField] private float bgVerticalHeight; // vertical offset for all backgrounds
-    [SerializeField] private string[] bgPaths;
-    [SerializeField] private float[] parallaxFactors;
-    [SerializeField] private Vector2[] tilingScales;
+    [SerializeField] public float bgVerticalHeight; // vertical offset for all backgrounds
+    [SerializeField] public string[] bgPaths;
+    [SerializeField] public float[] parallaxFactors;
+    [SerializeField] public Vector2[] tilingScales;
+}
 
-    private Transform[] layers;
-    private Vector3 previousCameraPosition;
-
-    void Start()
+#if UNITY_EDITOR
+[CustomEditor(typeof(BackgroundsParallaxEffect))]
+public class BackgroundsParallaxEffectEditor : Editor
+{
+    public override void OnInspectorGUI()
     {
-        if (bgPaths.Length != parallaxFactors.Length || (bgPaths.Length != tilingScales.Length && tilingScales.Length > 1))
+        DrawDefaultInspector();
+
+        BackgroundsParallaxEffect script = (BackgroundsParallaxEffect)target;
+        if (GUILayout.Button("Setup Backgrounds"))
+        {
+            SetupBackgrounds(script);
+        }
+    }
+
+    private void SetupBackgrounds(BackgroundsParallaxEffect script)
+    {
+        if (script.bgPaths.Length != script.parallaxFactors.Length || (script.bgPaths.Length != script.tilingScales.Length && script.tilingScales.Length > 1))
         {
             Debug.LogError("Mismatch in number of paths, factors and scales.");
             return;
         }
 
-        if (tilingScales.Length == 1)
+        if (script.tilingScales.Length == 1)
         {
             // when no separate scales for each tile
-            Vector2 singleScale = tilingScales[0];
-            tilingScales = new Vector2[bgPaths.Length];
-            for (int i = 0; i < bgPaths.Length; i++)
+            Vector2 singleScale = script.tilingScales[0];
+            script.tilingScales = new Vector2[script.bgPaths.Length];
+            for (int i = 0; i < script.bgPaths.Length; i++)
             {
-                tilingScales[i] = singleScale;
+                script.tilingScales[i] = singleScale;
             }
         }
 
-        layers = new Transform[bgPaths.Length];
-        previousCameraPosition = Camera.main.transform.position;
-
-        for (int i = 0; i < bgPaths.Length; i++)
+        for (int i = 0; i < script.bgPaths.Length; i++)
         {
             GameObject layer = new GameObject("Layer_" + i);
-            layer.transform.parent = transform;
+            layer.transform.parent = script.transform;
             SpriteRenderer sr = layer.AddComponent<SpriteRenderer>();
-            Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(bgPaths[i]);
+            Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(script.bgPaths[i]);
             if (sprite == null)
             {
-                Debug.LogError("Sprite not found");
+                Debug.LogError("Sprite not found at path: " + script.bgPaths[i]);
                 continue;
             }
 
-            TextureImporter textureImporter = AssetImporter.GetAtPath(bgPaths[i]) as TextureImporter;
+            TextureImporter textureImporter = AssetImporter.GetAtPath(script.bgPaths[i]) as TextureImporter;
             if (textureImporter != null)
             {
                 textureImporter.spriteImportMode = SpriteImportMode.Single;
@@ -61,28 +70,15 @@ public class BackgroundsParallaxEffect : MonoBehaviour
             sr.size = new Vector2(500, sr.size.y);
             sr.sortingOrder = -50 + i;
 
-            layer.transform.localScale = new Vector3(tilingScales[i].x, tilingScales[i].y, 1);
+            layer.transform.localScale = new Vector3(script.tilingScales[i].x, script.tilingScales[i].y, 1);
 
-            layers[i] = layer.transform;
-            layers[i].position = new Vector3(0, bgVerticalHeight, i * 0.1f);
-        }
-    }
+            layer.transform.position = new Vector3(0, script.bgVerticalHeight, i * 0.1f);
 
-    void Update()
-    {
-        Vector3 deltaMovement = Camera.main.transform.position - previousCameraPosition;
-
-        for (int i = 0; i < layers.Length; i++)
-        {
-            if (layers[i] == null) continue;
-            float parallaxEffect = parallaxFactors[i];
-            layers[i].position += new Vector3(
-                deltaMovement.x * parallaxEffect,
-                deltaMovement.y * parallaxEffect, 
-                0
-            );
+            ParallaxLayer parallaxLayer = layer.AddComponent<ParallaxLayer>();
+            parallaxLayer.parallaxFactor = script.parallaxFactors[i];
         }
 
-        previousCameraPosition = Camera.main.transform.position;
+        EditorUtility.SetDirty(script);
     }
 }
+#endif
