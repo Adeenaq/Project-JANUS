@@ -84,14 +84,6 @@ public class Bullet : MonoBehaviour
             Debug.Log("Hit boss");
             expectBoss.Damage(_damageAmount);
         }
-        else
-        {
-            var playerHealth = collision.gameObject.GetComponent<Health_Player>();
-            if (playerHealth != null)
-            {
-                playerHealth.Damage(_damageAmount);
-            }
-        }
 
         ReturnToPool();  // Return the bullet to the pool immediately after collision
     }
