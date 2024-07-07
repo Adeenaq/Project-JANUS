@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8780792532141187759}
   - component: {fileID: 6465670697306205095}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StarWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7219695414585558162}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3909021988540316226}
   - component: {fileID: 8503869264790117508}
   - component: {fileID: 6411912346170984024}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: boss_bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 2242255311136276500}
   - component: {fileID: 1745213762756714072}
   - component: {fileID: 4634528106895220176}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: boss_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 3371760029699850147}
   - component: {fileID: 6944436457137389648}
   - component: {fileID: 6239307509730807778}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AttackAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1132153253382852877}
   - component: {fileID: 2772454701407073071}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StarWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 2154328877875062926}
   - component: {fileID: 810157374877504916}
   - component: {fileID: 4404141091212455102}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AttackAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,7 +699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5188625025061577580}
   - component: {fileID: 3169729067853103492}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BOSS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +750,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4824807788016588295}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,9 +780,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 527432858180623604}
     m_Modifications:
+    - target: {fileID: 1972354296046177792, guid: 29d844c18468650418f0289d41a0cb36, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5632388157266079109, guid: 29d844c18468650418f0289d41a0cb36, type: 3}
       propertyPath: m_Name
       value: Beam_attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632388157266079109, guid: 29d844c18468650418f0289d41a0cb36, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6700214349458490304, guid: 29d844c18468650418f0289d41a0cb36, type: 3}
       propertyPath: m_LocalPosition.x
@@ -842,9 +850,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6371741004543936764}
     m_Modifications:
+    - target: {fileID: 1972354296046177792, guid: 29d844c18468650418f0289d41a0cb36, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5632388157266079109, guid: 29d844c18468650418f0289d41a0cb36, type: 3}
       propertyPath: m_Name
       value: Beam_attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632388157266079109, guid: 29d844c18468650418f0289d41a0cb36, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6700214349458490304, guid: 29d844c18468650418f0289d41a0cb36, type: 3}
       propertyPath: m_LocalPosition.x
