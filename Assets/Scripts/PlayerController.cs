@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     private bool canJump = true; // Cooldown to prevent multiple jumps in quick succession
     private float jumpCooldown = 0.1f; // Cooldown duration
     private bool isRunning = false;
-    private bool isZoomed = false;
 
     private CinemachineVirtualCamera virtCamTop;
     private CinemachineVirtualCamera virtCamBot;
