@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Health_Boss : MonoBehaviour
 {
-    private int _maxhp = 7000;
+    private int _maxhp = 15000;
     [SerializeField] private int _hp;
     private bool takingDamage = false;
     private bool dead = false;
