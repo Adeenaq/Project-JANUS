@@ -36,4 +36,9 @@ public class Thrill_Player : MonoBehaviour
     {
         Thrill += amount;
     }
+
+    public void DecreaseThrill(int amount)
+    {
+        Thrill -= amount;
+    }
 }

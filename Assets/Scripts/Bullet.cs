@@ -4,11 +4,41 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private int _damageAmount = 100;
+    private int baseDamageAmount = 100;
+    private int _damageAmount;
+    private PowerUp powerUp;
+
+    private void Start()
+    {
+        var player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            powerUp = player.GetComponent<PowerUp>();
+            if (powerUp == null)
+            {
+                Debug.LogError("PowerUp component not found on the player.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Player object not found in the scene.");
+        }
+    }
+
+    private void UpdateDamageAmount()
+    {
+        if (powerUp != null)
+        {
+            _damageAmount = Mathf.RoundToInt(baseDamageAmount * powerUp.GetBulletDamageMultiplier());
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log($"Bullet collided with: {collision.gameObject.name}");
+
+        // Update damage amount based on current power-up state
+        UpdateDamageAmount();
 
         // Check if the collided object has the Health_Enemy1 component
         var expectKnight = collision.gameObject.GetComponent<Health_Knight>();
@@ -48,6 +78,7 @@ public class Bullet : MonoBehaviour
         Debug.Log("Bullet exited screen and destroyed");
     }
 }
+
 
 //using UnityEngine;
 
