@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering;
 
 public class Star_Bullet : MonoBehaviour
 {
@@ -30,6 +29,20 @@ public class Star_Bullet : MonoBehaviour
         {
             Debug.Log("Hit player");
             playerHealth.Damage(_damageAmount);
+        }
+        else
+        {
+            GameObject player = GameObject.Find("Players");
+            float distanceToPlayer = Mathf.Abs(transform.position.x - player.transform.position.x);
+
+            if (distanceToPlayer <= impactDamageRange)
+            {
+                Health_Player player_health = player.GetComponent<Health_Player>();
+                if (player_health != null)
+                {
+                    player_health.Damage(_damageAmount);
+                }
+            }
         }
 
         PlaySound(Explosionclip, volume);
