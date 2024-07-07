@@ -17,7 +17,6 @@ public class Star_Bullet : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource = GetComponent<AudioSource>();
         animator = GetComponentsInChildren<Animator>();
     }
 
@@ -52,11 +51,6 @@ public class Star_Bullet : MonoBehaviour
         {
             animator.Play(animationName, 0, 0f);
         }
-    }
-    
-    void PlaySound(AudioClip clip, float vol)
-    {
-        audioSource.PlayOneShot(clip, vol);
     }
     
     void PlaySound(AudioClip clip, float vol)
