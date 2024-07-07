@@ -44,9 +44,6 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Time.timeScale = 1f; // Ensure game time is normal
-        // Load Main Menu scene or quit application
-        SceneManager.LoadScene("MainMenu"); // Replace with your main menu scene name
-        // Application.Quit(); // Use this for standalone builds
+        Application.Quit(); // Quit game
     }
 }
