@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 2655847623089184846}
   - component: {fileID: 5584298882388352064}
   - component: {fileID: 2391864086070560502}
+  - component: {fileID: 1047538114417684728}
   m_Layer: 3
   m_Name: Players
   m_TagString: Player
@@ -122,51 +123,6 @@ MonoBehaviour:
   death: {fileID: 8300000, guid: 6b9be063e05b5ba4ca4906275298cd8a, type: 3}
   shotVolume: 1
   deathVolume: 0.964
-  Healed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Damaged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1941545468532052546}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Died:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2764511348941737895}
-        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
-        m_MethodName: DeactivateInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   uiManager: {fileID: 0}
 --- !u!114 &8097611551050735422
 MonoBehaviour:
@@ -298,6 +254,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4c8687ff-3645-4d33-bbc8-f3b7433da299
     m_ActionName: Player/Jump[/Keyboard/w,/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 56b10c01-06ef-4be2-8f4b-45cc60a2394f
+    m_ActionName: Player/Sneak[/Keyboard/s,/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14b4e778-b394-46f4-95b0-e810a30249b2
+    m_ActionName: Player/FlyToggle[/Keyboard/f3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dfafe693-95d5-4ded-8185-4eb51fd7021e
+    m_ActionName: Player/Run[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -469,6 +437,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1047538114417684728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407085537057753910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3af4d322d1a3647b73cb8f991cbaa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3912346308506784178
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,6 +50,26 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioSource;
 
     [SerializeField] private bool _isMoving = false;
+
+    private float originalWalkSpeed;
+    private float originalJumpForce;
+
+    // Public getters for private variables
+    public float WalkSpeed
+    {
+        get => walkSpeed;
+        set => walkSpeed = value;
+    }
+
+    public float JumpForce
+    {
+        get => jumpForce;
+        set => jumpForce = value;
+    }
+
+    public float OriginalWalkSpeed => originalWalkSpeed;
+    public float OriginalJumpForce => originalJumpForce;
+
     public bool IsMoving
     {
         get
@@ -171,6 +191,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("One or more virtual cameras not found");
         }
+
+        // Store the original speeds for restoring later
+        originalWalkSpeed = walkSpeed;
+        originalJumpForce = jumpForce;
     }
 
     void PlayAnimationIfExists(Animator animator, string animationName)
@@ -197,7 +221,7 @@ public class PlayerController : MonoBehaviour
         IsMoving = moveInput != Vector2.zero;
         Debug.Log($"Move Input: {moveInput}");
         SetFacingDirection(moveInput);
-        
+
         if (isFlyMode)
         {
             myrb.velocity = new Vector2(moveInput.x * (isRunning ? runSpeed : walkSpeed), myrb.velocity.y);
@@ -253,9 +277,6 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("No Rigidbody2D components found in children.");
         }
 
-        //if (myrb.velocity.y == 0)
-        //{    
-        //}
         if (myrb.velocity.y > 0.2)
         {
             foreach (Animator a in animators)
@@ -275,8 +296,6 @@ public class PlayerController : MonoBehaviour
 
     private void CheckGrounded()
     {
-        //bool prevGrounded = isGrounded;
-
         if (isGrounded)
         {
             foreach (Animator a in animators)
@@ -285,31 +304,6 @@ public class PlayerController : MonoBehaviour
                 a.SetBool("Falling", false);
             }
         }
-
-        //bool prevGrounded = isGrounded;
-
-        //if (myrb.velocity.y < 0.1 && myrb.velocity.y > -0.1)
-        //{
-        //    isGrounded = true;
-        //    foreach (Animator a in animators)
-        //    {
-        //        a.SetBool("Jumping", false);
-        //        a.SetBool("Falling", false);
-        //    }
-        //}
-        //else
-        //{
-        //    isGrounded = false;
-        //}
-
-        //if ((prevGrounded == false) && (isGrounded == true))
-        //{
-        //    foreach (Animator a in animators)
-        //    {
-        //        PlayAnimationIfExists(a, "player_past_land");
-        //        PlayAnimationIfExists(a, "player_future_land");
-        //    }
-        //}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -345,16 +339,16 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        
+
         if (isGrounded && canJump)
         {
             if (rbs != null && rbs.Length > 0)
             {
-                   foreach (var rb in rbs)
-                   {
-                        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                        isGrounded = false;
-                   }
+                foreach (var rb in rbs)
+                {
+                    rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                    isGrounded = false;
+                }
 
                 framTranTop.m_DeadZoneHeight = 1.0f;
                 framTranBot.m_DeadZoneHeight = 1.0f;
