@@ -73,6 +73,8 @@ public class Health_Turret : MonoBehaviour
         {
             Debug.LogError("AudioSource component is missing on Health_Turret.");
         }
+        player = GameObject.FindWithTag("Player").GetComponent<Thrill_Player>();
+        uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
     }
 
     public void Damage(int amount)
