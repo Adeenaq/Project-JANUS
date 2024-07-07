@@ -59,23 +59,27 @@ public class MainMenu : MonoBehaviour
 
     public void SelectPowerUpPair1(Button button)
     {
-        SelectPowerUpPair(button, "Seeker", "Thriller");
+        SelectPowerUpPair(button, "Seeker", "Thriller", GameData.BuildType.Damage);
     }
 
     public void SelectPowerUpPair2(Button button)
     {
-        SelectPowerUpPair(button, "Immunity", "Regeneration");
+        SelectPowerUpPair(button, "Immunity", "Regeneration", GameData.BuildType.Fitness);
     }
 
     public void SelectPowerUpPair3(Button button)
     {
-        SelectPowerUpPair(button, "Double Jump", "Flash");
+        SelectPowerUpPair(button, "Double Jump", "Flash", GameData.BuildType.Adrenaline);
     }
 
-    private void SelectPowerUpPair(Button button, string powerUp1, string powerUp2)
+    private void SelectPowerUpPair(Button button, string powerUp1, string powerUp2, GameData.BuildType buildType)
     {
         selectedPowerUpPair = new PowerUpPair { powerUp1 = powerUp1, powerUp2 = powerUp2 };
+        GameData.SelectedPowerUpPair = selectedPowerUpPair;
+        GameData.CurrentBuild = buildType;
+
         Debug.Log("Selected PowerUp Pair: " + selectedPowerUpPair.powerUp1 + " and " + selectedPowerUpPair.powerUp2);
+        Debug.Log("Selected Build Type: " + buildType);
 
         if (selectedButton != null)
         {

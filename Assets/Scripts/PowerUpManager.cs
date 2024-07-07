@@ -66,7 +66,7 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private AudioClip flashClip;
     [Range(0f, 1f)]
     [SerializeField] float flashVol = 1f;
-    
+
 
 
     private void Start()
@@ -90,6 +90,10 @@ public class PowerUp : MonoBehaviour
         {
             Debug.LogError("Health_Player component not found on the player.");
         }
+
+        // Set the current build based on the selected power-up pair from the main menu
+        currentBuild = (BuildType)GameData.CurrentBuild;
+        Debug.Log("Current Build Type: " + currentBuild);
     }
 
     private void Update()
