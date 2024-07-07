@@ -75,7 +75,7 @@ public class BackgroundsParallaxEffectEditor : Editor
             layer.transform.position = new Vector3(0, script.bgVerticalHeight, i * 0.1f);
 
             ParallaxLayer parallaxLayer = layer.AddComponent<ParallaxLayer>();
-            parallaxLayer.parallaxFactor = script.parallaxFactors[i];
+            parallaxLayer.setParallaxFactor(script.parallaxFactors[i]);
         }
 
         EditorUtility.SetDirty(script);
