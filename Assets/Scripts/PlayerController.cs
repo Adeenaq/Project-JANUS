@@ -12,6 +12,7 @@ using Unity.VisualScripting;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 7f;
+    [SerializeField] private float runSpeed = 14f;
     [SerializeField] private float jumpForce = 10f; // Add a jump force variable
     [SerializeField] private float cameraOffset;
     [SerializeField] private LayerMask groundLayer; // Layer mask to specify what is considered ground
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private bool isSneaking;
     private bool canJump = true; // Cooldown to prevent multiple jumps in quick succession
     private float jumpCooldown = 0.1f; // Cooldown duration
+    private bool isRunning = false;
 
     private CinemachineVirtualCamera virtCamTop;
     private CinemachineVirtualCamera virtCamBot;
@@ -47,6 +49,26 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioSource;
 
     [SerializeField] private bool _isMoving = false;
+
+    private float originalWalkSpeed;
+    private float originalJumpForce;
+
+    // Public getters for private variables
+    public float WalkSpeed
+    {
+        get => walkSpeed;
+        set => walkSpeed = value;
+    }
+
+    public float JumpForce
+    {
+        get => jumpForce;
+        set => jumpForce = value;
+    }
+
+    public float OriginalWalkSpeed => originalWalkSpeed;
+    public float OriginalJumpForce => originalJumpForce;
+
     public bool IsMoving
     {
         get
@@ -151,6 +173,8 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Sneak.performed += ctx => Sneak();
         inputActions.Player.Sneak.canceled += ctx => StopSneak();
         inputActions.Player.FlyToggle.performed += ctx => ToggleFly();
+        inputActions.Player.Run.performed += ctx => StartRunning();
+        inputActions.Player.Run.canceled += ctx => StopRunning();
 
         framTranTop = GameObject.Find("VirtualCameraTop").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
         framTranBot = GameObject.Find("VirtualCameraBottom").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -159,6 +183,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("One or more virtual cameras not found");
         }
+
+        // Store the original speeds for restoring later
+        originalWalkSpeed = walkSpeed;
+        originalJumpForce = jumpForce;
     }
 
     void PlayAnimationIfExists(Animator animator, string animationName)
@@ -185,10 +213,10 @@ public class PlayerController : MonoBehaviour
         IsMoving = moveInput != Vector2.zero;
         Debug.Log($"Move Input: {moveInput}");
         SetFacingDirection(moveInput);
-        
+
         if (isFlyMode)
         {
-            myrb.velocity = new Vector2(moveInput.x * walkSpeed, myrb.velocity.y);
+            myrb.velocity = new Vector2(moveInput.x * (isRunning ? runSpeed : walkSpeed), myrb.velocity.y);
         }
     }
 
@@ -224,7 +252,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isFlyMode)
         {
-            myrb.velocity = new Vector2(moveInput.x * walkSpeed, isJumping ? walkSpeed : (isSneaking ? -walkSpeed : 0));
+            myrb.velocity = new Vector2(moveInput.x * (isRunning ? runSpeed : walkSpeed), isJumping ? (isRunning ? runSpeed : walkSpeed) : (isSneaking ? -(isRunning ? runSpeed : walkSpeed) : 0));
             return;
         }
 
@@ -232,7 +260,7 @@ public class PlayerController : MonoBehaviour
         {
             foreach (var rb in rbs)
             {
-                rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+                rb.velocity = new Vector2(moveInput.x * (isRunning ? runSpeed : walkSpeed), rb.velocity.y);
             }
             CheckGrounded(); // Check if either player is on the ground
         }
@@ -241,9 +269,6 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("No Rigidbody2D components found in children.");
         }
 
-        //if (myrb.velocity.y == 0)
-        //{    
-        //}
         if (myrb.velocity.y > 0.2)
         {
             foreach (Animator a in animators)
@@ -263,8 +288,6 @@ public class PlayerController : MonoBehaviour
 
     private void CheckGrounded()
     {
-        //bool prevGrounded = isGrounded;
-
         if (isGrounded)
         {
             foreach (Animator a in animators)
@@ -273,31 +296,6 @@ public class PlayerController : MonoBehaviour
                 a.SetBool("Falling", false);
             }
         }
-
-        //bool prevGrounded = isGrounded;
-
-        //if (myrb.velocity.y < 0.1 && myrb.velocity.y > -0.1)
-        //{
-        //    isGrounded = true;
-        //    foreach (Animator a in animators)
-        //    {
-        //        a.SetBool("Jumping", false);
-        //        a.SetBool("Falling", false);
-        //    }
-        //}
-        //else
-        //{
-        //    isGrounded = false;
-        //}
-
-        //if ((prevGrounded == false) && (isGrounded == true))
-        //{
-        //    foreach (Animator a in animators)
-        //    {
-        //        PlayAnimationIfExists(a, "player_past_land");
-        //        PlayAnimationIfExists(a, "player_future_land");
-        //    }
-        //}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -333,16 +331,16 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        
+
         if (isGrounded && canJump)
         {
             if (rbs != null && rbs.Length > 0)
             {
-                   foreach (var rb in rbs)
-                   {
-                        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                        isGrounded = false;
-                   }
+                foreach (var rb in rbs)
+                {
+                    rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                    isGrounded = false;
+                }
 
                 framTranTop.m_DeadZoneHeight = 1.0f;
                 framTranBot.m_DeadZoneHeight = 1.0f;
@@ -371,6 +369,26 @@ public class PlayerController : MonoBehaviour
     private void StopSneak()
     {
         isSneaking = false;
+    }
+
+    private void StartRunning()
+    {
+        Debug.Log("Running");
+        isRunning = true;
+        foreach (Animator a in animators)
+        {
+            a.speed = 1.5f; // Reset animation speed to normal
+        }
+    }
+
+    private void StopRunning()
+    {
+        Debug.Log("Stopped running");
+        isRunning = false;
+        foreach (Animator a in animators)
+        {
+            a.speed = 1f; // Reset animation speed to normal
+        }
     }
 
     private IEnumerator JumpCooldown()

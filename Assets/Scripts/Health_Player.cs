@@ -7,8 +7,8 @@ using static UnityEngine.Rendering.DebugUI;
 public class Health_Player : MonoBehaviour
 {
     [SerializeField]
-    private int _maxhp = 1000;
-    [SerializeField] private int _hp;
+    private float _maxhp = 1000;
+    [SerializeField] private float _hp;
     Animator[] animators;
     [SerializeField] private bool takingDamage = false;
     [SerializeField] private bool dead = false;
@@ -19,7 +19,15 @@ public class Health_Player : MonoBehaviour
 
     private AudioSource audioSource;
 
-    public int Hp
+    private PowerUp powerUp;
+    bool immune;
+    float currentHP;
+
+    // Public getters for private variables
+    public float MaxHp => _maxhp;
+    public float HP => _hp;
+
+    public float Hp
     {
         get => _hp;
         private set
@@ -42,21 +50,24 @@ public class Health_Player : MonoBehaviour
         }
     }
 
-    
-    public UnityEvent<int> Healed;
-    public UnityEvent<int> Damaged;
-    public UnityEvent Died;
 
-    public UIManager uiManager; // Reference to the UIManager
+    private UnityEvent<float> Healed;
+    private UnityEvent<float> Damaged;
+    private UnityEvent Died;
+
+    [SerializeField] private UIManager uiManager; // Reference to the UIManager
 
     void Start()
     {
         Hp = _maxhp;
         UpdateHealthUI();
+        powerUp = GetComponent<PowerUp>();
     }
 
     void Update()
     {
+        immune = powerUp.IsImmune();
+
         if (takingDamage == true && dead == false)
         {
             foreach (Animator a in animators)
@@ -81,8 +92,13 @@ public class Health_Player : MonoBehaviour
         audioSource=GetComponent<AudioSource>();
     }
 
-    public void Damage(int amount)
+    public void Damage(float amount)
     {
+        if (immune)
+        {
+            return;
+        }
+
         if (!dead)
         {
             foreach (Animator a in animators)
@@ -140,7 +156,7 @@ public class Health_Player : MonoBehaviour
         yield return new WaitForSeconds(time);
     }
 
-    public void Heal(int amount) => Hp += amount;
+    public void Heal(float amount) => Hp += amount;
 
     public void HealFull() => Hp = _maxhp;
 
@@ -152,7 +168,7 @@ public class Health_Player : MonoBehaviour
     {
         if (uiManager != null)
         {
-            uiManager.UpdateHealth(_hp);
+            uiManager.UpdateHealth(_hp, _maxhp);
         }
     }
 
