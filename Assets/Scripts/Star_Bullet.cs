@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering;
 
 public class Star_Bullet : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Star_Bullet : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponentsInChildren<Animator>();
     }
@@ -31,6 +33,7 @@ public class Star_Bullet : MonoBehaviour
             playerHealth.Damage(_damageAmount);
         }
 
+        PlaySound(Explosionclip, volume);
         PlaySound(Explosionclip, volume);
         foreach (var a in animator)
         {
@@ -49,6 +52,11 @@ public class Star_Bullet : MonoBehaviour
         {
             animator.Play(animationName, 0, 0f);
         }
+    }
+    
+    void PlaySound(AudioClip clip, float vol)
+    {
+        audioSource.PlayOneShot(clip, vol);
     }
     
     void PlaySound(AudioClip clip, float vol)
