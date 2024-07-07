@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 public class Bullet_Knight : MonoBehaviour
 {
-    private int _damageAmount = 100;
+    private int _damageAmount = 50;
     private IObjectPool<Bullet_Knight> _bulletPool;
     private bool _isReleased = false;
 

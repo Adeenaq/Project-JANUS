@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Health_Boss : MonoBehaviour
 {
-    private int _maxhp = 10000;
+    private int _maxhp = 7000;
     [SerializeField] private int _hp;
     private bool takingDamage = false;
     private bool dead = false;

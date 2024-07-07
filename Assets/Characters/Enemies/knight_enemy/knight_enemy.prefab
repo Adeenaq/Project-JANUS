@@ -328,10 +328,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxhp: 200
   _hp: 0
-  thrillValue: 50
+  thrillValue: 15
   death: {fileID: 8300000, guid: 6795a326a3e7d18438659727918b8ea2, type: 3}
   shot: {fileID: 8300000, guid: 1fe3b1408b87b3442aec70fb729302e6, type: 3}
-  shotVolume: 1
+  shotVolume: 0.94
   deathVolume: 0.738
   player: {fileID: 0}
   uiManager: {fileID: 0}

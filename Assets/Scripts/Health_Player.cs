@@ -156,7 +156,7 @@ public class Health_Player : MonoBehaviour
         yield return new WaitForSeconds(time);
     }
 
-    public void Heal(float amount) => Hp += amount;
+    public void Heal(float amount) => Hp = amount;
 
     public void HealFull() => Hp = _maxhp;
 

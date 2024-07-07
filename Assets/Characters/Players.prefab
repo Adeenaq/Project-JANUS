@@ -561,13 +561,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBuild: 0
-  bulletDamageMultiplier: 1
-  specialAttackDamage: 100
+  bulletDamageMultiplier: 1.5
+  specialAttackDamage: 200
   specialAttackRange: 10
-  seekerThrill: 50
-  ThrillerThrill: 200
+  healthRegenMultiplier: 0.9
+  JumpMultiplier: 2
+  SpeedMultiplier: 1.5
+  seekerThrill: 80
+  ThrillerThrill: 230
   RegenThrill: 280
-  ImmunityThrill: 180
+  ImmunityThrill: 150
   JumpThrill: 100
   FlashThrill: 200
   SeekerTime: 15
@@ -587,8 +590,6 @@ MonoBehaviour:
   jumpVol: 1
   flashClip: {fileID: 8300000, guid: 8ef6232c21a86304bb6a93def82f30d3, type: 3}
   flashVol: 1
-  JumpMultiplier: 2
-  SpeedMultiplier: 1.5
 --- !u!1 &3912346308506784178
 GameObject:
   m_ObjectHideFlags: 0

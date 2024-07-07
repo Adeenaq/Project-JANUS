@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 
 public class Bullet_Turret : MonoBehaviour
 {
-    private int _damageAmount = 100;
+    private int _damageAmount = 70;
     private IObjectPool<Bullet_Turret> _bulletPool;
     private bool _isReleased = false;
 

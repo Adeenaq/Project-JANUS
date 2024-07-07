@@ -229,7 +229,7 @@ public class PowerUp : MonoBehaviour
 
     private void RegenerateHealth()
     {
-        healthPlayer.Heal(healthPlayer.MaxHp * healthRegenMultiplier);
+        healthPlayer.Heal(Mathf.Min(healthPlayer.MaxHp * healthRegenMultiplier, healthPlayer.MaxHp));
     }
 
     private IEnumerator BecomeImmune()
