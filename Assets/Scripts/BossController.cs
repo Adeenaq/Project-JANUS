@@ -11,7 +11,7 @@ public class BossController : MonoBehaviour
     private Animator[] animators;
     private float recordtimer = 0f;
     private float recordCooldown = 2f;
-    [SerializeField] private float attackRangeSqr = 400f;
+    [SerializeField] private float attackRangeSqr = 900f;
     private bool battleStarted = false;
 
     private GameObject player;
@@ -45,6 +45,11 @@ public class BossController : MonoBehaviour
             if (sqrDistanceToPlayer >= attackRangeSqr)
             {
                 return;
+            }
+            else
+            {
+                battleStarted = true;
+                player.GetComponent<PlayerController>().zoomForBossFight();
             }
         }
 
