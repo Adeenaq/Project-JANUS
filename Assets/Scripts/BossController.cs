@@ -12,6 +12,7 @@ public class BossController : MonoBehaviour
     private float recordtimer = 0f;
     private float recordCooldown = 2f;
     [SerializeField] private float attackRangeSqr = 400f;
+    private bool battleStarted = false;
 
     private GameObject player;
     private Vector2 lastPlayerPosition;
@@ -38,10 +39,13 @@ public class BossController : MonoBehaviour
     void FixedUpdate()
     {
         // Check if player is within attack range using sqrMagnitude
-        float sqrDistanceToPlayer = (transform.position - player.transform.position).sqrMagnitude;
-        if (sqrDistanceToPlayer >= attackRangeSqr)
+        if (!battleStarted)
         {
-            return;
+            float sqrDistanceToPlayer = (transform.position - player.transform.position).sqrMagnitude;
+            if (sqrDistanceToPlayer >= attackRangeSqr)
+            {
+                return;
+            }
         }
 
         attacktimer += Time.deltaTime;
