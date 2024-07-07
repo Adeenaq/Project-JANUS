@@ -468,4 +468,9 @@ public class PlayerController : MonoBehaviour
         framTranTop.m_YDamping = 2.0f;
         framTranTop.m_XDamping = 2.0f;
     }
+
+    public void zoomForBossFight()
+    {
+        StartCoroutine(SmoothZoom(10.0f, 2.0f));
+    }
 }
