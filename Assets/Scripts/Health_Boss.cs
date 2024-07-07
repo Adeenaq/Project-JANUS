@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
 
 public class Health_Boss : MonoBehaviour
 {
@@ -14,7 +16,11 @@ public class Health_Boss : MonoBehaviour
     [SerializeField] private AudioClip shot;
     [SerializeField][Range(0, 1)] private float shotVolume = 1.0f; // Volume control for shot sound
     [SerializeField][Range(0, 1)] private float deathVolume = 1.0f; // Volume control for death sound
+    public GameObject WinScreenPanel; // Assign in Inspector
+    public GameObject DeathScreenPanel; // Assign in Inspector
 
+    
+    
     private AudioSource audioSource;
 
     public int Hp
@@ -88,7 +94,7 @@ public class Health_Boss : MonoBehaviour
     }
 
     private void HandleDeath()
-    {
+    {   
         foreach (var a in animators)
         {
             //PlayAnimationIfExists(a, "boss_dead");
@@ -98,8 +104,8 @@ public class Health_Boss : MonoBehaviour
         {
             PlaySound(death, deathVolume);
         }
-
         StartCoroutine(waiter(2));
+        WinScreenPanel.SetActive(true);
     }
 
     IEnumerator waiter(int time)
@@ -135,5 +141,11 @@ public class Health_Boss : MonoBehaviour
         {
             audioSource.PlayOneShot(clip, volume);
         }
+    }
+
+    //getter for death
+    public bool GetBossDead()
+    {
+        return dead;
     }
 }
