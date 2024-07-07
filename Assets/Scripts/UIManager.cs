@@ -10,9 +10,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText; // Reference to the health text
     [SerializeField] private TextMeshProUGUI thrillText; // Reference to the thrill text
 
-    [SerializeField] private int thresholdX = 50; // Threshold for the first power-up
-    [SerializeField] private int thresholdY = 100; // Threshold for the second power-up
+    private PowerUp powerups;
+    private int thresholdX;  // Threshold for the first power-up
+    private int thresholdY; // Threshold for the second power-up
 
+    private void Awake()
+    {
+        powerups = GetComponent<PowerUp>();
+        thresholdX=powerups.GetThreshHoldI();
+        thresholdY=powerups.GetThreshHoldO();
+    }
     public void UpdateHealth(float currentHealth, float maxHealth)
     {
         healthBar.fillAmount = currentHealth / maxHealth;

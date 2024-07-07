@@ -7,21 +7,35 @@ public class PowerUp : MonoBehaviour
     public BuildType currentBuild;
 
     private float bulletDamageMultiplier = 1f;
-    private int specialAttackDamage = 100; // Example value
-    private float specialAttackRange = 10f; // Example value
+    [SerializeField] private int specialAttackDamage = 100; // Example value
+    [SerializeField] private float specialAttackRange = 10f; // Example value
 
     private bool isImmune = false;
     private int speedCounter = 0;
     private int jumpCounter = 0;
     private int damageBoostCounter = 0;
 
-    private float cumulativeSpeedMultiplier = 1f;
-    private float cumulativeJumpMultiplier = 1f;
-    private float cumulativeDamageMultiplier = 1f;
+    [SerializeField] private float cumulativeSpeedMultiplier = 1f;
+    [SerializeField] private float cumulativeJumpMultiplier = 1f;
+    [SerializeField] private float cumulativeDamageMultiplier = 1f;
 
     private Thrill_Player thrillPlayer;
     private PlayerController playerController;
     private Health_Player healthPlayer;
+
+    [SerializeField] private int seekerThrill = 50;
+    [SerializeField] private int ThrillerThrill = 200;
+    [SerializeField] private int RegenThrill = 300;
+    [SerializeField] private int ImmunityThrill = 180;
+    [SerializeField] private int JumpThrill = 100;
+    [SerializeField] private int FlashThrill = 200;
+
+    [SerializeField] private int SeekerTime = 15;
+    [SerializeField] private int ThrillerTime = 1;
+    [SerializeField] private int immunityTime = 15;
+    [SerializeField] private int jumpTime = 20;
+    [SerializeField] private int flashTime = 10; 
+
 
     private void Start()
     {
@@ -61,23 +75,23 @@ public class PowerUp : MonoBehaviour
         switch (currentBuild)
         {
             case BuildType.Damage:
-                if (thrillPlayer.Thrill >= 50)
+                if (thrillPlayer.Thrill >= seekerThrill)
                 {
-                    thrillPlayer.DecreaseThrill(50);
+                    thrillPlayer.DecreaseThrill(seekerThrill);
                     StartCoroutine(DamageBoost());
                 }
                 break;
             case BuildType.Fitness:
-                if (thrillPlayer.Thrill >= 300)
+                if (thrillPlayer.Thrill >= ImmunityThrill)
                 {
-                    thrillPlayer.DecreaseThrill(300);
-                    RegenerateHealth();
+                    thrillPlayer.DecreaseThrill(ImmunityThrill);
+                    StartCoroutine(BecomeImmune());
                 }
                 break;
             case BuildType.Adrenaline:
-                if (thrillPlayer.Thrill >= 100)
+                if (thrillPlayer.Thrill >= JumpThrill)
                 {
-                    thrillPlayer.DecreaseThrill(100);
+                    thrillPlayer.DecreaseThrill(JumpThrill);
                     StartCoroutine(DoubleJumpHeight());
                 }
                 break;
@@ -89,23 +103,23 @@ public class PowerUp : MonoBehaviour
         switch (currentBuild)
         {
             case BuildType.Damage:
-                if (thrillPlayer.Thrill >= 200)
+                if (thrillPlayer.Thrill >= ThrillerThrill)
                 {
-                    thrillPlayer.DecreaseThrill(200);
+                    thrillPlayer.DecreaseThrill(ThrillerThrill);
                     StartCoroutine(SpecialAttack());
                 }
                 break;
             case BuildType.Fitness:
-                if (thrillPlayer.Thrill >= 180)
+                if (thrillPlayer.Thrill >= RegenThrill)
                 {
-                    thrillPlayer.DecreaseThrill(180);
-                    StartCoroutine(BecomeImmune());
+                    thrillPlayer.DecreaseThrill(RegenThrill);
+                    RegenerateHealth();
                 }
                 break;
             case BuildType.Adrenaline:
-                if (thrillPlayer.Thrill >= 200)
+                if (thrillPlayer.Thrill >= FlashThrill)
                 {
-                    thrillPlayer.DecreaseThrill(200);
+                    thrillPlayer.DecreaseThrill(FlashThrill);
                     StartCoroutine(IncreaseSpeed());
                 }
                 break;
@@ -117,7 +131,7 @@ public class PowerUp : MonoBehaviour
         damageBoostCounter++;
         cumulativeDamageMultiplier *= 1.05f;
         bulletDamageMultiplier = cumulativeDamageMultiplier;
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(SeekerTime);
         damageBoostCounter--;
         cumulativeDamageMultiplier /= 1.05f;
         bulletDamageMultiplier = cumulativeDamageMultiplier;
@@ -125,7 +139,7 @@ public class PowerUp : MonoBehaviour
 
     private IEnumerator SpecialAttack()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(ThrillerTime);
         Collider[] enemies = Physics.OverlapSphere(transform.position, specialAttackRange);
         foreach (Collider enemy in enemies)
         {
@@ -148,7 +162,7 @@ public class PowerUp : MonoBehaviour
     private IEnumerator BecomeImmune()
     {
         isImmune = true;
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(immunityTime);
         isImmune = false;
     }
 
@@ -157,7 +171,7 @@ public class PowerUp : MonoBehaviour
         jumpCounter++;
         cumulativeJumpMultiplier *= 2f;
         playerController.JumpForce = playerController.OriginalJumpForce * cumulativeJumpMultiplier;
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(jumpTime);
         jumpCounter--;
         cumulativeJumpMultiplier /= 2f;
         playerController.JumpForce = playerController.OriginalJumpForce * cumulativeJumpMultiplier;
@@ -168,7 +182,7 @@ public class PowerUp : MonoBehaviour
         speedCounter++;
         cumulativeSpeedMultiplier *= 1.5f;
         playerController.WalkSpeed = playerController.OriginalWalkSpeed * cumulativeSpeedMultiplier;
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(flashTime);
         speedCounter--;
         cumulativeSpeedMultiplier /= 1.5f;
         playerController.WalkSpeed = playerController.OriginalWalkSpeed * cumulativeSpeedMultiplier;
@@ -198,5 +212,41 @@ public class PowerUp : MonoBehaviour
     public float GetCurrentHP()
     {
         return healthPlayer.HP;
+    }
+
+    public int GetThreshHoldI()
+    {
+        switch (currentBuild)
+        {
+            case BuildType.Damage:
+                return seekerThrill;
+             
+            case BuildType.Fitness:
+                return ImmunityThrill;
+               
+            case BuildType.Adrenaline:
+                return JumpThrill;
+
+            default:
+                return seekerThrill;
+        }
+    }
+
+    public int GetThreshHoldO()
+    {
+        switch (currentBuild)
+        {
+            case BuildType.Damage:
+                return ThrillerThrill;
+
+            case BuildType.Fitness:
+                return RegenThrill;
+
+            case BuildType.Adrenaline:
+                return FlashThrill;
+
+            default:
+                return ThrillerThrill;
+        }
     }
 }
