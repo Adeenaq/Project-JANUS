@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float walkSpeed = 7f;
     [SerializeField] private float runSpeed = 14f;
     [SerializeField] private float jumpForce = 10f; // Add a jump force variable
+    [SerializeField] private float crouchForce = 3f; // Add a crouch force variable
     [SerializeField] private float cameraOffset;
     [SerializeField] private LayerMask groundLayer; // Layer mask to specify what is considered ground
     private Vector2 moveInput;
@@ -263,6 +264,14 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if (isSneaking)
+        {
+            foreach (var rb in rbs)
+            {
+                rb.AddForce(Vector2.down * crouchForce, ForceMode2D.Impulse);
+            }
+        }
+
         if (rbs != null && rbs.Length > 0)
         {
             foreach (var rb in rbs)
@@ -366,6 +375,10 @@ public class PlayerController : MonoBehaviour
     private void Sneak()
     {
         isSneaking = true;
+        // foreach (Animator a in animators)
+        // {
+        //     a.SetBool("IsCrouching", true);
+        // }
     }
 
     private void StopJump()
@@ -376,6 +389,10 @@ public class PlayerController : MonoBehaviour
     private void StopSneak()
     {
         isSneaking = false;
+        // foreach (Animator a in animators)
+        // {
+        //     a.SetBool("IsCrouching", false);
+        // }
     }
 
     private void StartRunning()
