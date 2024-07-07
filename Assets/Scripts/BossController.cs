@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossController : MonoBehaviour
@@ -10,6 +11,7 @@ public class BossController : MonoBehaviour
     private Animator[] animators;
     private float recordtimer = 0f;
     private float recordCooldown = 2f;
+    [SerializeField] private float attackRangeSqr = 400f;
 
     private GameObject player;
     private Vector2 lastPlayerPosition;
@@ -35,6 +37,13 @@ public class BossController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Check if player is within attack range using sqrMagnitude
+        float sqrDistanceToPlayer = (transform.position - player.transform.position).sqrMagnitude;
+        if (sqrDistanceToPlayer >= attackRangeSqr)
+        {
+            return;
+        }
+
         attacktimer += Time.deltaTime;
         recordtimer += Time.deltaTime;
 
