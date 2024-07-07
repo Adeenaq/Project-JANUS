@@ -89,6 +89,7 @@ MonoBehaviour:
   walkSpeed: 7.5
   runSpeed: 14
   jumpForce: 13
+  crouchForce: 5
   cameraOffset: 0.2
   groundLayer:
     serializedVersion: 2
@@ -101,7 +102,7 @@ MonoBehaviour:
   land: {fileID: 8300000, guid: 8605366f1e14a8f49848e98854af2393, type: 3}
   moveVol: 1.26
   jumpVol: 1.42
-  landVol: 0.79
+  landVol: 0.21
   _isMoving: 0
 --- !u!114 &6418219032492296674
 MonoBehaviour:
@@ -266,6 +267,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: dfafe693-95d5-4ded-8185-4eb51fd7021e
     m_ActionName: Player/Run[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 12eac0dc-4029-478a-a860-70c610a674ca
+    m_ActionName: Player/Zoom[/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -449,6 +454,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3af4d322d1a3647b73cb8f991cbaa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentBuild: 0
+  bulletDamageMultiplier: 1
+  specialAttackDamage: 100
+  specialAttackRange: 10
+  seekerThrill: 50
+  ThrillerThrill: 200
+  RegenThrill: 280
+  ImmunityThrill: 180
+  JumpThrill: 100
+  FlashThrill: 200
+  SeekerTime: 15
+  ThrillerTime: 1
+  immunityTime: 15
+  jumpTime: 20
+  flashTime: 10
+  seekerClip: {fileID: 8300000, guid: fc07013886f4b5045b5efcb1c23c52b4, type: 3}
+  seekerVol: 1
+  thrillerClip: {fileID: 8300000, guid: 11d1a3383ee90874eb30df84ed0e916a, type: 3}
+  thrillerVol: 1
+  healClip: {fileID: 8300000, guid: 31d85a75a6c117f4f999cab2088ac0ab, type: 3}
+  healVol: 1
+  immunityClip: {fileID: 8300000, guid: 30d78e4942febee42a23e56ceb4718d4, type: 3}
+  immunityVol: 1
+  jumpClip: {fileID: 8300000, guid: e96e7746509906b42b9f835625ea31d3, type: 3}
+  jumpVol: 1
+  flashClip: {fileID: 8300000, guid: 8ef6232c21a86304bb6a93def82f30d3, type: 3}
+  flashVol: 1
+  JumpMultiplier: 2
+  SpeedMultiplier: 1.5
 --- !u!1 &3912346308506784178
 GameObject:
   m_ObjectHideFlags: 0

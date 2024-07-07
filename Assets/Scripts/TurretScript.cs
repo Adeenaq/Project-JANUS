@@ -17,6 +17,9 @@ public class TurretScript : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float rotVolume;
 
+    [SerializeField] private float minRotationAngle = -90f; // Minimum rotation angle in degrees
+    [SerializeField] private float maxRotationAngle = 90f;  // Maximum rotation angle in degrees
+
     public bool Detected
     {
         get { return detected; }
@@ -118,6 +121,10 @@ public class TurretScript : MonoBehaviour
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         angle += 180; // Adjust the angle by 180 degrees to correct the direction
+
+        // Clamp the angle within the min and max rotation limits
+        angle = Mathf.Clamp(angle, minRotationAngle, maxRotationAngle);
+
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
         Barrel.rotation = Quaternion.Lerp(Barrel.rotation, targetRotation, Time.deltaTime * RotationSpeed);
         PlayRotationSound();
