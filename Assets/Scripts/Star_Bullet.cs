@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Star_Bullet : MonoBehaviour
 {
     private int _damageAmount = 100;
     private Animator[] animator;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip Explosionclip;
+    [Range(0f, 1f)]
+    [SerializeField] private float volume=1f;
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponentsInChildren<Animator>();
     }
 
@@ -24,6 +30,7 @@ public class Star_Bullet : MonoBehaviour
             playerHealth.Damage(_damageAmount);
         }
 
+        PlaySound(Explosionclip, volume);
         foreach (var a in animator)
         {
             PlayAnimationIfExists(a, "star_death");
@@ -41,5 +48,10 @@ public class Star_Bullet : MonoBehaviour
         {
             animator.Play(animationName, 0, 0f);
         }
+    }
+    
+    void PlaySound(AudioClip clip, float vol)
+    {
+        audioSource.PlayOneShot(clip, vol);
     }
 }
