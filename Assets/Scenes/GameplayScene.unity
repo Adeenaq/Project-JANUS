@@ -302,6 +302,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2041800677}
     m_Modifications:
+    - target: {fileID: 1135609381101196859, guid: 76e05a8b01e872446a0ce8e063d5cf78, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1431422355}
+    - target: {fileID: 1135609381101196859, guid: 76e05a8b01e872446a0ce8e063d5cf78, type: 3}
+      propertyPath: thrillValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4243433566243617899, guid: 76e05a8b01e872446a0ce8e063d5cf78, type: 3}
+      propertyPath: m_Name
+      value: knight_enemy (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 2422953566159969552, guid: 1a5a19c77336e4f46b647e7ad6af9e08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 132.42137
@@ -350,34 +362,11 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 103471657}
-    - target: {fileID: 1135609381101196859, guid: 76e05a8b01e872446a0ce8e063d5cf78, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1431422355}
-    - target: {fileID: 1135609381101196859, guid: 76e05a8b01e872446a0ce8e063d5cf78, type: 3}
-      propertyPath: thrillValue
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4243433566243617899, guid: 76e05a8b01e872446a0ce8e063d5cf78, type: 3}
-      propertyPath: m_Name
-      value: knight_enemy (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a5a19c77336e4f46b647e7ad6af9e08, type: 3}
---- !u!114 &385457173 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8898409843621510165, guid: d13ebe4e5f1a430458a8c0ff753399b0, type: 3}
-  m_PrefabInstance: {fileID: 259078261862612418}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &482952814 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2422953566159969552, guid: d651514fb134ead49b6ddacd4862f87f, type: 3}
@@ -938,17 +927,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2422953566159969552, guid: 1a5a19c77336e4f46b647e7ad6af9e08, type: 3}
   m_PrefabInstance: {fileID: 1134524961}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1299165565 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8652030963256352579, guid: d13ebe4e5f1a430458a8c0ff753399b0, type: 3}
-  m_PrefabInstance: {fileID: 259078261862612418}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1431422355 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8097611551050735422, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
@@ -1567,6 +1545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4640924878690111991, guid: ccc340feb428a2a4c85ba9a95f3f5ef3, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: a376a64403fdad346b2317f94d4d3118, type: 2}
     - target: {fileID: 4846185290996168456, guid: ccc340feb428a2a4c85ba9a95f3f5ef3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.796618
@@ -1632,29 +1614,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1835473596}
     - target: {fileID: 6846745380098159428, guid: ccc340feb428a2a4c85ba9a95f3f5ef3, type: 3}
-      propertyPath: fullThrillImage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6846745380098159428, guid: ccc340feb428a2a4c85ba9a95f3f5ef3, type: 3}
-      propertyPath: thresholdXSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 45aa800fbca0b6c44a7f7d6cbf8b4d00, type: 3}
-    - target: {fileID: 6846745380098159428, guid: ccc340feb428a2a4c85ba9a95f3f5ef3, type: 3}
-      propertyPath: thresholdYSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 32f61b103bd8e9b4eb6c7f94721340ef, type: 3}
-    - target: {fileID: 6846745380098159428, guid: ccc340feb428a2a4c85ba9a95f3f5ef3, type: 3}
-      propertyPath: thresholdXOutline1
-      value: 
-      objectReference: {fileID: 1299165565}
-    - target: {fileID: 6846745380098159428, guid: ccc340feb428a2a4c85ba9a95f3f5ef3, type: 3}
       propertyPath: thresholdXOutline2
       value: 
       objectReference: {fileID: 1703988427}
-    - target: {fileID: 6846745380098159428, guid: ccc340feb428a2a4c85ba9a95f3f5ef3, type: 3}
-      propertyPath: thresholdYOutline1
-      value: 
-      objectReference: {fileID: 385457173}
     - target: {fileID: 6846745380098159428, guid: ccc340feb428a2a4c85ba9a95f3f5ef3, type: 3}
       propertyPath: thresholdYOutline2
       value: 
