@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,6 +22,21 @@ public class MainMenu : MonoBehaviour
     private Button selectedButton;
     public Color selectedColor = Color.green;
     public Color defaultColor = Color.white;
+
+    // References to the description texts
+    public TextMeshProUGUI powerUp1Description;
+    public TextMeshProUGUI powerUp2Description;
+
+    // Descriptions for each power-up
+    private Dictionary<string, string> powerUpDescriptions = new Dictionary<string, string>
+    {
+        {"Seeker", "<color=red>Seeker:</color> Increases Damage of Bullets for a short duration."},
+        {"Thriller", "<color=red>Thriller:</color> Kills all enemies visible on the players Screen."},
+        {"Regeneration", "<color=red>Regeneration:</color>  Completely Restore the players health."},
+        {"Immunity", "<color=red>Immunity:</color>  Temporarily become invincible."},
+        {"Double Jump", "<color=red>Double Jump:</color>  Perform a second jump in mid-air."},
+        {"Flash", "<color=red>Flash:</color>  Move at lightning speed for a short duration."}
+    };
 
     public void PlayGame()
     {
@@ -47,7 +63,7 @@ public class MainMenu : MonoBehaviour
 
     public void SelectPowerUpPair2(Button button)
     {
-        SelectPowerUpPair(button, "Regeneration", "Immunity");
+        SelectPowerUpPair(button, "Immunity", "Regeneration");
     }
 
     public void SelectPowerUpPair3(Button button)
@@ -67,6 +83,10 @@ public class MainMenu : MonoBehaviour
 
         selectedButton = button;
         selectedButton.GetComponent<Image>().color = selectedColor;
+
+        // Update the descriptions
+        powerUp1Description.text = powerUpDescriptions[powerUp1];
+        powerUp2Description.text = powerUpDescriptions[powerUp2];
     }
 
     public void StartGame()
@@ -76,12 +96,12 @@ public class MainMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         // Application.Quit() does not work in the editor so
         // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
         UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#else
         Application.Quit();
-        #endif
+#endif
     }
 }
