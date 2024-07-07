@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenuPanel;
     public GameObject powerUpSelectionPanel;
     public GameObject controlsPanel; // Add reference to the controls panel
+    public FadeController fadeController; // Reference to the FadeController
 
     [System.Serializable]
     public struct PowerUpPair
@@ -91,7 +92,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadSceneAsync(1);
+        fadeController.FadeToScene(1);
     }
 
     public void ExitGame()
