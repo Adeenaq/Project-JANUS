@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class TurretWeapon : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class TurretWeapon : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float firevolume;
     private AudioSource audioSource;
 
+    private ObjectPool<Bullet_Turret> bulletPool;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -20,6 +23,39 @@ public class TurretWeapon : MonoBehaviour
         {
             Debug.LogError("AudioSource component is missing on TurretWeapon.");
         }
+
+        // Initialize object pool for the bullet prefab
+        bulletPool = new ObjectPool<Bullet_Turret>(
+            createFunc: CreateBullet,
+            actionOnGet: bullet =>
+            {
+                bullet.gameObject.SetActive(true);
+                bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // Reset velocity
+                bullet.IsReleased = false; // Ensure the bullet is not marked as released
+                Debug.Log($"Bullet {bullet.gameObject.name} acquired from pool.");
+            },
+            actionOnRelease: bullet =>
+            {
+                bullet.gameObject.SetActive(false);
+                Debug.Log($"Bullet {bullet.gameObject.name} returned to pool.");
+            },
+            actionOnDestroy: bullet => Destroy(bullet.gameObject),
+            defaultCapacity: 10,
+            maxSize: 20
+        );
+    }
+
+    private Bullet_Turret CreateBullet()
+    {
+        GameObject bulletObject = Instantiate(bulletPrefab);
+        Bullet_Turret bullet = bulletObject.GetComponent<Bullet_Turret>();
+        if (bullet == null)
+        {
+            Debug.LogError("Bullet_Turret component not found in the bullet prefab.");
+            return null;
+        }
+        bullet.SetPool(bulletPool);
+        return bullet;
     }
 
     private void Start()
@@ -54,17 +90,22 @@ public class TurretWeapon : MonoBehaviour
             return;
         }
 
-        GameObject bullet = Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
-        if (bullet.GetComponent<Rigidbody2D>() == null)
+        Bullet_Turret bullet = bulletPool.Get();
+        if (bullet != null)
         {
-            Debug.LogError("Rigidbody2D component not found in the bullet prefab.");
-            return;
-        }
-        bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // Reset velocity
-        bullet.GetComponent<Rigidbody2D>().AddForce(firepoint.right * fireForce, ForceMode2D.Impulse);
-        Debug.Log("Bullet fired from " + firepoint.name + " with force: " + fireForce);
+            bullet.transform.position = firepoint.position;
+            bullet.transform.rotation = firepoint.rotation;
 
-        PlaySound(fireClip, firevolume); // Play the fire sound
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.velocity = Vector2.zero; // Reset velocity
+                rb.AddForce(firepoint.right * fireForce, ForceMode2D.Impulse);
+                Debug.Log($"Bullet fired from {firepoint.name} with force: {fireForce}");
+            }
+
+            PlaySound(fireClip, firevolume); // Play the fire sound
+        }
     }
 
     private void PlaySound(AudioClip clip, float volume)

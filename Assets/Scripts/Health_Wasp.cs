@@ -70,6 +70,8 @@ public class Health_Wasp : MonoBehaviour
         Hp = _maxhp;
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        player = GameObject.FindWithTag("Player").GetComponent<Thrill_Player>();
+        uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
     }
 
     public void Damage(int amount)

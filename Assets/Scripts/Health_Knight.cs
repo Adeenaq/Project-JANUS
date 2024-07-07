@@ -50,7 +50,7 @@ public class Health_Knight : MonoBehaviour
     private UnityEvent<int> Damaged;
     private UnityEvent Died;
 
-    public UIManager uiManager; // Reference to the UIManager
+    [SerializeField] private UIManager uiManager; // Reference to the UIManager
 
     void Start()
     {
@@ -71,6 +71,8 @@ public class Health_Knight : MonoBehaviour
         Hp = _maxhp;
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        player = GameObject.FindWithTag("Player").GetComponent<Thrill_Player>();
+        uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
     }
 
     public void Damage(int amount)
