@@ -62948,7 +62948,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       propertyPath: currentBuild
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3407085537057753910, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       propertyPath: m_Name
