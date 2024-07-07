@@ -1330,50 +1330,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: healVol
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: jumpVol
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: flashVol
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: seekerVol
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: RegenThrill
-      value: 280
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: immunityVol
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: thrillerVol
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: currentBuild
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: cumulativeJumpMultiplier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: cumulativeSpeedMultiplier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1941545468532052546, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
-      propertyPath: landVol
-      value: 0.21
-      objectReference: {fileID: 0}
     - target: {fileID: 3407085537057753910, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       propertyPath: m_Name
       value: Players
@@ -1566,7 +1522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1698556845682496078, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.532751
+      value: -11.448452
       objectReference: {fileID: 0}
     - target: {fileID: 2813946585612437821, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_Follow
@@ -1574,11 +1530,11 @@ PrefabInstance:
       objectReference: {fileID: 648867624}
     - target: {fileID: 3868884423203752329, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.532751
+      value: -11.448452
       objectReference: {fileID: 0}
     - target: {fileID: 5250858313458370989, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.533251
+      value: -11.448952
       objectReference: {fileID: 0}
     - target: {fileID: 5302680238572356366, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_Follow
@@ -1586,7 +1542,7 @@ PrefabInstance:
       objectReference: {fileID: 987629300}
     - target: {fileID: 7179033372944210596, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.533251
+      value: -11.448952
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

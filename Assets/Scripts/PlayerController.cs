@@ -292,7 +292,7 @@ public class PlayerController : MonoBehaviour
                 a.SetBool("Jumping", true);
             }
         }
-        else if (myrb.velocity.y < -0.5)
+        else if (myrb.velocity.y < -0.5 && !isSneaking)
         {
             foreach (Animator a in animators)
             {
