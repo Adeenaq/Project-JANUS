@@ -332,6 +332,7 @@ public class PlayerController : MonoBehaviour
             {
                 PlayAnimationIfExists(a, "player_past_land");
                 PlayAnimationIfExists(a, "player_future_land");
+                PlayAnimationIfExists(a, "landing_fx");
             }
 
             framTranTop.m_DeadZoneHeight = 0.0f;
