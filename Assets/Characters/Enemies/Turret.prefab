@@ -723,6 +723,8 @@ MonoBehaviour:
   RotationSpeed: 1
   rotationsound: {fileID: 8300000, guid: 393f5eac84aa50a4b857bf1dfee47b0c, type: 3}
   rotVolume: 0
+  minRotationAngle: -40
+  maxRotationAngle: 320
 --- !u!114 &1135609381101196859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,6 +739,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxhp: 1000
   _hp: 0
+  thrillValue: 10
+  player: {fileID: 0}
   death: {fileID: 8300000, guid: aa3ccecb731470540a2f7cd5035c2e7a, type: 3}
   shot: {fileID: 8300000, guid: a47fa8a2044b26241ba8c4e32a192acb, type: 3}
   shotVolume: 0.937

@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour
 {
     private int baseDamageAmount = 100;
     private int _damageAmount;
     private PowerUp powerUp;
+    private IObjectPool<Bullet> _bulletPool;
+    private bool _isReleased = false; // Flag to track if the bullet has been released
+
+    public bool IsReleased
+    {
+        get { return _isReleased; }
+        set { _isReleased = value; }
+    }
 
     private void Start()
     {
@@ -25,6 +34,11 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    public void SetPool(IObjectPool<Bullet> pool)
+    {
+        _bulletPool = pool;
+    }
+
     private void UpdateDamageAmount()
     {
         if (powerUp != null)
@@ -35,12 +49,17 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (IsReleased)
+        {
+            Debug.LogWarning("Attempted to process collision on a bullet already released.");
+            return; // Prevent multiple releases
+        }
+
         Debug.Log($"Bullet collided with: {collision.gameObject.name}");
 
         // Update damage amount based on current power-up state
         UpdateDamageAmount();
 
-        // Check if the collided object has the Health_Enemy1 component
         var expectKnight = collision.gameObject.GetComponent<Health_Knight>();
         var expectTurret = collision.gameObject.GetComponent<Health_Turret>();
         var expectWasp = collision.gameObject.GetComponent<Health_Wasp>();
@@ -61,7 +80,6 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            // Check if the collided object has the Health_Player component
             var playerHealth = collision.gameObject.GetComponent<Health_Player>();
             if (playerHealth != null)
             {
@@ -69,71 +87,56 @@ public class Bullet : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        ReturnToPool();  // Return the bullet to the pool immediately after collision
     }
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
-        Debug.Log("Bullet exited screen and destroyed");
+        if (!IsReleased) // Only return to pool if not already released
+        {
+            Debug.Log("Bullet became invisible and will return to pool");
+            ReturnToPool();
+        }
+    }
+
+    private void ReturnToPool()
+    {
+        if (IsReleased)
+        {
+            Debug.LogWarning("Attempted to return a bullet to the pool that has already been released.");
+            return; // Prevent multiple releases
+        }
+
+        Debug.Log("Returning bullet to pool");
+        IsReleased = true; // Mark bullet as released
+
+        if (_bulletPool != null)
+        {
+            _bulletPool.Release(this);
+            Debug.Log("Bullet released to pool");
+        }
+        else
+        {
+            Destroy(gameObject);
+            Debug.Log("Bullet destroyed as no pool was found");
+        }
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("Bullet enabled");
+        IsReleased = false; // Reset release flag
+        // Reset bullet state if needed
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            Debug.Log("Bullet velocity reset to zero");
+        }
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("Bullet disabled");
     }
 }
-
-
-//using UnityEngine;
-
-//public class Bullet : MonoBehaviour
-//{
-//    private int _damageAmount = 100;
-//    public int DamageAmount
-//    {
-//        get { return _damageAmount; }
-//        set { _damageAmount = value; }
-//    }
-
-//    private void OnCollisionEnter2D(Collision2D collision)
-//{
-//    if (collision.gameObject.transform.parent != null && (collision.gameObject.transform.parent.name == "Enemies") || (collision.gameObject.transform.parent.name == "Player"))
-//    {
-//        if (collision.gameObject.TryGetComponent<Health_Enemy1>(out Health_Enemy1 enemyHealth))
-//        {
-//            Debug.Log("Hit enemy");
-//            enemyHealth.Damage(_damageAmount);
-
-//        }
-//        else if (collision.gameObject.GetComponentInParent<Health_Player>())
-//        {
-//            Debug.Log("Hit player");
-//            collision.gameObject.GetComponentInParent<Health_Player>().Damage(_damageAmount);
-
-//        }
-//        else
-//        {
-//            Debug.Log("Health component not found on the enemy");
-//        }
-//    }
-
-//    if (BulletPool.Instance != null)
-//    {
-//        BulletPool.Instance.ReturnToPool(this);
-//        Debug.Log("Bullet collided and returned to pool");
-//    }
-//    else
-//    {
-//        Debug.LogError("BulletPool.Instance is null. Ensure BulletPool is initialized before using it.");
-//    }
-//}
-
-//private void OnBecameInvisible()
-//{
-//    if (BulletPool.Instance != null)
-//    {
-//        BulletPool.Instance.ReturnToPool(this);
-//        Debug.Log("Bullet exited screen and returned to pool");
-//    }
-//    else
-//    {
-//        Debug.LogError("BulletPool.Instance is null. Ensure BulletPool is initialized before using it.");
-//    }
-//}
-//}
