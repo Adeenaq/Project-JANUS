@@ -76,7 +76,7 @@ public class WaspController : MonoBehaviour
         playerToTrack1 = GameObject.Find("Player_top").transform;
         playerToTrack2 = GameObject.Find("Player_bottom").transform;
 
-        if (Vector2.Distance(transform.position, playerToTrack1.position) >= Vector2.Distance(transform.position, playerToTrack2.position))
+        if ((transform.position - playerToTrack1.position).sqrMagnitude >= (transform.position - playerToTrack2.position).sqrMagnitude)
         {
             player = playerToTrack2;
         }

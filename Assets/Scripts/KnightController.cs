@@ -5,8 +5,8 @@ using System.Collections;
 public class KnightController : MonoBehaviour
 {
     private float walkSpeed = 3f;
-    private float detectionRange = 20f;
-    private float stopRange = 5f;
+    private float detectionRange = 200f;
+    private float stopRange = 25f;
     private float fireRate = 3f;
     private int collisionDamage = 50;
     private int meleeCooldown = 3;
@@ -62,7 +62,7 @@ public class KnightController : MonoBehaviour
         playerToTrack2 = GameObject.Find("Player_bottom").transform;
         audioSource = gameObject.AddComponent<AudioSource>();
 
-        if (Vector2.Distance(transform.position, playerToTrack1.position) >= Vector2.Distance(transform.position, playerToTrack2.position))
+        if ((transform.position - playerToTrack1.position).sqrMagnitude >= (transform.position - playerToTrack2.position).sqrMagnitude)
         {
             player = playerToTrack2;
         }
@@ -76,9 +76,9 @@ public class KnightController : MonoBehaviour
     {
         if (player != null)
         {
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            float sqrDistanceToPlayer = (transform.position - player.position).sqrMagnitude;
 
-            if (distanceToPlayer <= detectionRange && distanceToPlayer > stopRange)
+            if (sqrDistanceToPlayer <= detectionRange && sqrDistanceToPlayer > stopRange)
             {
                 moveInput = (player.position - transform.position).normalized;
                 IsMoving = true;
@@ -91,7 +91,7 @@ public class KnightController : MonoBehaviour
                 IsMoving = false;
             }
 
-            if (distanceToPlayer <= detectionRange)
+            if (sqrDistanceToPlayer <= detectionRange)
             {
                 if (canFire)
                 {
