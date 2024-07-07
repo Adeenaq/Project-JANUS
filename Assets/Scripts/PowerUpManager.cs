@@ -90,17 +90,17 @@ public class PowerUp : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            TriggerPowerUpI();
+            TriggerPowerUpQ();
         }
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            TriggerPowerUpO();
+            TriggerPowerUpE();
         }
     }
 
-    private void TriggerPowerUpI()
+    private void TriggerPowerUpQ()
     {
         switch (currentBuild)
         {
@@ -132,7 +132,7 @@ public class PowerUp : MonoBehaviour
         
     }
 
-    private void TriggerPowerUpO()
+    private void TriggerPowerUpE()
     {
         switch (currentBuild)
         {

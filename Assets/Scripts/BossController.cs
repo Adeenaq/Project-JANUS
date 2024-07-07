@@ -5,9 +5,14 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     private List<Transform> firstLevelChildren;
-    private float timer = 0f;
+    private float attacktimer = 0f;
     private float attackCooldown = 5f;
     private Animator[] animators;
+    private float recordtimer = 0f;
+    private float recordCooldown = 2f;
+
+    private GameObject player;
+    private Vector2 lastPlayerPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -23,20 +28,29 @@ public class BossController : MonoBehaviour
                 firstLevelChildren.Add(child);
             }
         }
+
+        player = GameObject.Find("Players");
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        timer += Time.deltaTime;
+        attacktimer += Time.deltaTime;
+        recordtimer += Time.deltaTime;
 
-        if (timer >= attackCooldown)
+        if (attacktimer >= attackCooldown)
         {
             foreach (var a in animators)
             {
                 PlayAnimationIfExists(a, "boss_attack");
             }
-            timer = 0f;
+            attacktimer = 0f;
+        }
+
+        if (recordtimer >= recordCooldown)
+        {
+            lastPlayerPosition = player.transform.position;
+            recordtimer = 0f;
         }
     }
 
@@ -48,8 +62,24 @@ public class BossController : MonoBehaviour
 
         // Do something with the randomly chosen child
         // For example, print its name
-        Debug.Log("Randomly chosen child: " + randomChild.name);
-        randomChild.gameObject.SetActive(true);
+        //Debug.Log("Randomly chosen child: " + randomChild.name);
+        
+        if (randomChild.name == "Beam_attack")
+        {
+            Vector2 attackPos = randomChild.position;
+            attackPos.x = lastPlayerPosition.x;
+            randomChild.position = attackPos;
+            randomChild.gameObject.SetActive(true);
+            attackCooldown = 4f;
+        }
+        else if (randomChild.name == "StarWeapon")
+        {
+            Vector2 attackPos = randomChild.position;
+            attackPos.x = lastPlayerPosition.x;
+            randomChild.position = attackPos;
+            randomChild.gameObject.GetComponent<WeaponStar>().Fire();
+            attackCooldown = 3f;
+        }
 
         // Change attack cooldown based on type of attack chosen
         // Change x position of child depending on last saved player position
