@@ -332,6 +332,7 @@ public class PlayerController : MonoBehaviour
             {
                 PlayAnimationIfExists(a, "player_past_land");
                 PlayAnimationIfExists(a, "player_future_land");
+                PlayAnimationIfExists(a, "landing_fx");
             }
 
             framTranTop.m_DeadZoneHeight = 0.0f;
@@ -467,5 +468,10 @@ public class PlayerController : MonoBehaviour
         framTranBot.m_XDamping = 2.0f;
         framTranTop.m_YDamping = 2.0f;
         framTranTop.m_XDamping = 2.0f;
+    }
+
+    public void zoomForBossFight()
+    {
+        StartCoroutine(SmoothZoom(10.0f, 2.0f));
     }
 }
