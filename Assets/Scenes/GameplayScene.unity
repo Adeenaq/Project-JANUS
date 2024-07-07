@@ -253,6 +253,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1431422355}
+    - target: {fileID: 1135609381101196859, guid: 76e05a8b01e872446a0ce8e063d5cf78, type: 3}
+      propertyPath: thrillValue
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4243433566243617899, guid: 76e05a8b01e872446a0ce8e063d5cf78, type: 3}
       propertyPath: m_Name
       value: Turret
@@ -517,6 +521,10 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 103471657}
+    - target: {fileID: 4861866168959292601, guid: 1a5a19c77336e4f46b647e7ad6af9e08, type: 3}
+      propertyPath: thrillValue
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8252902157962870574, guid: 1a5a19c77336e4f46b647e7ad6af9e08, type: 3}
       propertyPath: m_Name
       value: knight_enemy
@@ -597,6 +605,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de347c1cfb52ada4b9e30139492db61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1515686126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+  m_PrefabInstance: {fileID: 956513936583933824}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3af4d322d1a3647b73cb8f991cbaa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1517320493
@@ -899,6 +918,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: healVol
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: jumpVol
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: flashVol
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: seekerVol
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: RegenThrill
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: immunityVol
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: thrillerVol
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: currentBuild
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: cumulativeJumpMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047538114417684728, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: cumulativeSpeedMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941545468532052546, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
+      propertyPath: landVol
+      value: 0.21
+      objectReference: {fileID: 0}
     - target: {fileID: 3407085537057753910, guid: 04e8f71c36d1c4c4fbeeee2264fe0e8e, type: 3}
       propertyPath: m_Name
       value: Players
@@ -1009,6 +1072,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6846745380098159428, guid: ccc340feb428a2a4c85ba9a95f3f5ef3, type: 3}
+      propertyPath: powerups
+      value: 
+      objectReference: {fileID: 1515686126}
+    - target: {fileID: 6846745380098159428, guid: ccc340feb428a2a4c85ba9a95f3f5ef3, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1984886018}
@@ -1099,7 +1166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1698556845682496078, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.528961
+      value: -15.532751
       objectReference: {fileID: 0}
     - target: {fileID: 2813946585612437821, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_Follow
@@ -1107,11 +1174,11 @@ PrefabInstance:
       objectReference: {fileID: 648867624}
     - target: {fileID: 3868884423203752329, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.528961
+      value: -15.532751
       objectReference: {fileID: 0}
     - target: {fileID: 5250858313458370989, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.529461
+      value: -15.533251
       objectReference: {fileID: 0}
     - target: {fileID: 5302680238572356366, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_Follow
@@ -1119,7 +1186,7 @@ PrefabInstance:
       objectReference: {fileID: 987629300}
     - target: {fileID: 7179033372944210596, guid: 2079b7f10e622924fad638b1dcd456ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.529461
+      value: -15.533251
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

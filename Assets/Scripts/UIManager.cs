@@ -10,13 +10,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText; // Reference to the health text
     [SerializeField] private TextMeshProUGUI thrillText; // Reference to the thrill text
 
-    private PowerUp powerups;
-    private int thresholdX;  // Threshold for the first power-up
-    private int thresholdY; // Threshold for the second power-up
+    [SerializeField] private PowerUp powerups;
+    [SerializeField] private int thresholdX;  // Threshold for the first power-up
+    [SerializeField] private int thresholdY; // Threshold for the second power-up
 
     private void Awake()
     {
-        powerups = GetComponent<PowerUp>();
+
         thresholdX=powerups.GetThreshHoldI();
         thresholdY=powerups.GetThreshHoldO();
     }

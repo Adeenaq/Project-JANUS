@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
@@ -6,7 +8,7 @@ public class PowerUp : MonoBehaviour
     public enum BuildType { Damage, Fitness, Adrenaline }
     public BuildType currentBuild;
 
-    private float bulletDamageMultiplier = 1f;
+    [SerializeField] private float bulletDamageMultiplier = 1f;
     [SerializeField] private int specialAttackDamage = 100; // Example value
     [SerializeField] private float specialAttackRange = 10f; // Example value
 
@@ -15,9 +17,9 @@ public class PowerUp : MonoBehaviour
     private int jumpCounter = 0;
     private int damageBoostCounter = 0;
 
-    [SerializeField] private float cumulativeSpeedMultiplier = 1f;
-    [SerializeField] private float cumulativeJumpMultiplier = 1f;
-    [SerializeField] private float cumulativeDamageMultiplier = 1f;
+     private float cumulativeSpeedMultiplier = 1f;
+     private float cumulativeJumpMultiplier = 1f;
+     private float cumulativeDamageMultiplier = 1f;
 
     private Thrill_Player thrillPlayer;
     private PlayerController playerController;
@@ -34,11 +36,39 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private int ThrillerTime = 1;
     [SerializeField] private int immunityTime = 15;
     [SerializeField] private int jumpTime = 20;
-    [SerializeField] private int flashTime = 10; 
+    [SerializeField] private int flashTime = 10;
+
+    private AudioSource audioSource;
+    
+    [SerializeField] private AudioClip seekerClip;
+    [Range(0f, 1f)]
+    [SerializeField] private float seekerVol = 1f;
+    
+    [SerializeField] private AudioClip thrillerClip;
+    [Range(0f, 1f)]
+    [SerializeField] private float thrillerVol = 1f;
+    
+    [SerializeField] private AudioClip healClip;
+    [Range(0f, 1f)] 
+    [SerializeField] private float healVol = 1f;
+
+    [SerializeField] private AudioClip immunityClip;
+    [Range(0f, 1f)]
+    [SerializeField] private float immunityVol = 1f;
+
+    [SerializeField] private AudioClip jumpClip;
+    [Range(0f, 1f)]
+    [SerializeField] float jumpVol = 1f;
+
+    [SerializeField] private AudioClip flashClip;
+    [Range(0f, 1f)]
+    [SerializeField] float flashVol = 1f;
+    
 
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         thrillPlayer = GetComponent<Thrill_Player>();
         if (thrillPlayer == null)
         {
@@ -78,6 +108,7 @@ public class PowerUp : MonoBehaviour
                 if (thrillPlayer.Thrill >= seekerThrill)
                 {
                     thrillPlayer.DecreaseThrill(seekerThrill);
+                    PlaySound(seekerClip, seekerVol);
                     StartCoroutine(DamageBoost());
                 }
                 break;
@@ -85,6 +116,7 @@ public class PowerUp : MonoBehaviour
                 if (thrillPlayer.Thrill >= ImmunityThrill)
                 {
                     thrillPlayer.DecreaseThrill(ImmunityThrill);
+                    PlaySound(immunityClip, immunityVol);
                     StartCoroutine(BecomeImmune());
                 }
                 break;
@@ -92,10 +124,12 @@ public class PowerUp : MonoBehaviour
                 if (thrillPlayer.Thrill >= JumpThrill)
                 {
                     thrillPlayer.DecreaseThrill(JumpThrill);
+                    PlaySound(jumpClip, jumpVol);
                     StartCoroutine(DoubleJumpHeight());
                 }
                 break;
         }
+        
     }
 
     private void TriggerPowerUpO()
@@ -106,6 +140,7 @@ public class PowerUp : MonoBehaviour
                 if (thrillPlayer.Thrill >= ThrillerThrill)
                 {
                     thrillPlayer.DecreaseThrill(ThrillerThrill);
+                    PlaySound(thrillerClip, thrillerVol);
                     StartCoroutine(SpecialAttack());
                 }
                 break;
@@ -113,6 +148,7 @@ public class PowerUp : MonoBehaviour
                 if (thrillPlayer.Thrill >= RegenThrill)
                 {
                     thrillPlayer.DecreaseThrill(RegenThrill);
+                    PlaySound(healClip, healVol);
                     RegenerateHealth();
                 }
                 break;
@@ -120,6 +156,7 @@ public class PowerUp : MonoBehaviour
                 if (thrillPlayer.Thrill >= FlashThrill)
                 {
                     thrillPlayer.DecreaseThrill(FlashThrill);
+                    PlaySound(flashClip, flashVol);
                     StartCoroutine(IncreaseSpeed());
                 }
                 break;
@@ -166,25 +203,27 @@ public class PowerUp : MonoBehaviour
         isImmune = false;
     }
 
+    [SerializeField] private float JumpMultiplier = 2f;
     private IEnumerator DoubleJumpHeight()
     {
         jumpCounter++;
-        cumulativeJumpMultiplier *= 2f;
+        cumulativeJumpMultiplier *= JumpMultiplier;
         playerController.JumpForce = playerController.OriginalJumpForce * cumulativeJumpMultiplier;
         yield return new WaitForSeconds(jumpTime);
         jumpCounter--;
-        cumulativeJumpMultiplier /= 2f;
+        cumulativeJumpMultiplier /= JumpMultiplier;
         playerController.JumpForce = playerController.OriginalJumpForce * cumulativeJumpMultiplier;
     }
 
+    [SerializeField] private float SpeedMultiplier = 1.5f;
     private IEnumerator IncreaseSpeed()
     {
         speedCounter++;
-        cumulativeSpeedMultiplier *= 1.5f;
+        cumulativeSpeedMultiplier *= SpeedMultiplier;
         playerController.WalkSpeed = playerController.OriginalWalkSpeed * cumulativeSpeedMultiplier;
         yield return new WaitForSeconds(flashTime);
         speedCounter--;
-        cumulativeSpeedMultiplier /= 1.5f;
+        cumulativeSpeedMultiplier /= SpeedMultiplier;
         playerController.WalkSpeed = playerController.OriginalWalkSpeed * cumulativeSpeedMultiplier;
     }
 
@@ -249,4 +288,13 @@ public class PowerUp : MonoBehaviour
                 return ThrillerThrill;
         }
     }
+
+    private void PlaySound(AudioClip clip, float volume)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
+        }
+    }
 }
+
