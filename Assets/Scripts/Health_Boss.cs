@@ -17,7 +17,6 @@ public class Health_Boss : MonoBehaviour
     [SerializeField][Range(0, 1)] private float shotVolume = 1.0f; // Volume control for shot sound
     [SerializeField][Range(0, 1)] private float deathVolume = 1.0f; // Volume control for death sound
     public GameObject WinScreenPanel; // Assign in Inspector
-    public GameObject DeathScreenPanel; // Assign in Inspector
 
     
     
